@@ -57,7 +57,7 @@ const zodiacsArray =
 //     a player that won
 //     a tie has occurred
 //     or a game that is still in play.
-let slotMachineArray, scoresArray, scoresArrayA, scoresArrayB, turn, round, isWinner
+let slotMachineArray, scoresArray, turn, round, isWinner
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -158,10 +158,13 @@ function handlePlay() {
   }
       // change alt to a corresponding animal name. 
  
-  // 6.2) Change the turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
-  turn = turn * -1
   // 6.3) invoke updateScore ().
   updateScore()
+
+
+
+  
+
 }
 
 
@@ -173,6 +176,9 @@ function updateScore() {
   console.log(`scoreBoard.textContent: ${scoreBoard.textContent}`)
   // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to ""
   console.log(scoreBoard)
+  // apply time delay to see if the textContent element has been reset in HTML
+  // console.log(typeof scoreBoard);
+  // console.log({scoreBoard});
 
   // 6.3.1) Loop over the slotMachine array (which represents the slots on the page), and for each iteration:
   // 6.3.2) See if there's a pair, triple, or a jackpot (four of the same kind)
@@ -210,40 +216,69 @@ function updateScore() {
       
   // 6.3.3) update scoresArray using "round" and "turn" variables.
   // use yeezy/taylor method to add score list to score board.
-
   // use ternary, use appendChild
 
+
   // 6.3.4) update scoreboard
-  
-  // if(turn = 1) {
-  //   scoresArray[round] = score
-  //   scoreBoard.textContent = scoresArrayA[round]
-  // } else {
-  //   scoresArrayB[round] = score
-  //   scoreBoard.textContent = scoresArrayB[round]
-  // }
-  
-  //Find index of specific object using findIndex method.    
-  objIndex = scoresArray.findIndex((obj => obj.player === 1 && obj.round === 0))
-
-  //Log object to Console.
-  // console.log("Before update: ", scoresArray[objIndex])
-  console.log(objIndex)
-
-  //Update object's name property.
+ 
+  //Find index of specific object with current turn and round using findIndex method.    
+  objIndex = scoresArray.findIndex((obj => obj.player === turn && obj.round === round))
+  //Update object's score property.
   scoresArray[objIndex].score = score
+  // update HTML with new score. 
+  scoreBoard.textContent = scoresArray[objIndex].score
 
-  //Log object to console again.
-  console.log("After update: ", scoresArray[objIndex])
-
-  // 6.3.5) round++
+  // 6.2) Update  turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
+  turn = turn * -1
+  // 6.3.5) Update round of game: round++
   round++
   
+  // check if game is over and update total for each player. 
+  if(round === 3) {
+    //   6.4) call getWinner()
+    isWinner()
+  }
+
+  // 6.5) All state has been updated, so invoke render() to render the state to the page.
+  render()
+    
   
 }
 
-// console.log(slotMachineArray)
+function getWinner() {
+  let sumA = 0
+  let sumB = 0
+  // 6.4.1) Calculate and store Total Scores: Run "Nested Loop" over scoresArray and if the first three element is not null, calculate total scores and update the last value in each of the two arrays within the scoresArray.
+  for(let i=0; i< round; i++) {
+    // use reduce
+    if(scoresArray[i].player === 1) {
+      sumA = sumA + scoresArray[i].score
+    } else {
+      sumB = sumB + scoresArray[i].score
+    }
+  }
 
+  // 6.4.2) If total scores are the same, update isWinner variable to 'T'. If Player A's score is bigger, update isWinner variable to 1. If Player B's score is bigger, update isWinner variable to -1.
+  if(sumA === sumB) {
+    isWinner = 'T'
+  } else if (sumA === sumB) {
+    isWinner = 1
+  } else {
+    isWinner = -1
+  } 
+  
+  // // 6.4.3) Otherwise return null. - no need as this function is invoked only when round is equal to 3.
+
+  
+}
+
+function render() {
+  7) The render function should:
+  7.1) Render a message reflecting the current game state:
+  7.1.1) If winner has a value other than null (game still in progress), render whose turn it is.
+  7.1.2) If winner is equal to 'T' (tie), render a tie message.
+  7.1.3) Otherwise, render a congratulatory message to which player has won.
+}
 /*-------------------------------- Pseudocode --------------------------------*/
 
 
