@@ -68,6 +68,7 @@ const slotMachine = document.querySelector('.slot-machine')
 const winnerDisplay = document.querySelector('#winner-display')
 // 2.4) Store the element that displays the turn on the page.
 const turnBoard = document.querySelector('#turn-board')
+// 8.2) Store the new replay button element
 // 2.5) replay button.
 const replayBtn = document.querySelector('#replay-button')
 // 2.6) play button.
@@ -77,6 +78,10 @@ const scoreBoard = document.querySelector('#score-board')
 
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener("click", handlePlay)
+// 8) Handle a player clicking the replay button:
+
+// 8.3) Do steps 3) (initialize the state variables) and 7) (render).
+replayBtn.addEventListener("click", init)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -242,7 +247,6 @@ function updateScore() {
   // 6.5) All state has been updated, so invoke render() to render the state to the page.
   render()
     
-  
 }
 
 function getWinner() {
@@ -286,6 +290,10 @@ if(isWinner !== null) {
     winnerDisplay.textContent = isWinner === 1 ? "Player A wins!" : "Player B wins!"
   }
 }
+
+
+
+
 /*-------------------------------- Pseudocode --------------------------------*/
 
 
