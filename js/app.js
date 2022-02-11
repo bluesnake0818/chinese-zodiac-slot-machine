@@ -1,6 +1,20 @@
 /*-------------------------------- Constants --------------------------------*/
+// 4) Define the required constants:
+// 4.1) an array called zodiacsArray that stores all 12 zodiacs (String and Image) from Rat to Pig in order.
+// [
+// [RAT, https://www.imgur.com/rat (img of rat)]
+// .
+// .
+// .
+// [PIG, https://www.imgur.com/rat (img of pig)]
+// ]
+// 4.2) Challenge: The name of celebrities with each jackpot case (for example: Beyonce for 4 rabbits)
+const zodiacsArray = 
+  [
 
 
+
+  ]
 
 /*---------------------------- Variables (state) ----------------------------*/
 // 1) Define the required variables used to track the state of the game.
@@ -46,7 +60,7 @@ function init() {
     // The 4 elements will "map" to each slot.
     // Index 0 represents the far left square.
     // Index 3 represents the far right square.
-  slotMachineArray = slotMachine
+  slotMachineArray = [slot1, slot2, slot3, slot4]
   slotMachineArray.forEach(slot => {
     slot.target.value = null
     slot.target.innerHTML = ""
@@ -66,7 +80,6 @@ function init() {
   scoresArrayB = []
   // 3.1.5) Initialize the round (1,2,3) to zero.
   round = 0
-  
 }
 
 /*
