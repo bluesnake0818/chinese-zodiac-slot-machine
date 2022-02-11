@@ -57,7 +57,7 @@ const zodiacsArray =
 //     a player that won
 //     a tie has occurred
 //     or a game that is still in play.
-let slotMachineArray, scoresArrayA, scoresArrayB, turn, round, isWinner
+let slotMachineArray, scoresArray, scoresArrayA, scoresArrayB, turn, round, isWinner
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -76,7 +76,7 @@ const playBtn = document.querySelector('#play-button')
 const scoreBoard = document.querySelector('#score-board')
 
 /*----------------------------- Event Listeners -----------------------------*/
-// playBtn.addEventListener("click", handlePlay)
+playBtn.addEventListener("click", handlePlay)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -92,10 +92,13 @@ function init() {
     // Index 0 represents the far left square.
     // Index 3 represents the far right square.
   slotMachineArray = [slot1, slot2, slot3, slot4]
+
+
   slotMachineArray.forEach(slot => {
     // Question - how does this work? is event.target an object?
     slot.target = zodiacsArray[2]
-  });
+  })
+
   // 3.1.2) Initialize whose turn it is to A (player '1').
     // Player 'B' will be represented by -1.
   turn = 1
@@ -107,8 +110,20 @@ function init() {
   isWinner = null
 
   // 3.1.4) Initialize the two arrays that keep track of each player's scores.
-  scoresArrayA = [0,0,0]
-  scoresArrayB = [0,0,0]
+  // scoresArrayA = [0,0,0,0]
+  // scoresArrayB = [0,0,0,0]
+
+  scoresArray =
+  [
+    {player: 1, round: 0, score: 0, note: ''},
+    {player: 1, round: 1, score: 0, note: ''},
+    {player: 1, round: 2, score: 0, note: ''},
+    {player: 1, round: 3, score: 0, note: 'sum'},
+    {player: -1, round: 0, score: 0, note: ''},
+    {player: -1, round: 1, score: 0, note: ''},
+    {player: -1, round: 2, score: 0, note: ''},
+    {player: -1, round: 3, score: 0, note: 'sum'},
+  ]
   // 3.1.5) Initialize the round (1,2,3) to zero.
   round = 0
 }
@@ -131,12 +146,15 @@ function choosePlayer(evt) {
 // 6.1) loop over the slotMachineArray and update each section in the array with a random zodiac (image) from the zodiacsArray from left to right.
 function handlePlay() {
   let randZodIdx
+  
   // In each of the four loops:
   for(let i=0; i<slotMachineArray.length; i++) {
     // 6.1.1) a random number between 0-11 will be chosen and this index will be used to retrieve a zodiac image from the zodiacsArray.
     randZodIdx = Math.floor(Math.random() * zodiacsArray.length)
     // 6.1.2) The image from 6.1.1 will be assigned to slotMachineArray[i].src
-    slotMachineArray[i].src = zodiacsArray[randZodIdx][1]
+    // slotMachineArray[i].zodiac = zodiacsArray[randZodIdx].url
+    slotMachineArray[i].src = zodiacsArray[randZodIdx].url
+    slotMachineArray[i].target = zodiacsArray[randZodIdx]
   }
       // change alt to a corresponding animal name. 
  
@@ -146,99 +164,85 @@ function handlePlay() {
   updateScore()
 }
 
-updateScore()
-console.log(slotMachineArray)
-console.log(slotMachineArray[0].target.zodiac)
-console.log(slotMachineArray[1].target.zodiac)
 
 // 6.3) updateScore() will:
 function updateScore() {
   // let numIdentical = 0
   let score = 0
-
-
+  scoreBoard.textContent = ""
+  console.log(`scoreBoard.textContent: ${scoreBoard.textContent}`)
+  // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to ""
+  console.log(scoreBoard)
 
   // 6.3.1) Loop over the slotMachine array (which represents the slots on the page), and for each iteration:
   // 6.3.2) See if there's a pair, triple, or a jackpot (four of the same kind)
-  // 6.3.3) update scoresArray using "round" and "turn" variables.
-  if (slotMachineArray[0].target === slotMachineArray[1].target
-    && slotMachineArray[0].target === slotMachineArray[2].target
-    && slotMachineArray[0].target === slotMachineArray[3].target) {
-    score = 1000
-  // 2. triple: 0=1=2, 0=2=3, 1=2=3, 0=1=3, 
-  } else if ((slotMachineArray[0].target === slotMachineArray[1].target) && (slotMachineArray[0].target === slotMachineArray[2].target)
-    || (slotMachineArray[0].target === slotMachineArray[2].target) && (slotMachineArray[0].target === slotMachineArray[3].target)
-    || (slotMachineArray[1].target === slotMachineArray[2].target) && (slotMachineArray[1].target === slotMachineArray[3].target)
-    || (slotMachineArray[0].target === slotMachineArray[1].target) && (slotMachineArray[0].target === slotMachineArray[3].target)
-  ) {
-    score = 100
-  // 3. pair: 0=1, 0=2, 0=3, 1=2, 1=3, 2=3
-  } else if (slotMachineArray[0].target === slotMachineArray[1].target 
-    || slotMachineArray[0].target === slotMachineArray[2].target 
-    || slotMachineArray[0].target === slotMachineArray[3].target 
-    || slotMachineArray[1].target === slotMachineArray[2].target 
-    || slotMachineArray[1].target === slotMachineArray[3].target 
-    || slotMachineArray[2].target === slotMachineArray[3].target) {
-    // 3A. 2-pairs: 0=1 && 2=3, 0=2 && 1=3, 0=3 && 1=2, 
-      if (slotMachineArray[0].target === slotMachineArray[1].target && slotMachineArray[2].target === slotMachineArray[3].target) {
-        score = 20
-      } else if (slotMachineArray[0].target === slotMachineArray[2].target && slotMachineArray[1].target === slotMachineArray[3].target) {
-        score = 20
-      } else if (slotMachineArray[0].target === slotMachineArray[3].target && slotMachineArray[1].target === slotMachineArray[2].target) {
-        score = 20
+  if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac
+    && slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac
+    && slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac) {
+      score = 1000
+      // 2. triple: 0=1=2, 0=2=3, 1=2=3, 0=1=3, 
+    } else if ((slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac)
+    || (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac)
+    || (slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac) && (slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac)
+    || (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac)
+    ) {
+      score = 100
+      // 3. pair: 0=1, 0=2, 0=3, 1=2, 1=3, 2=3
+    } else if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac 
+      || slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac 
+      || slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac 
+      || slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac 
+      || slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac 
+      || slotMachineArray[2].target.zodiac === slotMachineArray[3].target.zodiac) {
+        // 3A. 2-pairs: 0=1 && 2=3, 0=2 && 1=3, 0=3 && 1=2, 
+        if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac && slotMachineArray[2].target.zodiac === slotMachineArray[3].target.zodiac) {
+          score = 20
+        } else if (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac && slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac) {
+          score = 20
+        } else if (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac && slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac) {
+          score = 20
+        } else {
+          score = 10
+        }
       } else {
-        score = 10
+        score = 0
       }
-  } else {
-    score = 0
-  }
-  
+      
+  // 6.3.3) update scoresArray using "round" and "turn" variables.
+  // use yeezy/taylor method to add score list to score board.
 
+  // use ternary, use appendChild
 
-  // for(let i=0; i<slotMachineArray.length; i++) {
-  //   // const isJackpot = (currentObj => currentObj.id === slotMachineArray[0].id)
-  //   if(slotMachineArray) { 
-  //     score = 1000
-  //   }
-  // //   counts[i] = (slotMachineArray[round] || 0) + 1  
-  // // scoresArrayA[round] = slotMachineArray[round]  
-  // }
-
-  // scoresArrayA = 
-
-  console.log(score)
-
-
-    // let countedData = data.reduce(function (allData, datum) {
-    //   if (datum in allData) {
-    //     allData[datum]++
-    //     console.log(datum)
-    //     console.log(allData[datum])
-    //     console.log(allData)
-    //   }
-    //   else {
-    //     allData[datum] = 1
-    //     console.log(datum)
-    //     console.log(allData[datum])
-    //     console.log(allData)
-    //   }
-    //   return allData
-    // }, {})
-
-
-  
-  // for(let i=0; i<slotMachineArray.length; i++) {
-  //   counts[i] = (slotMachineArray[round] || 0) + 1  
-  // scoresArrayA[round] = slotMachineArray[round]  
-  // }
-  
   // 6.3.4) update scoreboard
-  // 6.3.5) round++
   
-  // console.log(counts)
+  // if(turn = 1) {
+  //   scoresArray[round] = score
+  //   scoreBoard.textContent = scoresArrayA[round]
+  // } else {
+  //   scoresArrayB[round] = score
+  //   scoreBoard.textContent = scoresArrayB[round]
+  // }
+  
+  //Find index of specific object using findIndex method.    
+  objIndex = scoresArray.findIndex((obj => obj.player === 1 && obj.round === 0))
+
+  //Log object to Console.
+  // console.log("Before update: ", scoresArray[objIndex])
+  console.log(objIndex)
+
+  //Update object's name property.
+  scoresArray[objIndex].score = score
+
+  //Log object to console again.
+  console.log("After update: ", scoresArray[objIndex])
+
+  // 6.3.5) round++
+  round++
+  
+  
 }
 
-
+// console.log(slotMachineArray)
 
 /*-------------------------------- Pseudocode --------------------------------*/
 
