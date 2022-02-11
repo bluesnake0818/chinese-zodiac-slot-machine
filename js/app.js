@@ -107,7 +107,7 @@ function choosePlayer(evt) {
 // 6) Next, the app should wait for the user to click a play button and call handlePlay()
 // handlePlay() will...
 function handlePlay(evt) {
-  console.log(evt.target)
+  console.log(evt.target.src)
   
   // let randZodiac = Math.floor(Math.random * zodiacsArray.length) 
   
