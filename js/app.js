@@ -41,7 +41,7 @@ let slotMachineArray, scoresArrayA, scoresArrayB, turn, round, isWinner
 /*------------------------ Cached Element References ------------------------*/
 // 2.1) slotMachine that ttore the 4 div elements that represent the slots in the slot machine.
 //These can be accessed by <section class ="Slot-Machine">
-const slotMachine = document.querySelector('#slot-machine')
+const slotMachine = document.querySelector('.slot-machine')
 // 2.2) Store the element that displays the game status (winner/tie) on the page.
 const winnerDisplay = document.querySelector('#winner-display')
 // 2.4) Store the element that displays the turn on the page.
@@ -54,12 +54,12 @@ const playBtn = document.querySelector('#play-button')
 const scoreBoard = document.querySelector('#score-board')
 
 /*----------------------------- Event Listeners -----------------------------*/
-slotMachine.addEventListener("click", handlePlay)
+playBtn.addEventListener("click", handlePlay)
 
 
 /*-------------------------------- Functions --------------------------------*/
 // 3) Upon loading, the app should invoke init()
-// init()
+init()
 
 
 // 3.1) That initialize function should initialize the state variables:
@@ -71,8 +71,8 @@ function init() {
     // Index 3 represents the far right square.
   slotMachineArray = [slot1, slot2, slot3, slot4]
   slotMachineArray.forEach(slot => {
-    slot.target.value = null
-    slot.target.innerHTML = ""
+    // Question - how does this work? is event.target an object?
+    slot.target = zodiacsArray[3]
   });
   // 3.1.2) Initialize whose turn it is to A (player '1').
     // Player 'B' will be represented by -1.
@@ -106,18 +106,16 @@ function choosePlayer(evt) {
 
 // 6) Next, the app should wait for the user to click a play button and call handlePlay()
 // handlePlay() will...
-function handlePlay(evt) {
-  console.log(evt.target.src)
-  
-  // let randZodiac = Math.floor(Math.random * zodiacsArray.length) 
-  
+function handlePlay() {
+  let randZodIdx
+  for(let i=0; i<slotMachineArray.length; i++) {
+    randZodIdx = Math.floor(Math.random() * zodiacsArray.length)
+    slotMachineArray[i].src = zodiacsArray[randZodIdx][1]
+  }
+ 
   // 6.1) loop over the slotMachineArray and update each section in the array with a selected zodiac (image) from the zodiacs Array from left to right.
   // In each of the four loops:
   
-  // slotMachineArray.forEach(slot => {
-  //   slotMachineArray[randZodiac]
-  // })
-
   // 6.1.1) a random number between 0-11 will be chosen and this index will be used to retrieve a zodiac image from the zodiacsArray.
   // 6.1.2) The image from 6.1.1 will be assigned to slotMachineArray[i].innerHTML (?)
 }
