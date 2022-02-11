@@ -272,12 +272,19 @@ function getWinner() {
   
 }
 
+// 7) The render function should:
 function render() {
-  7) The render function should:
-  7.1) Render a message reflecting the current game state:
-  7.1.1) If winner has a value other than null (game still in progress), render whose turn it is.
-  7.1.2) If winner is equal to 'T' (tie), render a tie message.
-  7.1.3) Otherwise, render a congratulatory message to which player has won.
+// 7.1) Render a message reflecting the current game state:
+if(isWinner !== null) {
+    // 7.1.1) If winner has a value other than null (game still in progress), render whose turn it is.
+    turnBoard.textContent = turn === 1 ? "Player A" : "Player B"
+  } else if (isWinner === 'T') {
+    // 7.1.2) If winner is equal to 'T' (tie), render a tie message.
+    winnerDisplay.textContent = "The game is tied."
+  } else {
+    // 7.1.3) Otherwise, render a congratulatory message to which player has won.
+    winnerDisplay.textContent = isWinner === 1 ? "Player A wins!" : "Player B wins!"
+  }
 }
 /*-------------------------------- Pseudocode --------------------------------*/
 
