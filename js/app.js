@@ -115,20 +115,29 @@ function init() {
   isWinner = null
 
   // 3.1.4) Initialize the two arrays that keep track of each player's scores.
-  // scoresArrayA = [0,0,0,0]
-  // scoresArrayB = [0,0,0,0]
+  scoresArray = [score0, score1, score2, score3, score4, score5, score6, score7]
 
-  scoresArray =
-  [
-    {player: 1, round: 0, score: 0, note: ''},
-    {player: 1, round: 1, score: 0, note: ''},
-    {player: 1, round: 2, score: 0, note: ''},
-    {player: 1, round: 3, score: 0, note: 'sum'},
-    {player: -1, round: 0, score: 0, note: ''},
-    {player: -1, round: 1, score: 0, note: ''},
-    {player: -1, round: 2, score: 0, note: ''},
-    {player: -1, round: 3, score: 0, note: 'sum'},
-  ]
+  score0.target = {player: 1, round: 0, score: 0, note: ''}
+  score1.target = {player: 1, round: 1, score: 0, note: ''}
+  score2.target = {player: 1, round: 2, score: 0, note: ''}
+  score3.target = {player: 1, round: 3, score: 0, note: 'sum'}
+  score4.target = {player: -1, round: 0, score: 0, note: ''}
+  score5.target = {player: -1, round: 1, score: 0, note: ''}
+  score6.target = {player: -1, round: 2, score: 0, note: ''}
+  score7.target = {player: -1, round: 3, score: 0, note: 'sum'}
+
+
+  // scoresArray =
+  // [
+  //   {player: 1, round: 0, score: 0, note: ''},
+  //   {player: 1, round: 1, score: 0, note: ''},
+  //   {player: 1, round: 2, score: 0, note: ''},
+  //   {player: 1, round: 3, score: 0, note: 'sum'},
+  //   {player: -1, round: 0, score: 0, note: ''},
+  //   {player: -1, round: 1, score: 0, note: ''},
+  //   {player: -1, round: 2, score: 0, note: ''},
+  //   {player: -1, round: 3, score: 0, note: 'sum'},
+  // ]
   // 3.1.5) Initialize the round (1,2,3) to zero.
   round = 0
 
@@ -244,6 +253,8 @@ function updateScore() {
  
   //Find index of specific object with current turn and round using findIndex method.    
   objIndex = scoresArray.findIndex((obj => obj.player === turn && obj.round === round))
+  
+  
   //Update object's score property.
   scoresArray[objIndex].score = score
   
@@ -303,8 +314,8 @@ if(isWinner === null) {
     }
   }
 
-// update HTML with new score. 
-scoreBoard.textContent = scoresArray[objIndex].score
+// update HTML with new score. 1
+scoreBoard[0].textContent = scoresArray[objIndex].score
 
 
 }

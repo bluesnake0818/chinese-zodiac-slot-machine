@@ -58,7 +58,7 @@ h1 {
   border-style: solid;
 }
 
-#play-button, #replay-button {
+.button {
   width: 100px;
   height: 30px;
   border-radius: 10%;
@@ -66,6 +66,7 @@ h1 {
   background-color: royalblue;
   color: white;
   font-weight: bold;
+  margin: 20px;
 }
 
 #replay-button {
