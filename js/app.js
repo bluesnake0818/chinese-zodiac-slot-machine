@@ -3,12 +3,21 @@
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-
+let slotMachineArray, scoresArray, turn, round, isWinner
 
 
 /*------------------------ Cached Element References ------------------------*/
-
-
+// 2.1) slotMachine that ttore the 4 div elements that represent the slots in the slot machine.
+//These can be accessed by <section class ="Slot-Machine">
+const slotMachine = document.querySelector('slot-machine')
+// 2.2) Store the element that displays the game status (winner/tie) on the page.
+const winnerDisplay = document.querySelector('winner-display')
+// 2.4) Store the element that displays the turn on the page.
+const turnBoard = document.querySelector('turn-board')
+// 2.5) replay button.
+const replayBtn = document.querySelector('replay-button')
+// 2.6) play button.
+const playBtn = document.querySelector('play-button')
 
 /*----------------------------- Event Listeners -----------------------------*/
 
@@ -17,17 +26,17 @@
 /*-------------------------------- Functions --------------------------------*/
 
 // 1) Define the required variables used to track the state of the game.
-// 1.1) Use an array (slotMachineArray) to represent the slots in the slot machine for each turn in each round.
-// 1.2) Use ScoresArray to track scores. keep score of each player each round. Array of arrays.
-// 1.3) Use a turn variable to track whose turn it is.
-// 1.4) use a round variable to track which round it is
-// 1.5) Use a winner variable to represent three different game states:
-// a player that won
-// a tie has occurred
-// or a game that is still in play.
+  // 1.1) Use an array (slotMachineArray) to represent the slots in the slot machine for each turn in each round.
+  // 1.2) Use ScoresArray to track scores. keep score of each player each round. Array of arrays.
+  // 1.3) Use a turn variable to track whose turn it is.
+  // 1.4) use a round variable to track which round it is
+  // 1.5) Use a winner variable to represent three different game states:
+    // a player that won
+    // a tie has occurred
+    // or a game that is still in play.
 
 // 2) Store cached element references.
-// 2.1) Store the 4 div elements that represent the slots in the slot machine.
+// 2.1) slotMachine that ttore the 4 div elements that represent the slots in the slot machine.
 //These can be accessed by <section class ="Slot-Machine">
 // div id = slot 1
 // div id = slot 2
