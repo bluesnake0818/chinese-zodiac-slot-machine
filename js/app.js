@@ -57,7 +57,7 @@ const zodiacsArray =
 //     a player that won
 //     a tie has occurred
 //     or a game that is still in play.
-let slotMachineArray, scoresArray, turn, round, isWinner
+let slotMachineArray, scoresArray, turn, round, isWinner, objIndex
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -131,6 +131,17 @@ function init() {
   ]
   // 3.1.5) Initialize the round (1,2,3) to zero.
   round = 0
+
+  // unhide Play Button
+  playBtn.removeAttribute("hidden")
+
+  // hide replay Button
+  replayBtn.setAttribute("hidden", true)
+
+  winnerDisplay.setAttribute("hidden", true)
+
+  // reset turn board
+  turnBoard.textContent = ""
 }
 
 // 5) Next, the app should wait for the user to click which player he/she/they wants to play with
@@ -166,10 +177,16 @@ function handlePlay() {
   // 6.3) invoke updateScore ().
   updateScore()
 
+  //  6.4) call getWinner(): check if game is over and update total for each player. 
+  if(round === 3) {
+    // add time delay
+    playBtn.setAttribute("hidden", true)
+    replayBtn.removeAttribute("hidden")
+    getWinner()
+  }
 
-
-  
-
+  // 6.5) All state has been updated, so invoke render() to render the state to the page.
+  render()
 }
 
 
@@ -177,13 +194,12 @@ function handlePlay() {
 function updateScore() {
   // let numIdentical = 0
   let score = 0
-  scoreBoard.textContent = ""
-  console.log(`scoreBoard.textContent: ${scoreBoard.textContent}`)
+  
+  // scoreBoard.textContent = ""
+
   // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to ""
-  console.log(scoreBoard)
   // apply time delay to see if the textContent element has been reset in HTML
-  // console.log(typeof scoreBoard);
-  // console.log({scoreBoard});
+
 
   // 6.3.1) Loop over the slotMachine array (which represents the slots on the page), and for each iteration:
   // 6.3.2) See if there's a pair, triple, or a jackpot (four of the same kind)
@@ -220,7 +236,7 @@ function updateScore() {
       }
       
   // 6.3.3) update scoresArray using "round" and "turn" variables.
-  // use yeezy/taylor method to add score list to score board.
+  // use yeezy/taylor method to add score list to score board, , use createElement
   // use ternary, use appendChild
 
 
@@ -230,22 +246,16 @@ function updateScore() {
   objIndex = scoresArray.findIndex((obj => obj.player === turn && obj.round === round))
   //Update object's score property.
   scoresArray[objIndex].score = score
-  // update HTML with new score. 
-  scoreBoard.textContent = scoresArray[objIndex].score
+  
 
   // 6.2) Update  turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
   turn = turn * -1
   // 6.3.5) Update round of game: round++
   round++
   
-  // check if game is over and update total for each player. 
-  if(round === 3) {
-    //   6.4) call getWinner()
-    isWinner()
-  }
 
-  // 6.5) All state has been updated, so invoke render() to render the state to the page.
-  render()
+
+
     
 }
 
@@ -279,16 +289,24 @@ function getWinner() {
 // 7) The render function should:
 function render() {
 // 7.1) Render a message reflecting the current game state:
-if(isWinner !== null) {
-    // 7.1.1) If winner has a value other than null (game still in progress), render whose turn it is.
-    turnBoard.textContent = turn === 1 ? "Player A" : "Player B"
-  } else if (isWinner === 'T') {
-    // 7.1.2) If winner is equal to 'T' (tie), render a tie message.
-    winnerDisplay.textContent = "The game is tied."
-  } else {
-    // 7.1.3) Otherwise, render a congratulatory message to which player has won.
-    winnerDisplay.textContent = isWinner === 1 ? "Player A wins!" : "Player B wins!"
+if(isWinner === null) {
+  // 7.1.1) If winner has a value other than null (game still in progress), render whose turn it is.
+  turnBoard.textContent = turn === 1 ? "Player A's turn" : "Player B's turn"
+} else {
+    if (isWinner === 'T') {
+      // 7.1.2) If winner is equal to 'T' (tie), render a tie message.
+      winnerDisplay.textContent = "The game is tied."
+    } else {
+      // 7.1.3) Otherwise, render a congratulatory message to which player has won.
+      winnerDisplay.removeAttribute("hidden")
+      winnerDisplay.textContent = isWinner === 1 ? "Player A wins!" : "Player B wins!"
+    }
   }
+
+// update HTML with new score. 
+scoreBoard.textContent = scoresArray[objIndex].score
+
+
 }
 
 

@@ -14,33 +14,34 @@
   >
   <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
-  <h1>Welcome to Chinese Zodiac Slot Machine</h1>
+  <body>
+    <main>
+      <h1>Welcome to Chinese Zodiac Slot Machine</h1>
+      
+      <section id="turn-board"></section>
+      
+      <div class="slot-machine">
+        <img id ="slot1" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
+        <img id ="slot2" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
+        <img id ="slot3" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
+        <img id ="slot4" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
+      </div>
+
+      <button id="play-button">Play</button>
+
   
-  <div class="slot-machine">
-    <img id ="slot1" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-    <img id ="slot2" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-    <img id ="slot3" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-    <img id ="slot4" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-  </div>
 
-  <section id="winner-display">
+      <button id="replay-button">Replay</button>
 
-  </section>
+      <section id="score-board">
+        <div id ="r1-score">Round 1 Scores: </div>
+        <div id ="r2-score">Round 2 Scores: </div>
+        <div id ="r3-score">Round 3 Scores: </div>
+        <div id ="r4-score">Total Scores: </div>
+      </section>
 
-  <button id="play-button">Play</button>
+      <section id="winner-display"></section>
 
-  <section id="turn-board">
-
-  </section>
-
-  <button id="replay-button">Replay</button>
-
-  <section id="score-board">
-    <div id ="r1-score">Round 1 Scores: </div>
-    <div id ="r2-score">Round 2 Scores: </div>
-    <div id ="r3-score">Round 3 Scores: </div>
-    <div id ="r4-score">Total Scores: </div>
-  </section>
-</body>
+    </main>      
+  </body>
 </html>
