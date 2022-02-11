@@ -10,11 +10,20 @@
 // ]
 // 4.2) Challenge: The name of celebrities with each jackpot case (for example: Beyonce for 4 rabbits)
 const zodiacsArray = 
-  [
-
-
-
-  ]
+[
+  ['rat', "./assets/designs_rat.png"],
+  ['ox', "./assets/designs_ox.png"],
+  ['tiger', "./assets/designs_tiger.png"],
+  ['rabbit', "./assets/designs_rabbit.png"],
+  ['dragon', "./assets/designs_dragon.png"],
+  ['snake', "./assets/designs_snake.png"],
+  ['horse', "./assets/designs_horse.png"],
+  ['goat', "./assets/designs_goat.png"],
+  ['monkey', "./assets/designs_monkey.png"],
+  ['rooster', "./assets/designs_rooster.png"],
+  ['dog', "./assets/designs_dog.png"],
+  ['pig', "./assets/designs_pig.png"]
+]
 
 /*---------------------------- Variables (state) ----------------------------*/
 // 1) Define the required variables used to track the state of the game.
