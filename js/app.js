@@ -65,7 +65,7 @@ function init() {
   scoresArrayA = []
   scoresArrayB = []
   // 3.1.5) Initialize the round (1,2,3) to zero.
-
+  round = 0
   
 }
 
