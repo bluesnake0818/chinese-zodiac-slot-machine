@@ -91,6 +91,19 @@ function init() {
   round = 0
 }
 
+// 5) Next, the app should wait for the user to click which player he/she/they wants to play with
+// 5.1) choosePlayer(evt) is invoked
+// 5.2) if Player A is chosen, turn variable is updated to 1.
+// 5.3) if Player B is chosen, turn variable is updated to -1.
+function choosePlayer(evt) {
+  if(evt.target.textContent === 'A') {
+    turn = 1
+  } else if (evt.target.textContent === 'B') {
+    turn = -1
+  }
+}
+
+
 /*
 1) Define the required variables used to track the state of the game.
   1.1) Use an array (slotMachineArray) to represent the slots in the slot machine for each turn in each round.
