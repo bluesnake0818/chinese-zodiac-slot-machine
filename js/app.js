@@ -9,21 +9,43 @@
 // [PIG, https://www.imgur.com/rat (img of pig)]
 // ]
 // 4.2) Challenge: The name of celebrities with each jackpot case (for example: Beyonce for 4 rabbits)
+// const zodiacsArray = 
+// [
+//   ['rat', "./assets/designs_rat.png"],
+//   ['ox', "./assets/designs_ox.png"],
+//   ['tiger', "./assets/designs_tiger.png"],
+//   ['rabbit', "./assets/designs_rabbit.png"],
+//   ['dragon', "./assets/designs_dragon.png"],
+//   ['snake', "./assets/designs_snake.png"],
+//   ['horse', "./assets/designs_horse.png"],
+//   ['goat', "./assets/designs_goat.png"],
+//   ['monkey', "./assets/designs_monkey.png"],
+//   ['rooster', "./assets/designs_rooster.png"],
+//   ['dog', "./assets/designs_dog.png"],
+//   ['pig', "./assets/designs_pig.png"]
+// ]
+
 const zodiacsArray = 
 [
-  ['rat', "./assets/designs_rat.png"],
-  ['ox', "./assets/designs_ox.png"],
-  ['tiger', "./assets/designs_tiger.png"],
-  ['rabbit', "./assets/designs_rabbit.png"],
-  ['dragon', "./assets/designs_dragon.png"],
-  ['snake', "./assets/designs_snake.png"],
-  ['horse', "./assets/designs_horse.png"],
-  ['goat', "./assets/designs_goat.png"],
-  ['monkey', "./assets/designs_monkey.png"],
-  ['rooster', "./assets/designs_rooster.png"],
-  ['dog', "./assets/designs_dog.png"],
-  ['pig', "./assets/designs_pig.png"]
+  {zodiac: 'rat', url: "./assets/designs_rat.png"},
+  {zodiac: 'ox', url: "./assets/designs_ox.png"},
+  {zodiac: 'tiger', url: "./assets/designs_tiger.png"},
+  {zodiac: 'rabbit', url: "./assets/designs_rabbit.png"},
+  {zodiac: 'dragon', url: "./assets/designs_dragon.png"},
+  {zodiac: 'snake', url: "./assets/designs_snake.png"},
+  {zodiac: 'horse', url: "./assets/designs_horse.png"},
+  {zodiac: 'goat', url: "./assets/designs_goat.png"},
+  {zodiac: 'monkey', url: "./assets/designs_monkey.png"},
+  {zodiac: 'rooster', url: "./assets/designs_rooster.png"},
+  {zodiac: 'dog', url: "./assets/designs_dog.png"},
+  {zodiac: 'pig', url: "./assets/designs_pig.png"}
 ]
+
+// const winning combo
+// 1. jackpot: 0=1=2=3
+// 2. triple: 0=1=2, 0=2=3, 1=2=3, 0=1=3, 
+// 3. pair: 0=1, 0=2, 0=3, 1=2, 1=3, 2=3
+// 3A. 2-pairs: 0=1 && 2=3, 0=2 && 1=3, 0=3 && 1=2, 
 
 /*---------------------------- Variables (state) ----------------------------*/
 // 1) Define the required variables used to track the state of the game.
@@ -54,7 +76,7 @@ const playBtn = document.querySelector('#play-button')
 const scoreBoard = document.querySelector('#score-board')
 
 /*----------------------------- Event Listeners -----------------------------*/
-playBtn.addEventListener("click", handlePlay)
+// playBtn.addEventListener("click", handlePlay)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -72,7 +94,7 @@ function init() {
   slotMachineArray = [slot1, slot2, slot3, slot4]
   slotMachineArray.forEach(slot => {
     // Question - how does this work? is event.target an object?
-    slot.target = zodiacsArray[3]
+    slot.target = zodiacsArray[2]
   });
   // 3.1.2) Initialize whose turn it is to A (player '1').
     // Player 'B' will be represented by -1.
@@ -85,8 +107,8 @@ function init() {
   isWinner = null
 
   // 3.1.4) Initialize the two arrays that keep track of each player's scores.
-  scoresArrayA = []
-  scoresArrayB = []
+  scoresArrayA = [0,0,0]
+  scoresArrayB = [0,0,0]
   // 3.1.5) Initialize the round (1,2,3) to zero.
   round = 0
 }
@@ -102,34 +124,121 @@ function choosePlayer(evt) {
     turn = -1
   }
 }
-
+  
 
 // 6) Next, the app should wait for the user to click a play button and call handlePlay()
 // handlePlay() will...
+// 6.1) loop over the slotMachineArray and update each section in the array with a random zodiac (image) from the zodiacsArray from left to right.
 function handlePlay() {
   let randZodIdx
+  // In each of the four loops:
   for(let i=0; i<slotMachineArray.length; i++) {
+    // 6.1.1) a random number between 0-11 will be chosen and this index will be used to retrieve a zodiac image from the zodiacsArray.
     randZodIdx = Math.floor(Math.random() * zodiacsArray.length)
+    // 6.1.2) The image from 6.1.1 will be assigned to slotMachineArray[i].src
     slotMachineArray[i].src = zodiacsArray[randZodIdx][1]
   }
+      // change alt to a corresponding animal name. 
  
-  // 6.1) loop over the slotMachineArray and update each section in the array with a selected zodiac (image) from the zodiacs Array from left to right.
-  // In each of the four loops:
+  // 6.2) Change the turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
+  turn = turn * -1
+  // 6.3) invoke updateScore ().
+  updateScore()
+}
+
+updateScore()
+console.log(slotMachineArray)
+console.log(slotMachineArray[0].target.zodiac)
+console.log(slotMachineArray[1].target.zodiac)
+
+// 6.3) updateScore() will:
+function updateScore() {
+  // let numIdentical = 0
+  let score = 0
+
+
+
+  // 6.3.1) Loop over the slotMachine array (which represents the slots on the page), and for each iteration:
+  // 6.3.2) See if there's a pair, triple, or a jackpot (four of the same kind)
+  // 6.3.3) update scoresArray using "round" and "turn" variables.
+  if (slotMachineArray[0].target === slotMachineArray[1].target
+    && slotMachineArray[0].target === slotMachineArray[2].target
+    && slotMachineArray[0].target === slotMachineArray[3].target) {
+    score = 1000
+  // 2. triple: 0=1=2, 0=2=3, 1=2=3, 0=1=3, 
+  } else if ((slotMachineArray[0].target === slotMachineArray[1].target) && (slotMachineArray[0].target === slotMachineArray[2].target)
+    || (slotMachineArray[0].target === slotMachineArray[2].target) && (slotMachineArray[0].target === slotMachineArray[3].target)
+    || (slotMachineArray[1].target === slotMachineArray[2].target) && (slotMachineArray[1].target === slotMachineArray[3].target)
+    || (slotMachineArray[0].target === slotMachineArray[1].target) && (slotMachineArray[0].target === slotMachineArray[3].target)
+  ) {
+    score = 100
+  // 3. pair: 0=1, 0=2, 0=3, 1=2, 1=3, 2=3
+  } else if (slotMachineArray[0].target === slotMachineArray[1].target 
+    || slotMachineArray[0].target === slotMachineArray[2].target 
+    || slotMachineArray[0].target === slotMachineArray[3].target 
+    || slotMachineArray[1].target === slotMachineArray[2].target 
+    || slotMachineArray[1].target === slotMachineArray[3].target 
+    || slotMachineArray[2].target === slotMachineArray[3].target) {
+    // 3A. 2-pairs: 0=1 && 2=3, 0=2 && 1=3, 0=3 && 1=2, 
+      if (slotMachineArray[0].target === slotMachineArray[1].target && slotMachineArray[2].target === slotMachineArray[3].target) {
+        score = 20
+      } else if (slotMachineArray[0].target === slotMachineArray[2].target && slotMachineArray[1].target === slotMachineArray[3].target) {
+        score = 20
+      } else if (slotMachineArray[0].target === slotMachineArray[3].target && slotMachineArray[1].target === slotMachineArray[2].target) {
+        score = 20
+      } else {
+        score = 10
+      }
+  } else {
+    score = 0
+  }
   
-  // 6.1.1) a random number between 0-11 will be chosen and this index will be used to retrieve a zodiac image from the zodiacsArray.
-  // 6.1.2) The image from 6.1.1 will be assigned to slotMachineArray[i].innerHTML (?)
+
+
+  // for(let i=0; i<slotMachineArray.length; i++) {
+  //   // const isJackpot = (currentObj => currentObj.id === slotMachineArray[0].id)
+  //   if(slotMachineArray) { 
+  //     score = 1000
+  //   }
+  // //   counts[i] = (slotMachineArray[round] || 0) + 1  
+  // // scoresArrayA[round] = slotMachineArray[round]  
+  // }
+
+  // scoresArrayA = 
+
+  console.log(score)
+
+
+    // let countedData = data.reduce(function (allData, datum) {
+    //   if (datum in allData) {
+    //     allData[datum]++
+    //     console.log(datum)
+    //     console.log(allData[datum])
+    //     console.log(allData)
+    //   }
+    //   else {
+    //     allData[datum] = 1
+    //     console.log(datum)
+    //     console.log(allData[datum])
+    //     console.log(allData)
+    //   }
+    //   return allData
+    // }, {})
+
+
+  
+  // for(let i=0; i<slotMachineArray.length; i++) {
+  //   counts[i] = (slotMachineArray[round] || 0) + 1  
+  // scoresArrayA[round] = slotMachineArray[round]  
+  // }
+  
+  // 6.3.4) update scoreboard
+  // 6.3.5) round++
+  
+  // console.log(counts)
 }
 
 
-
-// 6.2) Change the turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
-
-// 6.3) invoke updateScore (). updateScore() will:
-// 6.3.1) Loop over the slotMachine array (which represents the slots on the page), and for each iteration:
-// 6.3.2) See if there's a pair, triple, or a jackpot (four of the same kind)
-// 6.3.3) update scoresArray using "round" and "turn" variables.
-// 6.3.4) update scoreboard
-// 6.3.2) round++
 
 /*-------------------------------- Pseudocode --------------------------------*/
 

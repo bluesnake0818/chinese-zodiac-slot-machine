@@ -6,4 +6,9 @@
 #play-button {
   width: 100px;
   height: 30px;
+  border-radius: 10%;
+  border-style: none;
+  background-color: crimson;
+  color: white;
+  font-weight: bold;
 }
