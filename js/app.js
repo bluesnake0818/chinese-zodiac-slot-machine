@@ -41,25 +41,25 @@ let slotMachineArray, scoresArrayA, scoresArrayB, turn, round, isWinner
 /*------------------------ Cached Element References ------------------------*/
 // 2.1) slotMachine that ttore the 4 div elements that represent the slots in the slot machine.
 //These can be accessed by <section class ="Slot-Machine">
-const slotMachine = document.querySelector('slot-machine')
+const slotMachine = document.querySelector('#slot-machine')
 // 2.2) Store the element that displays the game status (winner/tie) on the page.
-const winnerDisplay = document.querySelector('winner-display')
+const winnerDisplay = document.querySelector('#winner-display')
 // 2.4) Store the element that displays the turn on the page.
-const turnBoard = document.querySelector('turn-board')
+const turnBoard = document.querySelector('#turn-board')
 // 2.5) replay button.
-const replayBtn = document.querySelector('replay-button')
+const replayBtn = document.querySelector('#replay-button')
 // 2.6) play button.
-const playBtn = document.querySelector('play-button')
+const playBtn = document.querySelector('#play-button')
 // 2.7) scoresBoard
-const scoreBoard = document.querySelector('score-board')
+const scoreBoard = document.querySelector('#score-board')
 
 /*----------------------------- Event Listeners -----------------------------*/
-
+slotMachine.addEventListener("click", handlePlay)
 
 
 /*-------------------------------- Functions --------------------------------*/
 // 3) Upon loading, the app should invoke init()
-init()
+// init()
 
 
 // 3.1) That initialize function should initialize the state variables:
@@ -102,6 +102,38 @@ function choosePlayer(evt) {
     turn = -1
   }
 }
+
+
+// 6) Next, the app should wait for the user to click a play button and call handlePlay()
+// handlePlay() will...
+function handlePlay(evt) {
+  console.log(evt.target)
+  
+  // let randZodiac = Math.floor(Math.random * zodiacsArray.length) 
+  
+  // 6.1) loop over the slotMachineArray and update each section in the array with a selected zodiac (image) from the zodiacs Array from left to right.
+  // In each of the four loops:
+  
+  // slotMachineArray.forEach(slot => {
+  //   slotMachineArray[randZodiac]
+  // })
+
+  // 6.1.1) a random number between 0-11 will be chosen and this index will be used to retrieve a zodiac image from the zodiacsArray.
+  // 6.1.2) The image from 6.1.1 will be assigned to slotMachineArray[i].innerHTML (?)
+}
+
+
+
+// 6.2) Change the turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
+
+// 6.3) invoke updateScore (). updateScore() will:
+// 6.3.1) Loop over the slotMachine array (which represents the slots on the page), and for each iteration:
+// 6.3.2) See if there's a pair, triple, or a jackpot (four of the same kind)
+// 6.3.3) update scoresArray using "round" and "turn" variables.
+// 6.3.4) update scoreboard
+// 6.3.2) round++
+
+/*-------------------------------- Pseudocode --------------------------------*/
 
 
 /*
