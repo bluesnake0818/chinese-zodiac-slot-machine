@@ -28,11 +28,11 @@
 
 // 2) Store cached element references.
 // 2.1) Store the 4 div elements that represent the slots in the slot machine.
-// //These can be accessed by <section class ="Slot-Machine">
-// // div id = slot 1
-// // div id = slot 2
-// // div id = slot 3
-// // div id = slot 4
+//These can be accessed by <section class ="Slot-Machine">
+// div id = slot 1
+// div id = slot 2
+// div id = slot 3
+// div id = slot 4
 
 // 2.2) Store the element that displays the game status (winner/tie) on the page.
 // 2.3) Store the element that displays the scoreboard on the page.
@@ -47,11 +47,11 @@
 // Index 0 represents the far left square.
 // Index 3 represents the far right square.
 // 3.1.2) Initialize whose turn it is to A (player '1').
-// // Player 'B' will be represented by -1.
+// Player 'B' will be represented by -1.
 // 3.1.3) Initialize the winner variable to null.
-// // This represents that there is no winner or a tie yet.
-// // The winner variable will hold the player value (1 or -1) if there's a winner.
-// // The winner will hold a 'T' if there's a tie.
+// This represents that there is no winner or a tie yet.
+// The winner variable will hold the player value (1 or -1) if there's a winner.
+// The winner will hold a 'T' if there's a tie.
 // 3.1.4) Initialize the two arrays that keep track of each player's scores.
 // 3.1.5) Initialize the round (1,2,3) to zero.
 
@@ -72,10 +72,10 @@
 // 5.3) if Player B is chosen, turn variable is updated to -1.
 
 // 6) Next, the app should wait for the user to click a play button and call handlePlay()
-// // handlePlay() will...
+// handlePlay() will...
 
 // 6.1) loop over the slotMachineArray and update each section in the array with a selected zodiac (image) from the zodiacs Array from left to right.
-// // In each of the four loops:
+// In each of the four loops:
 // 6.1.1) a random number between 0-11 will be chosen and this index will be used to retrieve a zodiac image from the zodiacsArray.
 // 6.1.2) The image from 6.1.1 will be assigned to slotMachineArray[i].innerHTML (?)
 
