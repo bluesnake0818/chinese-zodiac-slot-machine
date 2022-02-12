@@ -247,7 +247,7 @@ function renderScore () {
 5. Are InnerHTML, innerText, textContent all on the same level?
 6. InnerHTML, innerText, textContent - if i assigned different strings to each. Which takes precedence?
 7. selecting each square to update is much easier than having one button to do all the work. 
-
+8. what does font-size: 62.5%; do?
 */
 
 /* What was most difficult
