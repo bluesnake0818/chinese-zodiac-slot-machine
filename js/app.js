@@ -18,9 +18,9 @@ const zodiacsArray =
   {zodiac: 'pig', url: "./assets/designs_pig.png"}
 ]
 
-/*---------------------------- Variables (state) ----------------------------*/
+/*---------------------------- Variables (state & etc) ----------------------------*/
 let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB
-
+const oxSays = new Audio('../audio/ox.mp3')
 
 /*------------------------ Cached Element References ------------------------*/
 // 2.1) slotMachine that ttore the 4 div elements that represent the slots in the slot machine.
@@ -30,13 +30,16 @@ const turnBoard = document.querySelector('#turn-board')
 const replayBtn = document.querySelector('#replay-button')
 const playBtn = document.querySelector('#play-button')
 const scoreBoard = document.querySelector('#score-board')
+const oxImg = document.querySelector('#ox-img')
 
-// const scoreBoardA = document.querySelector('#score-board-A')
-// const scoreBoardB = document.querySelector('#score-board-B')
 
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener("click", handlePlay)
 replayBtn.addEventListener("click", init)
+oxImg.addEventListener('click', (evt) => {
+  oxSays.volume = .10
+  oxSays.play()
+})
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -247,7 +250,7 @@ function renderScore () {
 7. zodiac animals don't get reset
 8. time delay for total scores and winner display after 6th play.
 9. when score updates, spaces on score board changes --> need adjustment
-10. add confetti/favicon
+// 10. add confetti
 11. change 'alt' in image tag to a corresponding animal name. 
 12. button to change color each turn/player
 13. see who's winner - then total score and winner is revealed. 
@@ -263,7 +266,7 @@ function renderScore () {
 23. create empty scoreboard shell to begin with
 24. Create frame around the screen
 25. choose player among 12 zodiacs and their sound is played when won. when there's a tie, a cat's sound is played. 
-
+26. add favicon
 */
 
 /* Findings / questions

@@ -190,3 +190,8 @@ main > #choose-player {
   /* display: flex; */
   font-family: var(--roboto_mono);
 }
+
+#ox-img {
+  width: 90px; 
+  height: 90px;
+}
