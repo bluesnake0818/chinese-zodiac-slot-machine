@@ -81,6 +81,7 @@ playBtn.addEventListener("click", handlePlay)
 // 8) Handle a player clicking the replay button:
 
 // 8.3) Do steps 3) (initialize the state variables) and 7) (render).
+// doesn't reset the zodiacs in the slots when clicked
 replayBtn.addEventListener("click", init)
 
 
@@ -118,26 +119,16 @@ function init() {
   scoresArray = [score0, score1, score2, score3, score4, score5, score6, score7]
 
   score0.target = {player: 1, round: 0, score: 0, note: ''}
-  score1.target = {player: 1, round: 1, score: 0, note: ''}
-  score2.target = {player: 1, round: 2, score: 0, note: ''}
-  score3.target = {player: 1, round: 3, score: 0, note: 'sum'}
-  score4.target = {player: -1, round: 0, score: 0, note: ''}
-  score5.target = {player: -1, round: 1, score: 0, note: ''}
-  score6.target = {player: -1, round: 2, score: 0, note: ''}
-  score7.target = {player: -1, round: 3, score: 0, note: 'sum'}
+  score1.target = {player: 1, round: 2, score: 0, note: ''}
+  score2.target = {player: 1, round: 4, score: 0, note: ''}
+  score3.target = {player: 1, round: 6, score: 0, note: 'sum'}
+  score4.target = {player: -1, round: 1, score: 0, note: ''}
+  score5.target = {player: -1, round: 3, score: 0, note: ''}
+  score6.target = {player: -1, round: 5, score: 0, note: ''}
+  score7.target = {player: -1, round: 7, score: 0, note: 'sum'}
 
+  
 
-  // scoresArray =
-  // [
-  //   {player: 1, round: 0, score: 0, note: ''},
-  //   {player: 1, round: 1, score: 0, note: ''},
-  //   {player: 1, round: 2, score: 0, note: ''},
-  //   {player: 1, round: 3, score: 0, note: 'sum'},
-  //   {player: -1, round: 0, score: 0, note: ''},
-  //   {player: -1, round: 1, score: 0, note: ''},
-  //   {player: -1, round: 2, score: 0, note: ''},
-  //   {player: -1, round: 3, score: 0, note: 'sum'},
-  // ]
   // 3.1.5) Initialize the round (1,2,3) to zero.
   round = 0
 
@@ -151,6 +142,7 @@ function init() {
 
   // reset turn board
   turnBoard.textContent = ""
+
 }
 
 // 5) Next, the app should wait for the user to click which player he/she/they wants to play with
@@ -187,8 +179,9 @@ function handlePlay() {
   updateScore()
 
   //  6.4) call getWinner(): check if game is over and update total for each player. 
-  if(round === 3) {
+  if(round === 7) {
     // add time delay
+    // console.log("this is condition to invoke getWinner()")
     playBtn.setAttribute("hidden", true)
     replayBtn.removeAttribute("hidden")
     getWinner()
@@ -196,6 +189,11 @@ function handlePlay() {
 
   // 6.5) All state has been updated, so invoke render() to render the state to the page.
   render()
+
+  // 6.2) Update  turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
+  turn = turn * -1
+  // 6.3.5) Update round of game: round++
+  round++
 }
 
 
@@ -251,18 +249,21 @@ function updateScore() {
 
   // 6.3.4) update scoreboard
  
-  //Find index of specific object with current turn and round using findIndex method.    
-  objIndex = scoresArray.findIndex((obj => obj.player === turn && obj.round === round))
+  // //Find index of specific object with current turn and round using findIndex method.    
+  // objIndex = scoresArray.findIndex((obj => obj.player === turn && obj.round === round))
+  // console.log(objIndex)
   
-  
-  //Update object's score property.
-  scoresArray[objIndex].score = score
-  
+  // //Update object's score property.
+  // scoresArray[objIndex].target.score = score
+  for(let i=0; i< scoresArray.length; i++) {
+    
+    if(scoresArray[i].target.round === round) {
+      scoresArray[i].target.score = score 
+      console.log(scoresArray[i].target.score)
+    }
+  }
+  console.log(round)
 
-  // 6.2) Update  turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
-  turn = turn * -1
-  // 6.3.5) Update round of game: round++
-  round++
   
 
 
@@ -274,14 +275,17 @@ function getWinner() {
   let sumA = 0
   let sumB = 0
   // 6.4.1) Calculate and store Total Scores: Run "Nested Loop" over scoresArray and if the first three element is not null, calculate total scores and update the last value in each of the two arrays within the scoresArray.
-  for(let i=0; i< round; i++) {
+  for(let i=0; i< scoresArray.length; i++) {
     // use reduce
-    if(scoresArray[i].player === 1) {
-      sumA = sumA + scoresArray[i].score
-    } else {
-      sumB = sumB + scoresArray[i].score
+    if(scoresArray[i].target.player === 1) {
+      sumA = sumA + scoresArray[i].target.score
+    } else if (scoresArray[i].target.player === -1){
+      sumB = sumB + scoresArray[i].target.score
     }
+
   }
+  console.log(sumA)
+  console.log(sumB)
 
   // 6.4.2) If total scores are the same, update isWinner variable to 'T'. If Player A's score is bigger, update isWinner variable to 1. If Player B's score is bigger, update isWinner variable to -1.
   if(sumA === sumB) {
@@ -300,10 +304,10 @@ function getWinner() {
 // 7) The render function should:
 function render() {
 // 7.1) Render a message reflecting the current game state:
-if(isWinner === null) {
-  // 7.1.1) If winner has a value other than null (game still in progress), render whose turn it is.
-  turnBoard.textContent = turn === 1 ? "Player A's turn" : "Player B's turn"
-} else {
+  if(isWinner === null) {
+    // 7.1.1) If winner has a value other than null (game still in progress), render whose turn it is.
+    turnBoard.textContent = turn === 1 ? "Player A's turn" : "Player B's turn"
+  } else {
     if (isWinner === 'T') {
       // 7.1.2) If winner is equal to 'T' (tie), render a tie message.
       winnerDisplay.textContent = "The game is tied."
@@ -314,13 +318,24 @@ if(isWinner === null) {
     }
   }
 
-// update HTML with new score. 1
-scoreBoard[0].textContent = scoresArray[objIndex].score
+  // update HTML with new score.
+  renderScore()
 
 
 }
 
 
+function renderScore () {
+
+  for(let i=0; i<scoresArray.length; i++) {
+    if(scoresArray[i].target.player === turn && scoresArray[i].target.round === round) {
+      console.log(scoresArray[i].target.score)
+      scoresArray[i].textContent = scoresArray[i].target.score
+    }
+  }
+// console.log(scoresArray[0].target.textContent)
+}
+// -->Round 3에서 보내는게 아니라 7까지 올릴수 있다. 
 
 
 /*-------------------------------- Pseudocode --------------------------------*/
