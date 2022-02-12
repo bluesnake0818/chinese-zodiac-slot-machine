@@ -293,7 +293,7 @@ function getWinner() {
   // 6.4.2) If total scores are the same, update isWinner variable to 'T'. If Player A's score is bigger, update isWinner variable to 1. If Player B's score is bigger, update isWinner variable to -1.
   if(sumA === sumB) {
     isWinner = 'T'
-  } else if (sumA === sumB) {
+  } else if (sumA > sumB) {
     isWinner = 1
   } else {
     isWinner = -1
@@ -359,7 +359,7 @@ function renderScore () {
 /* To Do List
 1. Total scores to update automatically when Round 3 (round === 5) is over.
 2. refactor updateScore()
-3. When player A wins, "Player B wins!" is displayed
+// 3. When player A wins, "Player B wins!" is displayed
 4. refactor scoresArray 
 5. clean up how scores are displayed on HTML (score-board)
 6. scoreboard elements don't get cleared after reset.
