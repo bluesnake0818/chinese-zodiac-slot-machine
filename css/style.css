@@ -73,3 +73,15 @@ h1 {
 #replay-button {
   background-color: crimson;
 }
+
+#score-board {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  height: 200px;
+  flex-wrap: wrap;
+  align-items: center;
+  /* height: 80%; */
+  justify-content: space-evenly;
+  font-size: 12px;
+}

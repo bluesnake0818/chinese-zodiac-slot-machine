@@ -57,7 +57,7 @@ const zodiacsArray =
 //     a player that won
 //     a tie has occurred
 //     or a game that is still in play.
-let slotMachineArray, scoresArray, turn, round, isWinner, objIndex
+let slotMachineArray, scoresArray, turn, round, isWinner, objIndex, sumA, sumB
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -119,18 +119,21 @@ function init() {
   scoresArray = [score0, score1, score2, score3, score4, score5, score6, score7]
 
   score0.target = {player: 1, round: 0, score: 0, note: ''}
-  score1.target = {player: 1, round: 2, score: 0, note: ''}
-  score2.target = {player: 1, round: 4, score: 0, note: ''}
-  score3.target = {player: 1, round: 6, score: 0, note: 'sum'}
-  score4.target = {player: -1, round: 1, score: 0, note: ''}
-  score5.target = {player: -1, round: 3, score: 0, note: ''}
-  score6.target = {player: -1, round: 5, score: 0, note: ''}
+  score1.target = {player: -1, round: 1, score: 0, note: ''}
+  score2.target = {player: 1, round: 2, score: 0, note: ''}
+  score3.target = {player: -1, round: 3, score: 0, note: 'sum'}
+  score4.target = {player: 1, round: 4, score: 0, note: ''}
+  score5.target = {player: -1, round: 5, score: 0, note: ''}
+  score6.target = {player: 1, round: 6, score: 0, note: ''}
   score7.target = {player: -1, round: 7, score: 0, note: 'sum'}
 
   
 
   // 3.1.5) Initialize the round (1,2,3) to zero.
   round = 0
+
+  sumA = 0
+  sumB = 0
 
   // unhide Play Button
   playBtn.removeAttribute("hidden")
@@ -142,6 +145,7 @@ function init() {
 
   // reset turn board
   turnBoard.textContent = ""
+
 
 }
 
@@ -178,22 +182,23 @@ function handlePlay() {
   // 6.3) invoke updateScore ().
   updateScore()
 
+  // 6.5) All state has been updated, so invoke render() to render the state to the page.
+  render()
+
+  // 6.2) Update  turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
+  turn = turn * -1
+
+  // 6.3.5) Update round of game: round++
+  round++
+
   //  6.4) call getWinner(): check if game is over and update total for each player. 
-  if(round === 7) {
+  if(round === 6) {
     // add time delay
     // console.log("this is condition to invoke getWinner()")
     playBtn.setAttribute("hidden", true)
     replayBtn.removeAttribute("hidden")
     getWinner()
   }
-
-  // 6.5) All state has been updated, so invoke render() to render the state to the page.
-  render()
-
-  // 6.2) Update  turn by multiplying turn by -1 (this flips a 1 to -1, and vice-versa).
-  turn = turn * -1
-  // 6.3.5) Update round of game: round++
-  round++
 }
 
 
@@ -272,8 +277,6 @@ function updateScore() {
 }
 
 function getWinner() {
-  let sumA = 0
-  let sumB = 0
   // 6.4.1) Calculate and store Total Scores: Run "Nested Loop" over scoresArray and if the first three element is not null, calculate total scores and update the last value in each of the two arrays within the scoresArray.
   for(let i=0; i< scoresArray.length; i++) {
     // use reduce
@@ -296,24 +299,28 @@ function getWinner() {
     isWinner = -1
   } 
   
+  scoresArray[6].target.score = sumA
+  scoresArray[7].target.score = sumB
   // // 6.4.3) Otherwise return null. - no need as this function is invoked only when round is equal to 3.
-
+  render()
   
 }
 
 // 7) The render function should:
 function render() {
+
+  console.log(`isWinner: ${isWinner}`)
 // 7.1) Render a message reflecting the current game state:
   if(isWinner === null) {
     // 7.1.1) If winner has a value other than null (game still in progress), render whose turn it is.
     turnBoard.textContent = turn === 1 ? "Player A's turn" : "Player B's turn"
   } else {
+    winnerDisplay.removeAttribute("hidden")
     if (isWinner === 'T') {
       // 7.1.2) If winner is equal to 'T' (tie), render a tie message.
       winnerDisplay.textContent = "The game is tied."
     } else {
       // 7.1.3) Otherwise, render a congratulatory message to which player has won.
-      winnerDisplay.removeAttribute("hidden")
       winnerDisplay.textContent = isWinner === 1 ? "Player A wins!" : "Player B wins!"
     }
   }
@@ -327,18 +334,66 @@ function render() {
 
 function renderScore () {
 
-  for(let i=0; i<scoresArray.length; i++) {
-    if(scoresArray[i].target.player === turn && scoresArray[i].target.round === round) {
-      console.log(scoresArray[i].target.score)
-      scoresArray[i].textContent = scoresArray[i].target.score
+  if(round < 6) {
+    for(let i=0; i<scoresArray.length; i++) {
+      if(scoresArray[i].target.player === turn && scoresArray[i].target.round === round) {
+        console.log(scoresArray[i].target.score)
+        scoresArray[i].textContent = scoresArray[i].target.score
+      }
     }
+  } else {
+    console.log(`Player A Total Score: ${scoresArray[6].target.score}`)
+    console.log(`Player B Total Score: ${scoresArray[7].target.score}`)
+    scoresArray[6].textContent = scoresArray[6].target.score
+    scoresArray[7].textContent = scoresArray[7].target.score
+    console.log(`Player A textContent: ${scoresArray[6].textContent}`)
+    console.log(`Player B textContent: ${scoresArray[7].textContent}`)
   }
-// console.log(scoresArray[0].target.textContent)
+
 }
-// -->Round 3에서 보내는게 아니라 7까지 올릴수 있다. 
+
 
 
 /*-------------------------------- Pseudocode --------------------------------*/
+
+/* To Do List
+1. Total scores to update automatically when Round 3 (round === 5) is over.
+2. refactor updateScore()
+3. When player A wins, "Player B wins!" is displayed
+4. refactor scoresArray 
+5. clean up how scores are displayed on HTML (score-board)
+6. scoreboard elements don't get cleared after reset.
+7. zodiac animals don't get reset
+
+
+*/
+
+/* Findings / questions
+1. .target is the same level is .textContent
+2. innerHTML not equal to .textContent?
+3. is whatever is in the textContent get automatically printed to HTML?
+4. what is target? just an object? can i replace it by any object?
+5. Are InnerHTML, innerText, textContent all on the same level?
+6. InnerHTML, innerText, textContent - if i assigned different strings to each. Which takes precedence?
+
+*/
+
+/* What was most difficult
+1. scoreboard - whether to store and display the scores separately for each player each round.
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
