@@ -361,9 +361,11 @@ function renderScore () {
 2. refactor updateScore()
 // 3. When player A wins, "Player B wins!" is displayed
 4. refactor scoresArray 
-5. clean up how scores are displayed on HTML (score-board)
+// 5. clean up how scores are displayed on HTML (score-board)
 6. scoreboard elements don't get cleared after reset.
 7. zodiac animals don't get reset
+8. time delay for total scores and winner display after 6th play.
+9. when score updates, spaces on score board changes 
 
 
 */
