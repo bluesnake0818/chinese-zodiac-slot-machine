@@ -165,7 +165,6 @@ function updateScore() {
       console.log(scoresArray[i].target.score)
     }
   }
-  
 }
 
 function getWinner() {
@@ -201,6 +200,7 @@ function render() {
       winnerDisplay.textContent = "The game is tied."
     } else {
       winnerDisplay.textContent = isWinner === 1 ? "Player A Wins!" : "Player B Wins!"
+      confetti.start(500)
     }
     winnerDisplay.removeAttribute("hidden")
     turnBoard.setAttribute("hidden", true)
@@ -211,7 +211,6 @@ function render() {
 
 
 function renderScore () {
-
   if(round < 6) {
     for(let i=0; i<scoresArray.length; i++) {
       if(scoresArray[i].target.player === turn && scoresArray[i].target.round === round) {
@@ -224,6 +223,15 @@ function renderScore () {
   }
 
 }
+
+// let timer = setInterval(function(){
+//   if(timeLeft < 0) {
+//     countdownEl.textContent = 'Finished!'
+//     confetti.start(500)
+//     clearInterval(timer)
+//   }
+//   // console.log(timeLeft)
+// }, 1000)
 
 
 
@@ -244,15 +252,17 @@ function renderScore () {
 12. button to change color each turn/player
 13. see who's winner - then total score and winner is revealed. 
 14. winner's total scores are highlighted and colored.
-15. choose player
-16. display win logic in the corner
+15. choose player - if player is chosen, play button shows and choose player section disappears.
+// 16. display win logic in the corner
 17. better way to initialize scoresArray.
 18. adjust to real-size desktop and mobile later
-19. mobile responsive (media query)
+19. desktop responsive (media query)
 20. instructions - tool tip
 21. show which zodiac the zodiacs in each pillar gets along with.
 22. clearn up css (code-level) area with structure
-23. empty scoreboard  to begin with
+23. create empty scoreboard shell to begin with
+24. Create frame around the screen
+25. choose player among 12 zodiacs and their sound is played when won. when there's a tie, a cat's sound is played. 
 
 */
 
