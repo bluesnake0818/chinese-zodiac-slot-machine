@@ -19,7 +19,7 @@ const zodiacsArray =
 ]
 
 /*---------------------------- Variables (state) ----------------------------*/
-let slotMachineArray, scoresArray, turn, round, isWinner, objIndex, sumA, sumB
+let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB
 
 
 /*------------------------ Cached Element References ------------------------*/
@@ -73,6 +73,7 @@ function init() {
   replayBtn.setAttribute("hidden", true)
   winnerDisplay.setAttribute("hidden", true)
   turnBoard.textContent = ""
+  turnBoard.removeAttribute("hidden")
   // reset score board
 
 }
@@ -185,14 +186,16 @@ function getWinner() {
 
 function render() {
   if(isWinner === null) {
-    turnBoard.textContent = turn === 1 ? "Player A" : "Player B"
+    turnBoard.textContent = turn === 1 ? "Turn: Player A" : "Turn: Player B"
   } else {
-    winnerDisplay.removeAttribute("hidden")
+    
     if (isWinner === 'T') {
       winnerDisplay.textContent = "The game is tied."
     } else {
-      winnerDisplay.textContent = isWinner === 1 ? "Player A wins!" : "Player B wins!"
+      winnerDisplay.textContent = isWinner === 1 ? "Player A Wins!" : "Player B Wins!"
     }
+    winnerDisplay.removeAttribute("hidden")
+    turnBoard.setAttribute("hidden", true)
   }
 
   renderScore()
@@ -238,6 +241,8 @@ function renderScore () {
 17. better way to initialize scoresArray.
 18. adjust to real-size desktop and mobile later
 19. mobile responsive (media query)
+20. instructions - tool tip
+21. show which zodiac the zodiacs in each pillar gets along with.
 
 */
 
