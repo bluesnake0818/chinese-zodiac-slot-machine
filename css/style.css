@@ -76,12 +76,26 @@ h1 {
 
 #score-board {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 700px;
   height: 200px;
   flex-wrap: wrap;
-  align-items: center;
+  /* align-items: center; */
   /* height: 80%; */
   justify-content: space-evenly;
   font-size: 12px;
+}
+
+#score-board > #score-board-A {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#score-board > #score-board-B {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
