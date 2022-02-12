@@ -173,11 +173,10 @@ function handlePlay() {
     // 6.1.1) a random number between 0-11 will be chosen and this index will be used to retrieve a zodiac image from the zodiacsArray.
     randZodIdx = Math.floor(Math.random() * zodiacsArray.length)
     // 6.1.2) The image from 6.1.1 will be assigned to slotMachineArray[i].src
-    // slotMachineArray[i].zodiac = zodiacsArray[randZodIdx].url
     slotMachineArray[i].src = zodiacsArray[randZodIdx].url
     slotMachineArray[i].target = zodiacsArray[randZodIdx]
   }
-      // change alt to a corresponding animal name. 
+
  
   // 6.3) invoke updateScore ().
   updateScore()
@@ -313,7 +312,7 @@ function render() {
 // 7.1) Render a message reflecting the current game state:
   if(isWinner === null) {
     // 7.1.1) If winner has a value other than null (game still in progress), render whose turn it is.
-    turnBoard.textContent = turn === 1 ? "Player A's turn" : "Player B's turn"
+    turnBoard.textContent = turn === 1 ? "Player A" : "Player B"
   } else {
     winnerDisplay.removeAttribute("hidden")
     if (isWinner === 'T') {
@@ -337,17 +336,12 @@ function renderScore () {
   if(round < 6) {
     for(let i=0; i<scoresArray.length; i++) {
       if(scoresArray[i].target.player === turn && scoresArray[i].target.round === round) {
-        console.log(scoresArray[i].target.score)
-        scoresArray[i].textContent = scoresArray[i].target.score
+        scoresArray[i].textContent = `Player ${turn} - Round ${round} Score: ${scoresArray[i].target.score}`
       }
     }
   } else {
-    console.log(`Player A Total Score: ${scoresArray[6].target.score}`)
-    console.log(`Player B Total Score: ${scoresArray[7].target.score}`)
-    scoresArray[6].textContent = scoresArray[6].target.score
-    scoresArray[7].textContent = scoresArray[7].target.score
-    console.log(`Player A textContent: ${scoresArray[6].textContent}`)
-    console.log(`Player B textContent: ${scoresArray[7].textContent}`)
+    scoresArray[6].textContent = `Player A - Total Scores: ${scoresArray[6].target.score}`
+    scoresArray[7].textContent = `Player B - Total Scores: ${scoresArray[7].target.score}`
   }
 
 }
@@ -357,7 +351,7 @@ function renderScore () {
 /*-------------------------------- Pseudocode --------------------------------*/
 
 /* To Do List
-1. Total scores to update automatically when Round 3 (round === 5) is over.
+// 1. Total scores to update automatically when Round 3 (round === 5) is over.
 2. refactor updateScore()
 // 3. When player A wins, "Player B wins!" is displayed
 4. refactor scoresArray 
@@ -365,7 +359,9 @@ function renderScore () {
 6. scoreboard elements don't get cleared after reset.
 7. zodiac animals don't get reset
 8. time delay for total scores and winner display after 6th play.
-9. when score updates, spaces on score board changes 
+9. when score updates, spaces on score board changes --> need adjustment
+10. add confetti/favicon
+11. change 'alt' in image tag to a corresponding animal name. 
 
 
 */
@@ -377,6 +373,7 @@ function renderScore () {
 4. what is target? just an object? can i replace it by any object?
 5. Are InnerHTML, innerText, textContent all on the same level?
 6. InnerHTML, innerText, textContent - if i assigned different strings to each. Which takes precedence?
+7. selecting each square to update is much easier than having one button to do all the work. 
 
 */
 

@@ -83,7 +83,7 @@ h1 {
   /* align-items: center; */
   /* height: 80%; */
   justify-content: space-evenly;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 #score-board > #score-board-A {
@@ -100,6 +100,12 @@ h1 {
   justify-content: space-evenly;
 }
 
-#winner-display {
+#status-board {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-items: center;
+  justify-content: space-evenly;
   font-size: 16px;
 }
+
