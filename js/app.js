@@ -48,7 +48,11 @@ function init() {
   slotMachineArray = [slot1, slot2, slot3, slot4]
   slotMachineArray.forEach(slot => {
     // Question - how does this work? is event.target an object?
-    slot.target = null
+    slot.src = zodiacsArray[2].url
+    slot.target = zodiacsArray[2]
+    // slot.value = null
+		// slot.className = ""
+		// slot.innerHTML = ""
     console.log(`slot: ${slot}`)
     console.log(`slot.target: ${slot.target}`)
   })
@@ -244,6 +248,7 @@ function renderScore () {
 20. instructions - tool tip
 21. show which zodiac the zodiacs in each pillar gets along with.
 22. clearn up css (code-level) area with structure
+23. empty scoreboard  to begin with
 
 */
 
