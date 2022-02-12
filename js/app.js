@@ -243,6 +243,7 @@ function renderScore () {
 19. mobile responsive (media query)
 20. instructions - tool tip
 21. show which zodiac the zodiacs in each pillar gets along with.
+22. clearn up css (code-level) area with structure
 
 */
 

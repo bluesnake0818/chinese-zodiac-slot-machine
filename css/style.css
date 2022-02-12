@@ -177,9 +177,10 @@ main > #choose-player {
   flex-direction: row;
   width: 80%;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-size: 16px;
 }
+
 
 #instructions {
   margin-top: 60px;
