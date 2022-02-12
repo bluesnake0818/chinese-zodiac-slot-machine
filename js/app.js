@@ -53,8 +53,8 @@ function init() {
     // slot.value = null
 		// slot.className = ""
 		// slot.innerHTML = ""
-    console.log(`slot: ${slot}`)
-    console.log(`slot.target: ${slot.target}`)
+    // console.log(`slot: ${slot}`)
+    // console.log(`slot.target: ${slot.target}`)
   })
 
   turn = 1
@@ -72,6 +72,10 @@ function init() {
   score5.target = {player: -1, round: 5, score: 0, note: ''}
   score6.target = {player: 1, round: 6, score: 0, note: ''}
   score7.target = {player: -1, round: 7, score: 0, note: 'sum'}
+
+  scoresArray.forEach(score => {
+    score.textContent = ""
+  })
 
   playBtn.removeAttribute("hidden")
   replayBtn.setAttribute("hidden", true)
