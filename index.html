@@ -12,30 +12,48 @@
   integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
   crossorigin="anonymous"
   >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Festive&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
 </head>
   <body>
-    <header>
-      <h1>Chinese Zodiac Slot Machine</h1>
-    </header>
     
-    <main>   
+    <main>
+      <header>
+        <h1>Chinese Zodiac Slot Machine</h1>
+      </header>
+
+      <div id="choose-player">
+        <p>Choose Player:</p>
+        <p id="Player-A">Player A</p>
+        <p id="Player-B">Player B</p>
+      </div>
+      
+      <div class="slot-machine">
+        <div id="slot-machine-pillars">
+          <div id="year-pillar">Year</div>
+          <div id="month-pillar">Month</div>
+          <div id="day-pillar">Day</div>
+          <div id="hour-pillar">Hour</div>
+        </div>
+        <div id="slot-machine-img">
+          <img id ="slot1" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
+          <img id ="slot2" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>        
+          <img id ="slot3" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
+          <img id ="slot4" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
+        </div>
+      </div>
+      
       <section id="status-board">
         Current turn: <div id="turn-board"></div>
         Winner: <div id="winner-display"></div>
       </section>
 
-      <div class="slot-machine">
-        <img id ="slot1" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-        <img id ="slot2" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-        <img id ="slot3" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-        <img id ="slot4" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-      </div>
-
       <button class="button" id="play-button">Play</button>
       <button class="button" id="replay-button">Replay</button>
 
-      <section id="score-board">
+      <div id="score-board">
         <div id="score-board-A">
           <div id ="score0"></div>
           <div id ="score2"></div>
@@ -49,8 +67,14 @@
           <div id ="score5"></div>
           <div id ="score7"></div>
         </div>
-      </section>
+      </div>
 
+      <div id="instructions">
+        <p>Instrunctions</p>
+        <p>2 of the same kind: 10</p>
+        <p>3 of the same kind: 100</p>
+        <p>4 of the same kind: 1000</p>
+      </div>
 
 
     </main>      

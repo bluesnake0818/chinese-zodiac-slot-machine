@@ -236,6 +236,8 @@ function renderScore () {
 15. choose player
 16. display win logic in the corner
 17. better way to initialize scoresArray.
+18. adjust to real-size desktop and mobile later
+19. mobile responsive (media query)
 
 */
 
@@ -248,6 +250,11 @@ function renderScore () {
 6. InnerHTML, innerText, textContent - if i assigned different strings to each. Which takes precedence?
 7. selecting each square to update is much easier than having one button to do all the work. 
 8. what does font-size: 62.5%; do?
+9. what does min-height do?
+10. what does 100vh do?
+11. what does view port do?
+12. the screen doesn't move to center when body width is defined in body css. 
+13. vh, vp, vw, min, max
 */
 
 /* What was most difficult
