@@ -36,6 +36,7 @@ const playBtn = document.querySelector('#play-button')
 const scoreBoard = document.querySelector('#score-board')
 const oxImg = document.querySelector('#ox-img')
 const choosePlayer = document.querySelector('#choose-player')
+const showPlayerArea = document.querySelector('#show-player')
 const playerImg = document.querySelector('#player-img')
 const playerDesc = document.querySelector('#player-desc')
 const playerLuck = document.querySelector('#player-luck')
@@ -77,6 +78,9 @@ function showPlayer(evt) {
 
 function selectPlayer() {
   playerA.textContent = playerAName
+  choosePlayer.setAttribute("hidden", true)
+  showPlayerArea.setAttribute("hidden", true)
+  selectBtn.setAttribute("hidden", true)
 }
 
 init()
@@ -118,6 +122,11 @@ function init() {
   turnBoard.removeAttribute("hidden")
   // reset score board
 
+  playerA.textContent = "Player A"
+  choosePlayer.removeAttribute("hidden")
+  showPlayerArea.removeAttribute("hidden")
+  selectBtn.removeAttribute("hidden")
+
 }
 
 
@@ -156,18 +165,18 @@ function updateScore() {
   // make it into an object
   const animalsArray = 
   [
-    {name: 'rat', count: 0}, 
-    {name: 'ox', count: 0}, 
-    {name: 'tiger', count: 0}, 
-    {name: 'rabbit', count: 0}, 
-    {name: 'dragon', count: 0}, 
-    {name: 'snake', count: 0}, 
-    {name: 'horse', count: 0}, 
-    {name: 'goat', count: 0}, 
-    {name: 'monkey', count: 0}, 
-    {name: 'rooster', count: 0}, 
-    {name: 'dog', count: 0}, 
-    {name: 'pig', count: 0}
+    {name: 'Rat', count: 0}, 
+    {name: 'Ox', count: 0}, 
+    {name: 'Tiger', count: 0}, 
+    {name: 'Rabbit', count: 0}, 
+    {name: 'Dragon', count: 0}, 
+    {name: 'Snake', count: 0}, 
+    {name: 'Horse', count: 0}, 
+    {name: 'Goat', count: 0}, 
+    {name: 'Monkey', count: 0}, 
+    {name: 'Rooster', count: 0}, 
+    {name: 'Dog', count: 0}, 
+    {name: 'Pig', count: 0}
   ]
   
   // iterate over slotMachineArray to count how many each zodiac appeared each time slot machine is played. 
@@ -307,6 +316,8 @@ function renderScore () {
 28. there's a bug when you hit play again during the time delay before total sdcores are revealed, it shows the total sdcore right away.
 29. chooose somewhere in between the animals, it returns error in choose player
 30. refactor with event bubbling - show player()
+31. build animation to slide up select area
+32. "Zodiac Image" Alt Too big.
 */
 
 /* Findings / questions
