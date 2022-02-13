@@ -72,7 +72,7 @@ main > #choose-player {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   font-size: 16px;
   margin-top: 20px;
   
@@ -80,6 +80,9 @@ main > #choose-player {
 
 #choose-player > p {
   margin: 0 20px 0 20px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
 }
 
 
@@ -139,37 +142,54 @@ main > #choose-player {
   background-color: crimson;
 }
 
-#score-board {
-  display: flex;
-  flex-direction: row;
-  width: 400px;
-  height: 100px;
-  flex-wrap: wrap;
-  /* align-items: center; */
-  /* height: 80%; */
-  justify-content: space-evenly;
-  font-size: 10px;
-  
-}
-
 #scoreboard-section-title {
   font-size: 20px;
   font-weight: bold;
   margin-top: 20px;
 }
 
+#score-board {
+  display: flex;
+  flex-direction: row;
+  width: 360px;
+  height: 160px;
+  flex-wrap: wrap;
+  /* align-items: center; */
+  /* height: 80%; */
+  justify-content: space-between;
+  font-size: 14px;
+  /* border-style: dotted; */
+}
+
+#score-board > #score-player {
+  /* border-style: dotted; */
+  justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  width: 30%;
+}
+
 #score-board > #score-board-A {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  /* justify-content: space-between; */
+  /* justify-content: flex-start; */
+  /* border-style: dotted; */
+  width: 30%;
 }
 
 #score-board > #score-board-B {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
+  /* justify-content: flex-start; */
+  /* border-style: dotted; */
+  width: 30%;
 }
 
 #status-area {

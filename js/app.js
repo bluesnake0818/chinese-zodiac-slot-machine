@@ -18,37 +18,6 @@ const zodiacsArray =
   {zodiac: 'pig', url: "./assets/designs_pig.png"}
 ]
 
-// // four cards: 0=1=2=3
-// const fourCardCombo = [0,1,2,3]
-
-// // 2. triple: 0=1=2, 0=2=3, 1=2=3, 0=1=3, 
-// const tripleCombo = 
-// [
-// [0,1,2],
-// [0,2,3],
-// [1,2,3],
-// [0,1,3]
-// ]
-
-// // 3A. 2-pairs: 0=1 && 2=3, 0=2 && 1=3, 0=3 && 1=2, 
-// const twoPairsCombo =
-// [
-// [[0,1],[2,3]],
-// [[0,2],[1,3]],
-// [[0,3],[1,2]]
-// ]
-// // 3. pair: 0=1, 0=2, 0=3, 1=2, 1=3, 2=3
-// const pairCombo = 
-// [
-//   [0,1],
-//   [0,2],
-//   [0,3],
-//   [1,2],
-//   [1,3],
-//   [2,3]
-// ]
-
-
 /*---------------------------- Variables (state & etc) ----------------------------*/
 let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB
 const oxSays = new Audio('../audio/ox.mp3')
@@ -63,6 +32,7 @@ const replayBtn = document.querySelector('#replay-button')
 const playBtn = document.querySelector('#play-button')
 const scoreBoard = document.querySelector('#score-board')
 const oxImg = document.querySelector('#ox-img')
+// const choosePlayer = document.querySelector('#choose-player')
 
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -72,6 +42,7 @@ oxImg.addEventListener('click', (evt) => {
   oxSays.volume = .20
   oxSays.play()
 })
+// choosePlayer('click', choosePlayer)
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -85,11 +56,6 @@ function init() {
     // Question - how does this work? is event.target an object?
     slot.src = zodiacsArray[2].url
     slot.target = zodiacsArray[2]
-    // slot.value = null
-		// slot.className = ""
-		// slot.innerHTML = ""
-    // console.log(`slot: ${slot}`)
-    // console.log(`slot.target: ${slot.target}`)
   })
 
   turn = 1
@@ -147,9 +113,11 @@ function handlePlay() {
 
   if(round === 6) {
     // add time delay
-    playBtn.setAttribute("hidden", true)
-    replayBtn.removeAttribute("hidden")
-    getWinner()
+    setTimeout(function() {
+      playBtn.setAttribute("hidden", true)
+      replayBtn.removeAttribute("hidden")
+      getWinner()
+    }, 1000);
   }
 }
 
@@ -159,23 +127,6 @@ function updateScore() {
   // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to ""
   // apply time delay to see if the textContent element has been reset in HTML
 
-
-  let rat, ox, tiger, rabbit, dragon, snake, horse, goat, monkey, rooster, dog, pig
-  // let rat = 0 
-  // let ox = 0
-  // let tiger = 0 
-  // let rabbit = 0
-  // let dragon = 0 
-  // let snake = 0
-  // let horse = 0 
-  // let goat = 0
-  // let monkey = 0 
-  // let rooster = 0
-  // let dog = 0 
-  // let pig = 0
-
-
-  
   // make it into an object
   const animalsArray = 
   [
@@ -193,16 +144,17 @@ function updateScore() {
     {name: 'pig', count: 0}
   ]
   
+  // iterate over slotMachineArray to count how many each zodiac appeared each time slot machine is played. 
   for(let i=0; i<slotMachineArray.length;i++) {
     for(let j=0; j<animalsArray.length; j++){
       if (animalsArray[j].name === slotMachineArray[i].target.zodiac) {
         animalsArray[j].count++
-        // console.log(animalsArray[j].count)
       }
     }
   }
   
   // use find() to find score
+  // iterate over animalsarray to check how many times each animal appeared and update score variable. 
   animalsArray.forEach(zodiac => {
     if(zodiac.count === 4) {
       score = score + 1000
@@ -222,48 +174,15 @@ function updateScore() {
   // use ternary, use appendChild
 
   // 6.3.4) update scoreboard  
-  // objIndex = scoresArray.findIndex((obj => obj.player === turn && obj.round === round))
   for(let i=0; i< scoresArray.length; i++) {
     if(scoresArray[i].target.round === round) {
-      console.log(score)
       scoresArray[i].target.score = score 
     }
-  
-  
-
-
-
-  // if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac
-  //   && slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac
-  //   && slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac) {
-  //     score = 1000
-  //   } else if ((slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac)
-  //   || (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac)
-  //   || (slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac) && (slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac)
-  //   || (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac)
-  //   ) {
-  //     score = 100
-  //   } else if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac 
-  //     || slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac 
-  //     || slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac 
-  //     || slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac 
-  //     || slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac 
-  //     || slotMachineArray[2].target.zodiac === slotMachineArray[3].target.zodiac) {
-  //       if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac && slotMachineArray[2].target.zodiac === slotMachineArray[3].target.zodiac) {
-  //         score = 20
-  //       } else if (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac && slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac) {
-  //         score = 20
-  //       } else if (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac && slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac) {
-  //         score = 20
-  //       } else {
-  //         score = 10
-  //       }
-  //     } else {
-  //       score = 0
-  //     }
       
   }
 }
+
+
 
 function getWinner() {
   for(let i=0; i< scoresArray.length; i++) {
@@ -289,21 +208,24 @@ function getWinner() {
   
 }
 
+
+
 function render() {
   if(isWinner === null) {
     turnBoard.textContent = turn === 1 ? "Turn: Player A" : "Turn: Player B"
   } else {
-    
-    if (isWinner === 'T') {
-      winnerDisplay.textContent = "The game is tied."
-    } else {
-      winnerDisplay.textContent = isWinner === 1 ? "Player A Wins!" : "Player B Wins!"
-      confetti.start(500)
-      oxSays.volume = .20
-      oxSays.play()
-    }
-    winnerDisplay.removeAttribute("hidden")
-    turnBoard.setAttribute("hidden", true)
+    // setTimeout(function() {
+      if (isWinner === 'T') {
+        winnerDisplay.textContent = "The game is tied."
+      } else {
+        winnerDisplay.textContent = isWinner === 1 ? "Player A Wins!" : "Player B Wins!"
+        confetti.start(500)
+        oxSays.volume = .20
+        oxSays.play()
+      }
+      winnerDisplay.removeAttribute("hidden")
+      turnBoard.setAttribute("hidden", true)
+    // }, 1000);
   }
 
   renderScore()
@@ -314,15 +236,26 @@ function renderScore () {
   if(round < 6) {
     for(let i=0; i<scoresArray.length; i++) {
       if(scoresArray[i].target.player === turn && scoresArray[i].target.round === round) {
-        scoresArray[i].textContent = `Player ${turn} - Round ${round} Score: ${scoresArray[i].target.score}`
+        scoresArray[i].textContent = `${scoresArray[i].target.score}`
       }
     }
   } else {
-    scoresArray[6].textContent = `Player A - Total Scores: ${scoresArray[6].target.score}`
-    scoresArray[7].textContent = `Player B - Total Scores: ${scoresArray[7].target.score}`
+    scoresArray[6].textContent = `${scoresArray[6].target.score}`
+    scoresArray[7].textContent = `${scoresArray[7].target.score}`
   }
 
 }
+
+// let timer = setInterval(function(){
+//   let timeLeft = 10
+//   timeLeft -= 1
+//   if(timeLeft < 0) {
+//     countdownEl.textContent = 'Finished!'
+//     confetti.start(500)
+//     clearInterval(timer)
+//   }
+//   // console.log(timeLeft)
+// }, 1000)
 
 // let timer = setInterval(function(){
 //   if(timeLeft < 0) {
@@ -339,13 +272,13 @@ function renderScore () {
 
 /* To Do List
 // 1. Total scores to update automatically when Round 3 (round === 5) is over.
-2. refactor updateScore()
+// 2. refactor updateScore()
 // 3. When player A wins, "Player B wins!" is displayed
 4. refactor scoresArray 
 // 5. clean up how scores are displayed on HTML (score-board)
-6. scoreboard elements don't get cleared after reset.
-7. zodiac animals don't get reset
-8. time delay for total scores and winner display after 6th play.
+// 6. scoreboard elements don't get cleared after reset.
+// 7. zodiac animals don't get reset
+// 8. time delay for total scores and winner display after 6th play.
 9. when score updates, spaces on score board changes --> need adjustment
 // 10. add confetti
 11. change 'alt' in image tag to a corresponding animal name. 
@@ -360,11 +293,11 @@ function renderScore () {
 20. instructions - tool tip
 21. show which zodiac the zodiacs in each pillar gets along with.
 22. clearn up css (code-level) area with structure
-23. create empty scoreboard shell to begin with --> four div(flex) areas with stub
-24. Create frame around the screen
+// 23. create empty scoreboard shell to begin with --> four div(flex) areas with stub
+24. Create phone frame around the screen
 25. choose player among 12 zodiacs and their sound is played when won. when there's a tie, a cat's sound is played. 
-26. add favicon
-26. choose one of 12 zodiacs and they play the sound. 
+// 26. add favicon
+26. choose one of 12 zodiacs and they play the sound. and change to their favicon
 27. scroll effect 
 */
 
@@ -385,6 +318,7 @@ function renderScore () {
 14. when you do pass through (evt) as a parameter for addeventlisteners
 15. what does session contents restored from 2/12/2022 at 4:20:50 PM mean?
 16. things like audio variable shoudl go under variables (state)?
+17. set at flex-start and then adjusting the margins is easier - than space around - contrary to what i thought at the beginning.
 */
 
 /* What was most difficult
