@@ -68,40 +68,73 @@ main {
 }
 
 main > #choose-player {
-  /* width: 200px; */
-  height: 40px;
+  width: 80%;
+  /* height: 100px; */
   display: flex;
   /* flex-direction: row; */
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
   font-size: 16px;
   margin-top: 20px;
-  margin-bottom: 75px;
+  margin-bottom: 10px;
+  align-items: center;
 }
 
-#choose-player > p {
-  /* margin: 0 20px 0 20px; */
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between; */
-}
 
 .scroll {
   margin: 1em;
   font-size: 24px;
-  /* width: 3em; */
-  height: 2.5em;
+  width: 3.5em;
+  height: 3.5em;
   border: dotted;
   overflow-y: scroll;
-  
+  overflow-x: hidden;
 }
 
 .scroll > .selection-img {
-  width: 1.75em;
-  height: 1.75em;
+  width: 3.0em;
+  height: 3.0em;
+
 }
 
+#select-button {
+  /* margin: 0; */
+}
 
+/* #choose-player > p { */
+  /* margin: 0 20px 0 20px; */
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+/* } */
+
+#show-player {
+  width: 80%;
+  /* margin-top: 1em; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+#show-player > #player-img{
+  width: 2em;
+  height: 2em;  
+}
+
+#show-player > #player-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: ; */
+  width: 250px;
+  height: 4em;
+  font-size: 12px;
+}
+
+#show-player > #player-stats > p {
+  margin: 0;
+}
 .slot-machine {
   display: flex;
   flex-direction: column;
@@ -229,7 +262,7 @@ main > #choose-player {
 }
 
 #ox-img {
-  width: 90px; 
-  height: 90px;
+  width: 30px; 
+  height: 30px;
 }
 

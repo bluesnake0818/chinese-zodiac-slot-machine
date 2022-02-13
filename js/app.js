@@ -4,22 +4,22 @@
 
 const zodiacsArray = 
 [
-  {zodiac: 'rat', url: "./assets/designs_rat.png"},
-  {zodiac: 'ox', url: "./assets/designs_ox.png"},
-  {zodiac: 'tiger', url: "./assets/designs_tiger.png"},
-  {zodiac: 'rabbit', url: "./assets/designs_rabbit.png"},
-  {zodiac: 'dragon', url: "./assets/designs_dragon.png"},
-  {zodiac: 'snake', url: "./assets/designs_snake.png"},
-  {zodiac: 'horse', url: "./assets/designs_horse.png"},
-  {zodiac: 'goat', url: "./assets/designs_goat.png"},
-  {zodiac: 'monkey', url: "./assets/designs_monkey.png"},
-  {zodiac: 'rooster', url: "./assets/designs_rooster.png"},
-  {zodiac: 'dog', url: "./assets/designs_dog.png"},
-  {zodiac: 'pig', url: "./assets/designs_pig.png"}
+  {zodiac: 'Rat', url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2'},
+  {zodiac: 'Ox', url: "./assets/designs_ox.png", desc: 'Ox is a diligent animal.', luck: 'Luck: +3'},
+  {zodiac: 'Tiger', url: "./assets/designs_tiger.png", desc: 'Tiger is a courageous animal.', luck: 'Luck: +10'},
+  {zodiac: 'Rabbit', url: "./assets/designs_rabbit.png", desc: 'Rabbit is an opportunistic animal', luck: 'Luck: +12'},
+  {zodiac: 'Dragon', url: "./assets/designs_dragon.png", desc: 'Dragon is a legendary animal.', luck: 'Luck: +25'},
+  {zodiac: 'Snake', url: "./assets/designs_snake.png", desc: 'Snake is a wise animal.', luck: 'Luck: +1'},
+  {zodiac: 'Horse', url: "./assets/designs_horse.png", desc: 'Horse is a free-spirited animal.', luck: 'Luck: -2'},
+  {zodiac: 'Goat', url: "./assets/designs_goat.png", desc: 'Goat is a peaceful animal.', luck: 'Luck: -10'},
+  {zodiac: 'Monkey', url: "./assets/designs_monkey.png", desc: 'Monkey is a playful animal.', luck: 'Luck: -100'},
+  {zodiac: 'Rooster', url: "./assets/designs_rooster.png", desc: 'Rooster is a worried animal.', luck: 'Luck: +20'},
+  {zodiac: 'Dog', url: "./assets/designs_dog.png", desc: 'Dog is a friendly animal.', luck: 'Luck: +35'},
+  {zodiac: 'Pig', url: "./assets/designs_pig.png", desc: 'Pig is a hungry animal.', luck: 'Luck: +40'}
 ]
 
 /*---------------------------- Variables (state & etc) ----------------------------*/
-let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB
+let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName
 const oxSays = new Audio('../audio/ox.mp3')
 const favicon = document.querySelector('#favicon')
 // var scrollSpy = new bootstrap.ScrollSpy(document.body, {
@@ -35,8 +35,12 @@ const replayBtn = document.querySelector('#replay-button')
 const playBtn = document.querySelector('#play-button')
 const scoreBoard = document.querySelector('#score-board')
 const oxImg = document.querySelector('#ox-img')
-// const choosePlayer = document.querySelector('#choose-player')
-
+const choosePlayer = document.querySelector('#choose-player')
+const playerImg = document.querySelector('#player-img')
+const playerDesc = document.querySelector('#player-desc')
+const playerLuck = document.querySelector('#player-luck')
+const selectBtn = document.querySelector('#select-button')
+const playerA = document.querySelector('#player-a-name')
 
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener("click", handlePlay)
@@ -46,11 +50,36 @@ oxImg.addEventListener('click', (evt) => {
   oxSays.play()
 })
 // choosePlayer('click', choosePlayer)
-
+choosePlayer.addEventListener("click", showPlayer)
+selectBtn.addEventListener("click", selectPlayer)
 
 /*-------------------------------- Functions --------------------------------*/
-init()
+function showPlayer(evt) {
+  playerImg.src = evt.target.src
+  for(let i=0; i<zodiacsArray.length; i++) {
+    if(zodiacsArray[i].zodiac === evt.target.id) {
+      playerDesc.textContent = zodiacsArray[i].desc
+      playerLuck.textContent = zodiacsArray[i].luck
+      playerAName = zodiacsArray[i].zodiac
+    }
+  }
+    
+}
 
+// function selectPlayer(evt) {
+//   if(evt.target.textContent === 'A') {
+//     turn = 1
+//   } else if (evt.target.textContent === 'B') {
+//     turn = -1
+//   }
+// }
+
+
+function selectPlayer() {
+  playerA.textContent = playerAName
+}
+
+init()
 
 // 3.1) That initialize function should initialize the state variables:
 function init() {
@@ -66,6 +95,7 @@ function init() {
   round = 0
   sumA = 0
   sumB = 0
+  playerAName = ''
 
   scoresArray = [score0, score1, score2, score3, score4, score5, score6, score7]
   score0.target = {player: 1, round: 0, score: 0, note: ''}
@@ -90,17 +120,10 @@ function init() {
 
 }
 
-// 5) Next, the app should wait for the user to click which player he/she/they wants to play with
-function choosePlayer(evt) {
-  if(evt.target.textContent === 'A') {
-    turn = 1
-  } else if (evt.target.textContent === 'B') {
-    turn = -1
-  }
-}
+
   
 
-// 6) Next, the app should wait for the user to click a play button and call handlePlay()
+
 function handlePlay() {
   let randZodIdx
   for(let i=0; i<slotMachineArray.length; i++) {
@@ -171,7 +194,6 @@ function updateScore() {
     }
   })
 
-
   // 6.3.3) update scoresArray using "round" and "turn" variables.
   // use yeezy/taylor method to add score list to score board, , use createElement
   // use ternary, use appendChild
@@ -217,7 +239,6 @@ function render() {
   if(isWinner === null) {
     turnBoard.textContent = turn === 1 ? "Turn: Player A" : "Turn: Player B"
   } else {
-    // setTimeout(function() {
       if (isWinner === 'T') {
         winnerDisplay.textContent = "The game is tied."
       } else {
@@ -228,7 +249,6 @@ function render() {
       }
       winnerDisplay.removeAttribute("hidden")
       turnBoard.setAttribute("hidden", true)
-    // }, 1000);
   }
 
   renderScore()
@@ -249,25 +269,7 @@ function renderScore () {
 
 }
 
-// let timer = setInterval(function(){
-//   let timeLeft = 10
-//   timeLeft -= 1
-//   if(timeLeft < 0) {
-//     countdownEl.textContent = 'Finished!'
-//     confetti.start(500)
-//     clearInterval(timer)
-//   }
-//   // console.log(timeLeft)
-// }, 1000)
 
-// let timer = setInterval(function(){
-//   if(timeLeft < 0) {
-//     countdownEl.textContent = 'Finished!'
-//     confetti.start(500)
-//     clearInterval(timer)
-//   }
-//   // console.log(timeLeft)
-// }, 1000)
 
 
 
@@ -303,6 +305,8 @@ function renderScore () {
 26. choose one of 12 zodiacs and they play the sound. and change to their favicon
 27. scroll effect 
 28. there's a bug when you hit play again during the time delay before total sdcores are revealed, it shows the total sdcore right away.
+29. chooose somewhere in between the animals, it returns error in choose player
+30. refactor with event bubbling - show player()
 */
 
 /* Findings / questions
