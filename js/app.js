@@ -22,6 +22,9 @@ const zodiacsArray =
 let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB
 const oxSays = new Audio('../audio/ox.mp3')
 const favicon = document.querySelector('#favicon')
+// var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+//   target: '#navbar-example'
+// })
 
 /*------------------------ Cached Element References ------------------------*/
 // 2.1) slotMachine that ttore the 4 div elements that represent the slots in the slot machine.
@@ -299,6 +302,7 @@ function renderScore () {
 // 26. add favicon
 26. choose one of 12 zodiacs and they play the sound. and change to their favicon
 27. scroll effect 
+28. there's a bug when you hit play again during the time delay before total sdcores are revealed, it shows the total sdcore right away.
 */
 
 /* Findings / questions
@@ -319,6 +323,7 @@ function renderScore () {
 15. what does session contents restored from 2/12/2022 at 4:20:50 PM mean?
 16. things like audio variable shoudl go under variables (state)?
 17. set at flex-start and then adjusting the margins is easier - than space around - contrary to what i thought at the beginning.
+18. what's em and rem
 */
 
 /* What was most difficult

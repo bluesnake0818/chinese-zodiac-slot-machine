@@ -31,6 +31,7 @@ body {
   align-items: center;
   height: 100vh;
   font-size: 24px;
+  /* position: relative; */
 }
 
 body > header {
@@ -67,22 +68,37 @@ main {
 }
 
 main > #choose-player {
-  width: 200px;
+  /* width: 200px; */
   height: 40px;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   flex-wrap: wrap;
   justify-content: space-evenly;
   font-size: 16px;
   margin-top: 20px;
-  
+  margin-bottom: 75px;
 }
 
 #choose-player > p {
-  margin: 0 20px 0 20px;
+  /* margin: 0 20px 0 20px; */
   /* display: flex;
   flex-direction: column;
   justify-content: space-between; */
+}
+
+.scroll {
+  margin: 1em;
+  font-size: 24px;
+  /* width: 3em; */
+  height: 2.5em;
+  border: dotted;
+  overflow-y: scroll;
+  
+}
+
+.scroll > .selection-img {
+  width: 1.75em;
+  height: 1.75em;
 }
 
 
@@ -96,6 +112,7 @@ main > #choose-player {
   align-items: center;
   justify-content: flex-start;
   margin-top: 60px;
+  margin-bottom: 100px;
 }
 
 .slot-machine > #slot-machine-pillars {
@@ -215,3 +232,4 @@ main > #choose-player {
   width: 90px; 
   height: 90px;
 }
+
