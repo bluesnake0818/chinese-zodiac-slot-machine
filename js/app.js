@@ -18,22 +18,41 @@ const zodiacsArray =
   {zodiac: 'pig', url: "./assets/designs_pig.png"}
 ]
 
-// four cards: 0=1=2=3
-const fourCardCombo = [0,1,2,3]
-// 2. triple: 0=1=2, 0=2=3, 1=2=3, 0=1=3, 
-const tripleCombo = 
-  [
-    [0,1,2],
+// // four cards: 0=1=2=3
+// const fourCardCombo = [0,1,2,3]
 
-  ]
-// 3A. 2-pairs: 0=1 && 2=3, 0=2 && 1=3, 0=3 && 1=2, 
-const twoPairsCombo =
-// 3. pair: 0=1, 0=2, 0=3, 1=2, 1=3, 2=3
-const pairCombo = 
+// // 2. triple: 0=1=2, 0=2=3, 1=2=3, 0=1=3, 
+// const tripleCombo = 
+// [
+// [0,1,2],
+// [0,2,3],
+// [1,2,3],
+// [0,1,3]
+// ]
+
+// // 3A. 2-pairs: 0=1 && 2=3, 0=2 && 1=3, 0=3 && 1=2, 
+// const twoPairsCombo =
+// [
+// [[0,1],[2,3]],
+// [[0,2],[1,3]],
+// [[0,3],[1,2]]
+// ]
+// // 3. pair: 0=1, 0=2, 0=3, 1=2, 1=3, 2=3
+// const pairCombo = 
+// [
+//   [0,1],
+//   [0,2],
+//   [0,3],
+//   [1,2],
+//   [1,3],
+//   [2,3]
+// ]
+
 
 /*---------------------------- Variables (state & etc) ----------------------------*/
 let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB
 const oxSays = new Audio('../audio/ox.mp3')
+const favicon = document.querySelector('#favicon')
 
 /*------------------------ Cached Element References ------------------------*/
 // 2.1) slotMachine that ttore the 4 div elements that represent the slots in the slot machine.
@@ -140,35 +159,64 @@ function updateScore() {
   // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to ""
   // apply time delay to see if the textContent element has been reset in HTML
 
-  if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac
-    && slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac
-    && slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac) {
-      score = 1000
-    } else if ((slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac)
-    || (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac)
-    || (slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac) && (slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac)
-    || (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac)
-    ) {
-      score = 100
-    } else if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac 
-      || slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac 
-      || slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac 
-      || slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac 
-      || slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac 
-      || slotMachineArray[2].target.zodiac === slotMachineArray[3].target.zodiac) {
-        if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac && slotMachineArray[2].target.zodiac === slotMachineArray[3].target.zodiac) {
-          score = 20
-        } else if (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac && slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac) {
-          score = 20
-        } else if (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac && slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac) {
-          score = 20
-        } else {
-          score = 10
-        }
-      } else {
-        score = 0
+
+  let rat, ox, tiger, rabbit, dragon, snake, horse, goat, monkey, rooster, dog, pig
+  // let rat = 0 
+  // let ox = 0
+  // let tiger = 0 
+  // let rabbit = 0
+  // let dragon = 0 
+  // let snake = 0
+  // let horse = 0 
+  // let goat = 0
+  // let monkey = 0 
+  // let rooster = 0
+  // let dog = 0 
+  // let pig = 0
+
+
+  
+  // make it into an object
+  const animalsArray = 
+  [
+    {name: 'rat', count: 0}, 
+    {name: 'ox', count: 0}, 
+    {name: 'tiger', count: 0}, 
+    {name: 'rabbit', count: 0}, 
+    {name: 'dragon', count: 0}, 
+    {name: 'snake', count: 0}, 
+    {name: 'horse', count: 0}, 
+    {name: 'goat', count: 0}, 
+    {name: 'monkey', count: 0}, 
+    {name: 'rooster', count: 0}, 
+    {name: 'dog', count: 0}, 
+    {name: 'pig', count: 0}
+  ]
+  
+  for(let i=0; i<slotMachineArray.length;i++) {
+    for(let j=0; j<animalsArray.length; j++){
+      if (animalsArray[j].name === slotMachineArray[i].target.zodiac) {
+        animalsArray[j].count++
+        // console.log(animalsArray[j].count)
       }
-      
+    }
+  }
+  
+  // use find() to find score
+  animalsArray.forEach(zodiac => {
+    if(zodiac.count === 4) {
+      score = score + 1000
+    } else if (zodiac.count === 3) {
+      score = score + 100
+    } else if (zodiac.count === 2) {
+      // calculate two pairs
+      score = score + 10
+    } else {
+      score = score + 0
+    }
+  })
+
+
   // 6.3.3) update scoresArray using "round" and "turn" variables.
   // use yeezy/taylor method to add score list to score board, , use createElement
   // use ternary, use appendChild
@@ -177,9 +225,43 @@ function updateScore() {
   // objIndex = scoresArray.findIndex((obj => obj.player === turn && obj.round === round))
   for(let i=0; i< scoresArray.length; i++) {
     if(scoresArray[i].target.round === round) {
+      console.log(score)
       scoresArray[i].target.score = score 
-      console.log(scoresArray[i].target.score)
     }
+  
+  
+
+
+
+  // if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac
+  //   && slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac
+  //   && slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac) {
+  //     score = 1000
+  //   } else if ((slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac)
+  //   || (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac)
+  //   || (slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac) && (slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac)
+  //   || (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac) && (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac)
+  //   ) {
+  //     score = 100
+  //   } else if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac 
+  //     || slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac 
+  //     || slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac 
+  //     || slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac 
+  //     || slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac 
+  //     || slotMachineArray[2].target.zodiac === slotMachineArray[3].target.zodiac) {
+  //       if (slotMachineArray[0].target.zodiac === slotMachineArray[1].target.zodiac && slotMachineArray[2].target.zodiac === slotMachineArray[3].target.zodiac) {
+  //         score = 20
+  //       } else if (slotMachineArray[0].target.zodiac === slotMachineArray[2].target.zodiac && slotMachineArray[1].target.zodiac === slotMachineArray[3].target.zodiac) {
+  //         score = 20
+  //       } else if (slotMachineArray[0].target.zodiac === slotMachineArray[3].target.zodiac && slotMachineArray[1].target.zodiac === slotMachineArray[2].target.zodiac) {
+  //         score = 20
+  //       } else {
+  //         score = 10
+  //       }
+  //     } else {
+  //       score = 0
+  //     }
+      
   }
 }
 
