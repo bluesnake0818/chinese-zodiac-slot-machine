@@ -385,8 +385,7 @@ function randomInt(min, max){
 // }
 
 
-function selectPlayer(evt) {
-  
+function selectPlayer() {
   if (turn === 1) {
   let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
   let zodTag = `${zodiacsArray[zodIdx].tag}-p`
@@ -396,14 +395,19 @@ function selectPlayer(evt) {
   //assign turn 
     turn = turn * -1
   } else {
-  let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
-  let zodTag = `${zodiacsArray[zodIdx].tag}-p`
-  playerB.className = zodTag
-  playerB.textContent = ""
-  choosePlayer.setAttribute("hidden", true)
-  showPlayerArea.setAttribute("hidden", true)
-  selectBtn.setAttribute("hidden", true)
+    if(playerBName === playerAName) {
+    alert("You must pick a different layer")
+    } else {  
+    let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
+    let zodTag = `${zodiacsArray[zodIdx].tag}-p`
+    playerB.className = zodTag
+    playerB.textContent = ""
+    choosePlayer.setAttribute("hidden", true)
+    showPlayerArea.setAttribute("hidden", true)
+    selectBtn.setAttribute("hidden", true)
     turn = turn * -1
+    }
+
   }
 
 
@@ -455,6 +459,9 @@ function selectPlayer(evt) {
 34. turn is opposite
 35. integrate 4 spin functions into one.
 36.choose player with nav scrollspy
+37. favicon gets updated. 
+38. select button only shows when a zodiac is clcicked. 
+39. click zodiac tool tip.
 */
 
 /*
@@ -463,6 +470,9 @@ Feb 14 -
     b. select player area - hide (animation - slide up & down), sound
     c. Tool Tip
     d. css
+    e. buttom --> "spin", span the width. 
+    f. get rid of x's turn and instead highlight border of scoreboard or the background of the rectangle. 
+    g. select --> show who's turn to play. can't select the same player. 
 Feb 15 - 
     a. CTA - download
     b. Who you get along with
