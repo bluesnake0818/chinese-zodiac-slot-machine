@@ -4,18 +4,18 @@
 
 const zodiacsArray = 
 [
-  {zodiac: 'Rat', tag:"a0", url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2'},
-  {zodiac: 'Ox', tag:"a1", url: "./assets/designs_ox.png", desc: 'Ox is a diligent animal.', luck: 'Luck: +3'},
-  {zodiac: 'Tiger', tag:"a2", url: "./assets/designs_tiger.png", desc: 'Tiger is a courageous animal.', luck: 'Luck: +10'},
-  {zodiac: 'Rabbit', tag:"a3", url: "./assets/designs_rabbit.png", desc: 'Rabbit is an opportunistic animal', luck: 'Luck: +12'},
-  {zodiac: 'Dragon', tag:"a4", url: "./assets/designs_dragon.png", desc: 'Dragon is a legendary animal.', luck: 'Luck: +25'},
-  {zodiac: 'Snake', tag:"a5", url: "./assets/designs_snake.png", desc: 'Snake is a wise animal.', luck: 'Luck: +1'},
-  {zodiac: 'Horse', tag:"a6", url: "./assets/designs_horse.png", desc: 'Horse is a free-spirited animal.', luck: 'Luck: -2'},
-  {zodiac: 'Goat', tag:"a7", url: "./assets/designs_goat.png", desc: 'Goat is a peaceful animal.', luck: 'Luck: -10'},
-  {zodiac: 'Monkey', tag:"a8", url: "./assets/designs_monkey.png", desc: 'Monkey is a playful animal.', luck: 'Luck: -100'},
-  {zodiac: 'Rooster', tag:"a9", url: "./assets/designs_rooster.png", desc: 'Rooster is a worried animal.', luck: 'Luck: +20'},
-  {zodiac: 'Dog', tag:"a10", url: "./assets/designs_dog.png", desc: 'Dog is a friendly animal.', luck: 'Luck: +35'},
-  {zodiac: 'Pig', tag:"a11", url: "./assets/designs_pig.png", desc: 'Pig is a hungry animal.', luck: 'Luck: +40'}
+  {zodiac: 'Rat', tag:"a1", url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2'},
+  {zodiac: 'Ox', tag:"a2", url: "./assets/designs_ox.png", desc: 'Ox is a diligent animal.', luck: 'Luck: +3'},
+  {zodiac: 'Tiger', tag:"a3", url: "./assets/designs_tiger.png", desc: 'Tiger is a courageous animal.', luck: 'Luck: +10'},
+  {zodiac: 'Rabbit', tag:"a4", url: "./assets/designs_rabbit.png", desc: 'Rabbit is an opportunistic animal', luck: 'Luck: +12'},
+  {zodiac: 'Dragon', tag:"a5", url: "./assets/designs_dragon.png", desc: 'Dragon is a legendary animal.', luck: 'Luck: +25'},
+  {zodiac: 'Snake', tag:"a6", url: "./assets/designs_snake.png", desc: 'Snake is a wise animal.', luck: 'Luck: +1'},
+  {zodiac: 'Horse', tag:"a7", url: "./assets/designs_horse.png", desc: 'Horse is a free-spirited animal.', luck: 'Luck: -2'},
+  {zodiac: 'Goat', tag:"a8", url: "./assets/designs_goat.png", desc: 'Goat is a peaceful animal.', luck: 'Luck: -10'},
+  {zodiac: 'Monkey', tag:"a9", url: "./assets/designs_monkey.png", desc: 'Monkey is a playful animal.', luck: 'Luck: -100'},
+  {zodiac: 'Rooster', tag:"a10", url: "./assets/designs_rooster.png", desc: 'Rooster is a worried animal.', luck: 'Luck: +20'},
+  {zodiac: 'Dog', tag:"a11", url: "./assets/designs_dog.png", desc: 'Dog is a friendly animal.', luck: 'Luck: +35'},
+  {zodiac: 'Pig', tag:"a12", url: "./assets/designs_pig.png", desc: 'Pig is a hungry animal.', luck: 'Luck: +40'}
 ]
 
 /*---------------------------- Variables (state & etc) ----------------------------*/
@@ -57,6 +57,9 @@ oxImg.addEventListener('click', (evt) => {
 choosePlayer.addEventListener("click", showPlayer)
 selectBtn.addEventListener("click", selectPlayer)
 // doSpin.addEventListener('click', doSlot)
+// $(document).ready(function(){
+//   $('[data-toggle="tooltip"]').tooltip();   
+// });
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -69,7 +72,7 @@ init()
 function init() {
   slotMachineArray = [slot1, slot2, slot3, slot4]
   slotMachineArray.forEach(slot => {
-    slot.className = "a2"
+    slot.className = "a3"
   })
   
   turn = 1
@@ -105,6 +108,7 @@ function init() {
   showPlayerArea.removeAttribute("hidden")
   selectBtn.removeAttribute("hidden")
   
+  // render()
 }
 
 
@@ -305,7 +309,7 @@ function doSlot(){
 		}
 		let slotTile = document.getElementById("slot1");
 		
-		if (slotTile.className==="a11"){
+		if (slotTile.className==="a12"){
 			slotTile.className = "a0";
 		}
 		
@@ -320,7 +324,7 @@ function doSlot(){
 		}
 
 		let slotTile = document.getElementById("slot2");
-		if (slotTile.className==="a11"){
+		if (slotTile.className==="a12"){
 			slotTile.className = "a0";
 		}
 		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
@@ -334,7 +338,7 @@ function doSlot(){
 		}
 		
 		let slotTile = document.getElementById("slot3");
-		if (slotTile.className==="a11"){
+		if (slotTile.className==="a12"){
 			slotTile.className = "a0";
 		}
 
@@ -349,7 +353,7 @@ function doSlot(){
 		}
 		
 		let slotTile = document.getElementById("slot4");
-		if (slotTile.className==="a11"){
+		if (slotTile.className==="a12"){
 			slotTile.className = "a0";
 		}
 
@@ -415,24 +419,28 @@ function selectPlayer() {
 25. choose player among 12 zodiacs and their sound is played when won. when there's a tie, a cat's sound is played. 
 // 26. add favicon
 26. choose one of 12 zodiacs and they play the sound. and change to their favicon
-27. scroll effect 
+// 27. scroll effect 
 28. there's a bug when you hit play again during the time delay before total sdcores are revealed, it shows the total sdcore right away.
 29. chooose somewhere in between the animals, it returns error in choose player
 30. refactor show player() with event bubbling
 31. build animation to slide up select area
 32. "Zodiac Image" Alt Too big.
 33. replace select player area with scrollspy.
+34. turn is opposite
+35. integrate 4 spin functions into one.
 */
 
 /*
 Feb 14 - 
-    a. slot machine effect
+    // a. slot machine effect
     b. select player area - hide (animation - slide up & down), sound
     c. Tool Tip
+    d. css
 Feb 15 - 
     a. CTA - download
     b. Who you get along with
     c. update score area with chosen zodiac's image. 
+    d. spin sound
 Feb 16 - 
     a. Adjust chance of winning in accordance with zodiac selection 
     b. you put in your bday, and the animal is chosen

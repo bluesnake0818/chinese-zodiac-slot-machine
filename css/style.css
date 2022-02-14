@@ -21,7 +21,7 @@ html {
 
 
 body {
-  background-color: whitesmoke;
+  background-color: #424242;;
   /* Use a system font, if none are available use an available sans-sarif font */
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
   Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -32,10 +32,24 @@ body {
   height: 100vh;
   font-size: 24px;
   
-  /* position: relative; */
 }
 
-body > header {
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* height: 80%; */
+  justify-content: flex-start;
+  height: 800px;
+  width: 400px;
+  background-color: #FFB13D;
+  font-family: var(--roboto_mono);
+  border-radius: 5%;
+  padding: 20px;
+}
+
+main > header {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -55,18 +69,6 @@ header > h1 {
   margin-top: 20px;
   font-weight: bold;
   
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* height: 80%; */
-  justify-content: flex-start;
-  height: 800px;
-  width: 400px;
-  background-color: #FFB13D;
-  font-family: var(--roboto_mono);
 }
 
 main > #choose-player {
@@ -137,17 +139,18 @@ main > #choose-player {
 #show-player > #player-stats > p {
   margin: 0;
 }
+
 .slot-machine {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
-  height: 200px;
+  height: 140px;
   /* border-style: solid; */
   align-items: center;
   justify-content: flex-start;
-  margin-top: 60px;
-  margin-bottom: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .slot-machine > #slot-machine-pillars {
@@ -165,6 +168,9 @@ main > #choose-player {
   justify-content: space-around;
   width: 100%;
   height: 100px;
+  border-radius: 5%;
+	background-color: #FAFAFA;
+  align-items: center;
 }
 
 
@@ -250,13 +256,14 @@ main > #choose-player {
 }
 
 
-#instructions {
+#tool-tip {
   margin-top: 60px;
   font-size: 10px;
   width: 400px;
   padding-left: 20px;
   /* display: flex; */
   font-family: var(--roboto_mono);
+  
 }
 
 #ox-img {
@@ -272,120 +279,106 @@ main > #choose-player {
   border-radius: 10%;
 } */
 
-section#spin{
-  margin-top: 100px;
-	margin-bottom: 125px;
-	padding-top: 25px;
-	padding-bottom: 25px;
-	border-radius: 5px;
-	text-align: center;
-	background-color: #AB47BC;
-	color: #FFFFFF;
-	font-size: 25px;
-}
 
-section#spin:hover{
-	background-color: #BA68C8;
-}
 /* 
 .slot-machine > #slot-machine-img > .zodiac-img {
 
 } */
 
 
-.a0{
+.a1{
 	background-image: url("/assets/designs_rat.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a1{
+.a2{
 	background-image: url("/assets/designs_ox.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a2{
+.a3{
 	background-image: url("/assets/designs_tiger.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a3{
+.a4{
 	background-image: url("/assets/designs_rabbit.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a4{
+.a5{
 	background-image: url("/assets/designs_dragon.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a5{
+.a6{
 	background-image: url("/assets/designs_snake.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a6{
+.a7{
 	background-image: url("/assets/designs_horse.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a7{
+.a8{
 	background-image: url("/assets/designs_goat.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a8{
+.a9{
 	background-image: url("/assets/designs_monkey.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a9{
+.a10{
 	background-image: url("/assets/designs_rooster.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a10{
+.a11{
 	background-image: url("/assets/designs_dog.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10%; */
 }
-.a11{
+.a12{
 	background-image: url("/assets/designs_pig.png");
   width: 90px; 
   height: 90px;
   background-size: 90px;
-  border-style: solid;
-  border-radius: 10%;
+  /* border-style: solid; */
+  /* border-radius: 10% */
 }
