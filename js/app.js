@@ -34,10 +34,10 @@ const turnBoard = document.querySelector('#turn-board')
 const replayBtn = document.querySelector('#replay-button')
 const playBtn = document.querySelector('#play-button')
 const scoreBoard = document.querySelector('#score-board')
-const oxImg = document.querySelector('#ox-img')
+// const oxImg = document.querySelector('#ox-img')
 const choosePlayer = document.querySelector('#choose-player')
 const showPlayerArea = document.querySelector('#show-player')
-const playerImg = document.querySelector('#player-img')
+// const playerImg = document.querySelector('#player-img')
 const playerDesc = document.querySelector('#player-desc')
 const playerLuck = document.querySelector('#player-luck')
 const selectBtn = document.querySelector('#select-button')
@@ -49,12 +49,12 @@ const playerA = document.querySelector('#player-a-name')
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener("click", handlePlay)
 replayBtn.addEventListener("click", init)
-oxImg.addEventListener('click', (evt) => {
-  oxSays.volume = .20
-  oxSays.play()
-})
+// oxImg.addEventListener('click', (evt) => {
+//   oxSays.volume = .20
+//   oxSays.play()
+// })
 // choosePlayer('click', choosePlayer)
-choosePlayer.addEventListener("click", showPlayer)
+showPlayerArea.addEventListener("click", showPlayer)
 selectBtn.addEventListener("click", selectPlayer)
 // doSpin.addEventListener('click', doSlot)
 // $(document).ready(function(){
@@ -271,7 +271,7 @@ function renderScore () {
 }
 
 function showPlayer(evt) {
-  playerImg.src = evt.target.src
+  // playerImg.src = evt.target.src
   for(let i=0; i<zodiacsArray.length; i++) {
     if(zodiacsArray[i].zodiac === evt.target.id) {
       playerDesc.textContent = zodiacsArray[i].desc
@@ -379,11 +379,19 @@ function randomInt(min, max){
 // }
 
 
-function selectPlayer() {
-  playerA.textContent = playerAName
+function selectPlayer(evt) {
+  let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
+  let zodTag = `${zodiacsArray[zodIdx].tag}-p`
+  playerA.className = zodTag
+  playerA.textContent = ""
+  //time delay -- slide animation
+  //assign turn 
   choosePlayer.setAttribute("hidden", true)
   showPlayerArea.setAttribute("hidden", true)
   selectBtn.setAttribute("hidden", true)
+
+
+
 }
 
 
@@ -428,6 +436,7 @@ function selectPlayer() {
 33. replace select player area with scrollspy.
 34. turn is opposite
 35. integrate 4 spin functions into one.
+36.choose player with nav scrollspy
 */
 
 /*
@@ -475,6 +484,7 @@ Feb 16 -
 17. set at flex-start and then adjusting the margins is easier - than space around - contrary to what i thought at the beginning.
 18. what's em and rem
 19. img src vs. div background-image for slot machine
+20. give padding to main rather than giving margin/padding to  elements inside. 
 */
 
 /* What was most difficult
