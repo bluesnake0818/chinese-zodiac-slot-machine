@@ -4,22 +4,22 @@
 
 const zodiacsArray = 
 [
-  {zodiac: 'Rat', url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2'},
-  {zodiac: 'Ox', url: "./assets/designs_ox.png", desc: 'Ox is a diligent animal.', luck: 'Luck: +3'},
-  {zodiac: 'Tiger', url: "./assets/designs_tiger.png", desc: 'Tiger is a courageous animal.', luck: 'Luck: +10'},
-  {zodiac: 'Rabbit', url: "./assets/designs_rabbit.png", desc: 'Rabbit is an opportunistic animal', luck: 'Luck: +12'},
-  {zodiac: 'Dragon', url: "./assets/designs_dragon.png", desc: 'Dragon is a legendary animal.', luck: 'Luck: +25'},
-  {zodiac: 'Snake', url: "./assets/designs_snake.png", desc: 'Snake is a wise animal.', luck: 'Luck: +1'},
-  {zodiac: 'Horse', url: "./assets/designs_horse.png", desc: 'Horse is a free-spirited animal.', luck: 'Luck: -2'},
-  {zodiac: 'Goat', url: "./assets/designs_goat.png", desc: 'Goat is a peaceful animal.', luck: 'Luck: -10'},
-  {zodiac: 'Monkey', url: "./assets/designs_monkey.png", desc: 'Monkey is a playful animal.', luck: 'Luck: -100'},
-  {zodiac: 'Rooster', url: "./assets/designs_rooster.png", desc: 'Rooster is a worried animal.', luck: 'Luck: +20'},
-  {zodiac: 'Dog', url: "./assets/designs_dog.png", desc: 'Dog is a friendly animal.', luck: 'Luck: +35'},
-  {zodiac: 'Pig', url: "./assets/designs_pig.png", desc: 'Pig is a hungry animal.', luck: 'Luck: +40'}
+  {zodiac: 'Rat', tag:"a0", url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2'},
+  {zodiac: 'Ox', tag:"a1", url: "./assets/designs_ox.png", desc: 'Ox is a diligent animal.', luck: 'Luck: +3'},
+  {zodiac: 'Tiger', tag:"a2", url: "./assets/designs_tiger.png", desc: 'Tiger is a courageous animal.', luck: 'Luck: +10'},
+  {zodiac: 'Rabbit', tag:"a3", url: "./assets/designs_rabbit.png", desc: 'Rabbit is an opportunistic animal', luck: 'Luck: +12'},
+  {zodiac: 'Dragon', tag:"a4", url: "./assets/designs_dragon.png", desc: 'Dragon is a legendary animal.', luck: 'Luck: +25'},
+  {zodiac: 'Snake', tag:"a5", url: "./assets/designs_snake.png", desc: 'Snake is a wise animal.', luck: 'Luck: +1'},
+  {zodiac: 'Horse', tag:"a6", url: "./assets/designs_horse.png", desc: 'Horse is a free-spirited animal.', luck: 'Luck: -2'},
+  {zodiac: 'Goat', tag:"a7", url: "./assets/designs_goat.png", desc: 'Goat is a peaceful animal.', luck: 'Luck: -10'},
+  {zodiac: 'Monkey', tag:"a8", url: "./assets/designs_monkey.png", desc: 'Monkey is a playful animal.', luck: 'Luck: -100'},
+  {zodiac: 'Rooster', tag:"a9", url: "./assets/designs_rooster.png", desc: 'Rooster is a worried animal.', luck: 'Luck: +20'},
+  {zodiac: 'Dog', tag:"a10", url: "./assets/designs_dog.png", desc: 'Dog is a friendly animal.', luck: 'Luck: +35'},
+  {zodiac: 'Pig', tag:"a11", url: "./assets/designs_pig.png", desc: 'Pig is a hungry animal.', luck: 'Luck: +40'}
 ]
 
 /*---------------------------- Variables (state & etc) ----------------------------*/
-let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName, count
+let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName, count, numberSlot4
 const oxSays = new Audio('../audio/ox.mp3')
 const favicon = document.querySelector('#favicon')
 // var scrollSpy = new bootstrap.ScrollSpy(document.body, {
@@ -42,7 +42,7 @@ const playerDesc = document.querySelector('#player-desc')
 const playerLuck = document.querySelector('#player-luck')
 const selectBtn = document.querySelector('#select-button')
 const playerA = document.querySelector('#player-a-name')
-const doSpin = document.querySelector('#spin')
+// const doSpin = document.querySelector('#spin')
 
 
 
@@ -56,7 +56,7 @@ oxImg.addEventListener('click', (evt) => {
 // choosePlayer('click', choosePlayer)
 choosePlayer.addEventListener("click", showPlayer)
 selectBtn.addEventListener("click", selectPlayer)
-doSpin.addEventListener('click', doSlot)
+// doSpin.addEventListener('click', doSlot)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -69,9 +69,7 @@ init()
 function init() {
   slotMachineArray = [slot1, slot2, slot3, slot4]
   slotMachineArray.forEach(slot => {
-    // Question - how does this work? is event.target an object?
-    // slot.src = zodiacsArray[2].url
-    // slot.target = zodiacsArray[2]
+    slot.className = "a2"
   })
   
   turn = 1
@@ -114,26 +112,36 @@ function init() {
 
 
 function handlePlay() {
-  let randZodIdx
-  for(let i=0; i<slotMachineArray.length; i++) {
-    randZodIdx = Math.floor(Math.random() * zodiacsArray.length)
-    slotMachineArray[i].src = zodiacsArray[randZodIdx].url
-    slotMachineArray[i].target = zodiacsArray[randZodIdx]
-  }
-  
-  updateScore()
-  render()
-  turn = turn * -1
-  round++
-  
-  if(round === 6) {
-    // add time delay
-    setTimeout(function() {
-      playBtn.setAttribute("hidden", true)
-      replayBtn.removeAttribute("hidden")
-      getWinner()
-    }, 1000);
-  }
+  // let randZodIdx
+
+  doSlot()
+
+  setTimeout(function() {
+    for(let i=0; i<slotMachineArray.length; i++) {
+      let zodTag = slotMachineArray[i].className
+      let zodIdx = zodiacsArray.findIndex(element => element.tag === zodTag)
+      console.log(`idx: ${zodIdx}`)
+      slotMachineArray[i].target = zodiacsArray[zodIdx]
+      console.log(`slot machine array: ${slotMachineArray[i].target.zodiac}`)
+    //   console.log(`zodiac arrays: ${zodiacsArray[i].target}`)
+      
+    }
+    
+
+    updateScore()
+    render()
+    turn = turn * -1
+    round++
+    
+    if(round === 6) {
+      // add time delay
+      setTimeout(function() {
+        playBtn.setAttribute("hidden", true)
+        replayBtn.removeAttribute("hidden")
+        getWinner()
+      }, 1000);
+    }
+  }, (numberSlot4*50+1000))
 }
 
 
@@ -272,10 +280,12 @@ function showPlayer(evt) {
 
 function doSlot(){
 	let numChanges = randomInt(1,4)*7
-	let numeberSlot1 = numChanges+randomInt(1,7)
-	let numeberSlot2 = numChanges+2*7+randomInt(1,7)	
-	let numeberSlot3 = numChanges+4*7+randomInt(1,7)
-  let numeberSlot4 = numChanges+6*7+randomInt(1,7)
+	let numberSlot1 = numChanges+randomInt(1,7)
+	let numberSlot2 = numChanges+2*7+randomInt(1,7)	
+	let numberSlot3 = numChanges+4*7+randomInt(1,7)
+  numberSlot4 = numChanges+6*7+randomInt(1,7)
+
+  console.log (numberSlot4)
 
 	let i1 = 0
 	let i2 = 0
@@ -289,13 +299,13 @@ function doSlot(){
   
 	function spin1(){
 		i1++;
-		if (i1>=numeberSlot1){
+		if (i1>=numberSlot1){
 			clearInterval(slot1);
 			return null;
 		}
 		let slotTile = document.getElementById("slot1");
 		
-		if (slotTile.className=="a11"){
+		if (slotTile.className==="a11"){
 			slotTile.className = "a0";
 		}
 		
@@ -304,13 +314,13 @@ function doSlot(){
 
 	function spin2(){
 		i2++;
-		if (i2>=numeberSlot2){
+		if (i2>=numberSlot2){
 			clearInterval(slot2);
 			return null;
 		}
 
 		let slotTile = document.getElementById("slot2");
-		if (slotTile.className=="a11"){
+		if (slotTile.className==="a11"){
 			slotTile.className = "a0";
 		}
 		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
@@ -318,13 +328,13 @@ function doSlot(){
 
 	function spin3(){
 		i3++;
-		if (i3>=numeberSlot3){
+		if (i3>=numberSlot3){
 			clearInterval(slot3);
 			return null;
 		}
 		
 		let slotTile = document.getElementById("slot3");
-		if (slotTile.className=="a11"){
+		if (slotTile.className==="a11"){
 			slotTile.className = "a0";
 		}
 
@@ -333,13 +343,13 @@ function doSlot(){
 
   function spin4(){
 		i4++;
-		if (i4>=numeberSlot4){
+		if (i4>=numberSlot4){
 			clearInterval(slot4);
 			return null;
 		}
 		
 		let slotTile = document.getElementById("slot4");
-		if (slotTile.className=="a11"){
+		if (slotTile.className==="a11"){
 			slotTile.className = "a0";
 		}
 
