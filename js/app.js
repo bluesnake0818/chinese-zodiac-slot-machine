@@ -19,7 +19,7 @@ const zodiacsArray =
 ]
 
 /*---------------------------- Variables (state & etc) ----------------------------*/
-let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName, count, numberSlot4
+let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName, playerBName, count, numberSlot4
 const oxSays = new Audio('../audio/ox.mp3')
 const favicon = document.querySelector('#favicon')
 // var scrollSpy = new bootstrap.ScrollSpy(document.body, {
@@ -42,6 +42,7 @@ const playerDesc = document.querySelector('#player-desc')
 const playerLuck = document.querySelector('#player-luck')
 const selectBtn = document.querySelector('#select-button')
 const playerA = document.querySelector('#player-a-name')
+const playerB = document.querySelector('#player-b-name')
 // const doSpin = document.querySelector('#spin')
 
 
@@ -81,6 +82,7 @@ function init() {
   sumA = 0
   sumB = 0
   playerAName = ''
+  playerBName = ''
   
   scoresArray = [score0, score1, score2, score3, score4, score5, score6, score7]
   score0.target = {player: 1, round: 0, score: 0, note: ''}
@@ -276,7 +278,11 @@ function showPlayer(evt) {
     if(zodiacsArray[i].zodiac === evt.target.id) {
       playerDesc.textContent = zodiacsArray[i].desc
       playerLuck.textContent = zodiacsArray[i].luck
-      playerAName = zodiacsArray[i].zodiac
+      if(turn === 1) {
+        playerAName = zodiacsArray[i].zodiac
+      } else {
+        playerBName = zodiacsArray[i].zodiac
+      }
     }
   }
     
@@ -380,15 +386,27 @@ function randomInt(min, max){
 
 
 function selectPlayer(evt) {
+  
+  if (turn === 1) {
   let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
   let zodTag = `${zodiacsArray[zodIdx].tag}-p`
   playerA.className = zodTag
   playerA.textContent = ""
   //time delay -- slide animation
   //assign turn 
+    turn = turn * -1
+  } else {
+  let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
+  let zodTag = `${zodiacsArray[zodIdx].tag}-p`
+  playerB.className = zodTag
+  playerB.textContent = ""
   choosePlayer.setAttribute("hidden", true)
   showPlayerArea.setAttribute("hidden", true)
   selectBtn.setAttribute("hidden", true)
+    turn = turn * -1
+  }
+
+
 
 
 
