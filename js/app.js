@@ -44,6 +44,8 @@ const selectBtn = document.querySelector('#select-button')
 const playerA = document.querySelector('#player-a-name')
 const playerB = document.querySelector('#player-b-name')
 // const doSpin = document.querySelector('#spin')
+const scoreboardTitle = document.querySelector('#scoreboard-section-title')
+const tooltip = document.querySelector('#tool-tip')
 
 
 
@@ -98,17 +100,24 @@ function init() {
     score.textContent = ""
   })
   
-  playBtn.removeAttribute("hidden")
+  slotMachine.setAttribute("hidden", true)
+  playBtn.setAttribute("hidden", true)
+  scoreBoard.setAttribute("hidden", true)
+  scoreboardTitle.setAttribute("hidden", true)
+  tooltip.setAttribute("hidden", true)
+
+  // playBtn.removeAttribute("hidden")
   replayBtn.setAttribute("hidden", true)
   winnerDisplay.setAttribute("hidden", true)
   turnBoard.textContent = ""
   turnBoard.removeAttribute("hidden")
   // reset score board
   
-  playerA.textContent = "Player A"
+  choosePlayer.textContent = "Player A, choose your zodiac."
   choosePlayer.removeAttribute("hidden")
   showPlayerArea.removeAttribute("hidden")
-  selectBtn.removeAttribute("hidden")
+  // selectBtn.removeAttribute("hidden")
+  selectBtn.setAttribute("hidden", true)
   
   // render()
 }
@@ -274,6 +283,7 @@ function renderScore () {
 
 function showPlayer(evt) {
   // playerImg.src = evt.target.src
+  selectBtn.removeAttribute("hidden")
   for(let i=0; i<zodiacsArray.length; i++) {
     if(zodiacsArray[i].zodiac === evt.target.id) {
       playerDesc.textContent = zodiacsArray[i].desc
@@ -386,6 +396,7 @@ function randomInt(min, max){
 
 
 function selectPlayer() {
+  selectBtn.removeAttribute("hidden")
   if (turn === 1) {
   let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
   let zodTag = `${zodiacsArray[zodIdx].tag}-p`
@@ -394,9 +405,11 @@ function selectPlayer() {
   //time delay -- slide animation
   //assign turn 
     turn = turn * -1
+  choosePlayer.textContent = "Player B, choose Your zodiac"
+  // selectBtn.className.add = "player-b-select-btn"
   } else {
     if(playerBName === playerAName) {
-    alert("You must pick a different layer")
+    alert("You must pick a different player")
     } else {  
     let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
     let zodTag = `${zodiacsArray[zodIdx].tag}-p`
@@ -405,13 +418,17 @@ function selectPlayer() {
     choosePlayer.setAttribute("hidden", true)
     showPlayerArea.setAttribute("hidden", true)
     selectBtn.setAttribute("hidden", true)
+
+    slotMachine.removeAttribute("hidden")
+    playBtn.removeAttribute("hidden")
+    scoreBoardTitle.removeAttribute("hidden")
+    scoreBoard.removeAttribute("hidden")
+    tooltip.removeAttribute("hidden")
+    turnBoard.removeAttribute("hidden")
     turn = turn * -1
     }
 
   }
-
-
-
 
 
 }
@@ -462,6 +479,10 @@ function selectPlayer() {
 37. favicon gets updated. 
 38. select button only shows when a zodiac is clcicked. 
 39. click zodiac tool tip.
+40. winner's music plays afteer winning
+41. remove button after the 6th play so user can't click it. 
+42. share toggle
+43. insert player's name at the end. 
 */
 
 /*
