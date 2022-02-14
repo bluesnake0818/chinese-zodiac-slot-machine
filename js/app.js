@@ -19,7 +19,7 @@ const zodiacsArray =
 ]
 
 /*---------------------------- Variables (state & etc) ----------------------------*/
-let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName
+let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName, count
 const oxSays = new Audio('../audio/ox.mp3')
 const favicon = document.querySelector('#favicon')
 // var scrollSpy = new bootstrap.ScrollSpy(document.body, {
@@ -43,6 +43,8 @@ const playerLuck = document.querySelector('#player-luck')
 const selectBtn = document.querySelector('#select-button')
 const playerA = document.querySelector('#player-a-name')
 
+
+
 /*----------------------------- Event Listeners -----------------------------*/
 playBtn.addEventListener("click", handlePlay)
 replayBtn.addEventListener("click", init)
@@ -55,33 +57,6 @@ choosePlayer.addEventListener("click", showPlayer)
 selectBtn.addEventListener("click", selectPlayer)
 
 /*-------------------------------- Functions --------------------------------*/
-function showPlayer(evt) {
-  playerImg.src = evt.target.src
-  for(let i=0; i<zodiacsArray.length; i++) {
-    if(zodiacsArray[i].zodiac === evt.target.id) {
-      playerDesc.textContent = zodiacsArray[i].desc
-      playerLuck.textContent = zodiacsArray[i].luck
-      playerAName = zodiacsArray[i].zodiac
-    }
-  }
-    
-}
-
-// function selectPlayer(evt) {
-//   if(evt.target.textContent === 'A') {
-//     turn = 1
-//   } else if (evt.target.textContent === 'B') {
-//     turn = -1
-//   }
-// }
-
-
-function selectPlayer() {
-  playerA.textContent = playerAName
-  choosePlayer.setAttribute("hidden", true)
-  showPlayerArea.setAttribute("hidden", true)
-  selectBtn.setAttribute("hidden", true)
-}
 
 init()
 
@@ -90,17 +65,17 @@ function init() {
   slotMachineArray = [slot1, slot2, slot3, slot4]
   slotMachineArray.forEach(slot => {
     // Question - how does this work? is event.target an object?
-    slot.src = zodiacsArray[2].url
-    slot.target = zodiacsArray[2]
+    // slot.src = zodiacsArray[2].url
+    // slot.target = zodiacsArray[2]
   })
-
+  
   turn = 1
   isWinner = null
   round = 0
   sumA = 0
   sumB = 0
   playerAName = ''
-
+  
   scoresArray = [score0, score1, score2, score3, score4, score5, score6, score7]
   score0.target = {player: 1, round: 0, score: 0, note: ''}
   score1.target = {player: -1, round: 1, score: 0, note: ''}
@@ -110,27 +85,27 @@ function init() {
   score5.target = {player: -1, round: 5, score: 0, note: ''}
   score6.target = {player: 1, round: 6, score: 0, note: ''}
   score7.target = {player: -1, round: 7, score: 0, note: 'sum'}
-
+  
   scoresArray.forEach(score => {
     score.textContent = ""
   })
-
+  
   playBtn.removeAttribute("hidden")
   replayBtn.setAttribute("hidden", true)
   winnerDisplay.setAttribute("hidden", true)
   turnBoard.textContent = ""
   turnBoard.removeAttribute("hidden")
   // reset score board
-
+  
   playerA.textContent = "Player A"
   choosePlayer.removeAttribute("hidden")
   showPlayerArea.removeAttribute("hidden")
   selectBtn.removeAttribute("hidden")
-
+  
 }
 
 
-  
+
 
 
 function handlePlay() {
@@ -140,12 +115,12 @@ function handlePlay() {
     slotMachineArray[i].src = zodiacsArray[randZodIdx].url
     slotMachineArray[i].target = zodiacsArray[randZodIdx]
   }
-
+  
   updateScore()
   render()
   turn = turn * -1
   round++
-
+  
   if(round === 6) {
     // add time delay
     setTimeout(function() {
@@ -161,7 +136,7 @@ function updateScore() {
   let score = 0
   // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to ""
   // apply time delay to see if the textContent element has been reset in HTML
-
+  
   // make it into an object
   const animalsArray = 
   [
@@ -202,17 +177,17 @@ function updateScore() {
       score = score + 0
     }
   })
-
+  
   // 6.3.3) update scoresArray using "round" and "turn" variables.
   // use yeezy/taylor method to add score list to score board, , use createElement
   // use ternary, use appendChild
-
+  
   // 6.3.4) update scoreboard  
   for(let i=0; i< scoresArray.length; i++) {
     if(scoresArray[i].target.round === round) {
       scoresArray[i].target.score = score 
     }
-      
+    
   }
 }
 
@@ -227,7 +202,7 @@ function getWinner() {
       sumB = sumB + scoresArray[i].target.score
     }
   }
-
+  
   if(sumA === sumB) {
     isWinner = 'T'
   } else if (sumA > sumB) {
@@ -235,7 +210,7 @@ function getWinner() {
   } else {
     isWinner = -1
   } 
- 
+  
   scoresArray[6].target.score = sumA
   scoresArray[7].target.score = sumB
   render()
@@ -248,18 +223,18 @@ function render() {
   if(isWinner === null) {
     turnBoard.textContent = turn === 1 ? "Turn: Player A" : "Turn: Player B"
   } else {
-      if (isWinner === 'T') {
-        winnerDisplay.textContent = "The game is tied."
-      } else {
-        winnerDisplay.textContent = isWinner === 1 ? "Player A Wins!" : "Player B Wins!"
-        confetti.start(500)
-        oxSays.volume = .20
-        oxSays.play()
-      }
-      winnerDisplay.removeAttribute("hidden")
-      turnBoard.setAttribute("hidden", true)
+    if (isWinner === 'T') {
+      winnerDisplay.textContent = "The game is tied."
+    } else {
+      winnerDisplay.textContent = isWinner === 1 ? "Player A Wins!" : "Player B Wins!"
+      confetti.start(500)
+      oxSays.volume = .20
+      oxSays.play()
+    }
+    winnerDisplay.removeAttribute("hidden")
+    turnBoard.setAttribute("hidden", true)
   }
-
+  
   renderScore()
 }
 
@@ -275,9 +250,36 @@ function renderScore () {
     scoresArray[6].textContent = `${scoresArray[6].target.score}`
     scoresArray[7].textContent = `${scoresArray[7].target.score}`
   }
-
+  
 }
 
+function showPlayer(evt) {
+  playerImg.src = evt.target.src
+  for(let i=0; i<zodiacsArray.length; i++) {
+    if(zodiacsArray[i].zodiac === evt.target.id) {
+      playerDesc.textContent = zodiacsArray[i].desc
+      playerLuck.textContent = zodiacsArray[i].luck
+      playerAName = zodiacsArray[i].zodiac
+    }
+  }
+    
+}
+
+// function selectPlayer(evt) {
+//   if(evt.target.textContent === 'A') {
+//     turn = 1
+//   } else if (evt.target.textContent === 'B') {
+//     turn = -1
+//   }
+// }
+
+
+function selectPlayer() {
+  playerA.textContent = playerAName
+  choosePlayer.setAttribute("hidden", true)
+  showPlayerArea.setAttribute("hidden", true)
+  selectBtn.setAttribute("hidden", true)
+}
 
 
 
@@ -293,9 +295,9 @@ function renderScore () {
 // 6. scoreboard elements don't get cleared after reset.
 // 7. zodiac animals don't get reset
 // 8. time delay for total scores and winner display after 6th play.
-9. when score updates, spaces on score board changes --> need adjustment
+// 9. when score updates, spaces on score board changes --> need adjustment
 // 10. add confetti
-11. change 'alt' in image tag to a corresponding animal name. 
+// 11. change 'alt' in image tag to a corresponding animal name. 
 12. button to change color each turn/player
 13. see who's winner - then total score and winner is revealed. 
 14. winner's total scores are highlighted and colored.
@@ -315,9 +317,33 @@ function renderScore () {
 27. scroll effect 
 28. there's a bug when you hit play again during the time delay before total sdcores are revealed, it shows the total sdcore right away.
 29. chooose somewhere in between the animals, it returns error in choose player
-30. refactor with event bubbling - show player()
+30. refactor show player() with event bubbling
 31. build animation to slide up select area
 32. "Zodiac Image" Alt Too big.
+33. replace select player area with scrollspy.
+*/
+
+/*
+Feb 14 - 
+    a. slot machine effect
+    b. select player area - hide (animation - slide up & down), sound
+    c. Tool Tip
+Feb 15 - 
+    a. CTA - download
+    b. Who you get along with
+    c. update score area with chosen zodiac's image. 
+Feb 16 - 
+    a. Adjust chance of winning in accordance with zodiac selection 
+    b. you put in your bday, and the animal is chosen
+    c. show official results board
+Feb 17 - 
+    a. Clean up code
+    b. refactor
+    c. user test
+    d. write readme 
+
+Feb 16 - 
+    a. GA events
 */
 
 /* Findings / questions
@@ -339,9 +365,10 @@ function renderScore () {
 16. things like audio variable shoudl go under variables (state)?
 17. set at flex-start and then adjusting the margins is easier - than space around - contrary to what i thought at the beginning.
 18. what's em and rem
+19. img src vs. div background-image for slot machine
 */
 
 /* What was most difficult
 1. scoreboard - whether to store and display the scores separately for each player each round.
-
+2. slot machine effect - fidning the resource/documentation
 */

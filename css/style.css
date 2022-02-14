@@ -31,6 +31,7 @@ body {
   align-items: center;
   height: 100vh;
   font-size: 24px;
+  
   /* position: relative; */
 }
 
@@ -41,6 +42,7 @@ body > header {
   justify-content: center;
   align-items: center;
   font-family: var(--roboto_mono);
+  
   
   
 }
@@ -83,8 +85,8 @@ main > #choose-player {
 
 .scroll {
   margin: 1em;
-  font-size: 24px;
-  width: 3.5em;
+  /* font-size: 24px; */
+  width: 8.0em;
   height: 3.5em;
   border: dotted;
   overflow-y: scroll;
@@ -165,12 +167,7 @@ main > #choose-player {
   height: 20px;
 }
 
-.slot-machine > #slot-machine-img > .zodiac-img {
-  width: 90px; 
-  height: 90px;
-  border-style: solid;
-  border-radius: 10%;
-}
+
 
 .button {
   width: 100px;
@@ -266,3 +263,32 @@ main > #choose-player {
   height: 30px;
 }
 
+.slot-machine > #slot-machine-img > .zodiac-img {
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+  border-style: solid;
+  border-radius: 10%;
+}
+
+.a1{
+	background-image: url("/assets/designs_tiger.png");
+}
+.a2{
+	background-image: url("/assets/designs_dragon.png");
+}
+.a3{
+	background-image: url("/assets/designs_goat.png");
+}
+.a4{
+	background-image: url("/assets/designs_horse.png");
+}
+.a5{
+	background-image: url("/assets/designs_monkey.png");
+}
+.a6{
+	background-image: url("/assets/designs_ox.png");
+}
+.a7{
+	background-image: url("/assets/designs_rat.png");
+}

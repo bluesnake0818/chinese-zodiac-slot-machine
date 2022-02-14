@@ -28,7 +28,7 @@
     
     <main>
       <header>
-        <h1>Chinese Zodiac Slot Machine</h1>
+        <h1 class="slideInDown">Chinese Zodiac Slot Machine</h1>
       </header>
 
       <!-- <div id="choose-player" >
@@ -86,7 +86,10 @@
 
       <button class="button" id="select-button">Select</button>
 
-
+      <!-- <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+        Tooltip on top
+      </button>
+       -->
       <div class="slot-machine">
         <div id="slot-machine-pillars">
           <div id="year-pillar">Year</div>
@@ -95,10 +98,13 @@
           <div id="hour-pillar">Hour</div>
         </div>
         <div id="slot-machine-img">
-          <img id ="slot1" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-          <img id ="slot2" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>        
-          <img id ="slot3" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
-          <img id ="slot4" src="./assets/designs_tiger.png" class="zodiac-img" alt="zodiac image"/>
+          <div id ="slot1" class="a3 zodiac-img"></div>
+          <div id ="slot1" class="a3 zodiac-img"></div>
+          <div id ="slot1" class="a3 zodiac-img"></div>
+          <div id ="slot1" class="a3 zodiac-img"></div>
+          <!-- <img id ="slot2" src="./assets/designs_tiger.png" class="zodiac-img a1" alt="zodiac image"/>        
+          <img id ="slot3" src="./assets/designs_tiger.png" class="zodiac-img a1" alt="zodiac image"/>
+          <img id ="slot4" src="./assets/designs_tiger.png" class="zodiac-img a1" alt="zodiac image"/> -->
         </div>
       </div>
       
@@ -141,7 +147,7 @@
       </div>
 
       <div id="instructions">
-        <p>*Instrunctions</p>
+        <p>*Tool Tip</p>
         <p>2 of the same kind: 10</p>
         <p>3 of the same kind: 100</p>
         <p>4 of the same kind: 1000</p>
