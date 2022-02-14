@@ -42,6 +42,7 @@ const playerDesc = document.querySelector('#player-desc')
 const playerLuck = document.querySelector('#player-luck')
 const selectBtn = document.querySelector('#select-button')
 const playerA = document.querySelector('#player-a-name')
+const doSpin = document.querySelector('#spin')
 
 
 
@@ -55,10 +56,14 @@ oxImg.addEventListener('click', (evt) => {
 // choosePlayer('click', choosePlayer)
 choosePlayer.addEventListener("click", showPlayer)
 selectBtn.addEventListener("click", selectPlayer)
+doSpin.addEventListener('click', doSlot)
 
 /*-------------------------------- Functions --------------------------------*/
 
 init()
+
+
+
 
 // 3.1) That initialize function should initialize the state variables:
 function init() {
@@ -265,6 +270,92 @@ function showPlayer(evt) {
     
 }
 
+function doSlot(){
+	let numChanges = randomInt(1,4)*7
+	let numeberSlot1 = numChanges+randomInt(1,7)
+	let numeberSlot2 = numChanges+2*7+randomInt(1,7)	
+	let numeberSlot3 = numChanges+4*7+randomInt(1,7)
+  let numeberSlot4 = numChanges+6*7+randomInt(1,7)
+
+	let i1 = 0
+	let i2 = 0
+	let i3 = 0
+  let i4 = 0
+	
+	let slot1 = setInterval(spin1, 50);
+	let slot2 = setInterval(spin2, 50);
+	let slot3 = setInterval(spin3, 50);
+	let slot4 = setInterval(spin4, 50);
+  
+	function spin1(){
+		i1++;
+		if (i1>=numeberSlot1){
+			clearInterval(slot1);
+			return null;
+		}
+		let slotTile = document.getElementById("slot1");
+		
+		if (slotTile.className=="a11"){
+			slotTile.className = "a0";
+		}
+		
+		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+	}
+
+	function spin2(){
+		i2++;
+		if (i2>=numeberSlot2){
+			clearInterval(slot2);
+			return null;
+		}
+
+		let slotTile = document.getElementById("slot2");
+		if (slotTile.className=="a11"){
+			slotTile.className = "a0";
+		}
+		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+	}
+
+	function spin3(){
+		i3++;
+		if (i3>=numeberSlot3){
+			clearInterval(slot3);
+			return null;
+		}
+		
+		let slotTile = document.getElementById("slot3");
+		if (slotTile.className=="a11"){
+			slotTile.className = "a0";
+		}
+
+		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+	}
+
+  function spin4(){
+		i4++;
+		if (i4>=numeberSlot4){
+			clearInterval(slot4);
+			return null;
+		}
+		
+		let slotTile = document.getElementById("slot4");
+		if (slotTile.className=="a11"){
+			slotTile.className = "a0";
+		}
+
+		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+	}
+}
+
+function randomInt(min, max){
+	// returns a random integer between min and max inclusive
+	return Math.floor((Math.random() * (max-min+1)) + min);
+}
+
+
+
+
+
 // function selectPlayer(evt) {
 //   if(evt.target.textContent === 'A') {
 //     turn = 1
@@ -371,4 +462,5 @@ Feb 16 -
 /* What was most difficult
 1. scoreboard - whether to store and display the scores separately for each player each round.
 2. slot machine effect - fidning the resource/documentation
+3. image size
 */
