@@ -73,6 +73,8 @@ function init() {
   slotMachine.querySelector('#turn-board').textContent = ""
   slotMachine.querySelector('#winner-display').textContent = ""
  
+  scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
+  scoreBoard.querySelector('#score-board-B').className = ''
 }
 
 
@@ -206,11 +208,11 @@ function render() {
   if(turn === 1) {
     slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-b'
     scoreBoard.querySelector('#score-board-B').className = 'score-board-b-turn'
-    scoreBoard.querySelector('#score-board-A').className = 'score-board-a'
+    scoreBoard.querySelector('#score-board-A').className = ''
   } else {
     slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-a'
     scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
-    scoreBoard.querySelector('#score-board-B').className = 'score-board-b'
+    scoreBoard.querySelector('#score-board-B').className = ''
   }
 
 
