@@ -22,42 +22,14 @@ const favicon = document.querySelector('#favicon')
 
 /*------------------------ Cached Element References ------------------------*/
 const choosePlayer = document.querySelector('#choose-player')
-const showPlayerArea = document.querySelector('#show-player')
-const selectBtn = document.querySelector('#select-button')
-const playerDesc = document.querySelector('#player-desc')
-const playerLuck = document.querySelector('#player-luck')
-const playerEnemy = document.querySelector('#player-enemy')
-
-const slotMachine = document.querySelector('.slot-machine')
-const winnerDisplay = document.querySelector('#winner-display')
-const turnBoard = document.querySelector('#turn-board')
-const shuffleBtn = document.querySelector('#play-button')
-const replayBtn = document.querySelector('#replay-button')
-
-const scoreboardTitle = document.querySelector('#scoreboard-section-title')
+const slotMachine = document.querySelector('#slot-machine')
 const scoreBoard = document.querySelector('#score-board')
-const playerA = document.querySelector('#player-a-name')
-const playerB = document.querySelector('#player-b-name')
-
-const tooltip = document.querySelector('#tool-tip')
-
-// const oxImg = document.querySelector('#ox-img')
-// const playerImg = document.querySelector('#player-img')
-// const doSpin = document.querySelector('#spin')
-
-
 
 /*----------------------------- Event Listeners -----------------------------*/
-shuffleBtn.addEventListener("click", handleShuffle)
-replayBtn.addEventListener("click", init)
-showPlayerArea.addEventListener("click", showPlayer)
-selectBtn.addEventListener("click", selectPlayer)
-
-// oxImg.addEventListener('click', (evt) => {
-//   oxSays.volume = .20
-//   oxSays.play()
-// })
-// choosePlayer('click', choosePlayer)
+slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShuffle)
+slotMachine.querySelector('#replay-button').addEventListener("click", init)
+choosePlayer.querySelector('#scroll').addEventListener("click", showPlayer)
+choosePlayer.querySelector('#select-button').addEventListener("click", selectPlayer)
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -91,22 +63,16 @@ function init() {
     score.textContent = ""
   })
   
-  choosePlayer.textContent = "Player A, choose your zodiac."
+  choosePlayer.querySelector('#title').textContent = "Player A, choose your zodiac."
   choosePlayer.removeAttribute("hidden")
-  showPlayerArea.removeAttribute("hidden")
-  selectBtn.setAttribute("hidden", true)
+  choosePlayer.querySelector('#select-button').setAttribute("hidden", true)
+  choosePlayer.querySelector('#select-button').className = 'btn select-button'
 
   slotMachine.setAttribute("hidden", true)
-  shuffleBtn.setAttribute("hidden", true)
-
   scoreBoard.setAttribute("hidden", true)
-  scoreboardTitle.setAttribute("hidden", true)
-  tooltip.setAttribute("hidden", true)
-
-  replayBtn.setAttribute("hidden", true)
-  winnerDisplay.setAttribute("hidden", true)
-  turnBoard.textContent = ""
-  turnBoard.removeAttribute("hidden")
+  slotMachine.querySelector('#turn-board').textContent = ""
+  slotMachine.querySelector('#winner-display').textContent = ""
+ 
 }
 
 
@@ -115,7 +81,7 @@ function handleShuffle() {
   shuffle()
 
   setTimeout(function() {
-    scoreboardTitle.removeAttribute("hidden")
+    scoreBoard.querySelector('#scoreboard-title').removeAttribute("hidden")
     scoreBoard.removeAttribute("hidden")
     for(let i=0; i<slotMachineArray.length; i++) {
       let zodTag = slotMachineArray[i].className
@@ -129,9 +95,9 @@ function handleShuffle() {
     round++
     
     if(round === 6) {
+      slotMachine.querySelector('#shuffle-button').setAttribute("hidden", true)
       setTimeout(function() {
-        shuffleBtn.setAttribute("hidden", true)
-        replayBtn.removeAttribute("hidden")
+        slotMachine.querySelector('#replay-button').removeAttribute("hidden")
         getWinner()
       }, 1000);
     }
@@ -186,7 +152,6 @@ function updateScore() {
     if(scoresArray[i].target.round === round) {
       scoresArray[i].target.score = score 
     }
-    
   }
 }
 
@@ -219,20 +184,36 @@ function getWinner() {
 
 function render() {
   if(isWinner === null) {
-    turnBoard.textContent = turn === 1 ? "Turn: Player A" : "Turn: Player B"
+    slotMachine.querySelector('#turn-board').textContent = turn === -1 ? "Turn: Player A" : "Turn: Player B"
+    if (turn === 1) {
+      slotMachine.querySelector('#turn-board').style.color = '#ff6969'
+    } else {
+      slotMachine.querySelector('#turn-board').style.color = '#6661F1'
+    }
   } else {
     if (isWinner === 'T') {
-      winnerDisplay.textContent = "The game is tied."
+      slotMachine.querySelector('#winner-display').textContent = "The game is tied."
     } else {
-      winnerDisplay.textContent = isWinner === 1 ? "Player A Wins!" : "Player B Wins!"
+      slotMachine.querySelector('#winner-display').textContent = isWinner === 1 ? "Player A Wins!" : "Player B Wins!"
       confetti.start(500)
       oxSays.volume = .20
       oxSays.play()
     }
-    winnerDisplay.removeAttribute("hidden")
-    turnBoard.setAttribute("hidden", true)
+    slotMachine.querySelector('#turn-board').setAttribute("hidden", true)
+    slotMachine.querySelector('#winner-display').removeAttribute("hidden")
   }
   
+  if(turn === 1) {
+    slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-b'
+    scoreBoard.querySelector('#score-board-B').className = 'score-board-b-turn'
+    scoreBoard.querySelector('#score-board-A').className = 'score-board-a'
+  } else {
+    slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-a'
+    scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
+    scoreBoard.querySelector('#score-board-B').className = 'score-board-b'
+  }
+
+
   renderScore()
 }
 
@@ -244,7 +225,7 @@ function renderScore () {
         scoresArray[i].textContent = `${scoresArray[i].target.score}`
       }
     }
-  } else {
+  } else {    
     scoresArray[6].textContent = `${scoresArray[6].target.score}`
     scoresArray[7].textContent = `${scoresArray[7].target.score}`
   }
@@ -331,13 +312,12 @@ function randomInt(min, max){
 }
 
 function showPlayer(evt) {
-  // playerImg.src = evt.target.src
-  selectBtn.removeAttribute("hidden")
+  choosePlayer.querySelector('#select-button').removeAttribute("hidden")
   for(let i=0; i<zodiacsArray.length; i++) {
     if(zodiacsArray[i].zodiac === evt.target.id) {
-      playerDesc.textContent = zodiacsArray[i].desc
-      playerLuck.textContent = zodiacsArray[i].luck
-      playerEnemy.textContent = `Worst Opponent: ${zodiacsArray[i].enemy}`
+      choosePlayer.querySelector('#player-desc').textContent = zodiacsArray[i].desc
+      choosePlayer.querySelector('#player-luck').textContent = zodiacsArray[i].luck
+      choosePlayer.querySelector('#player-enemy').textContent = `Worst Opponent: ${zodiacsArray[i].enemy}`
       if(turn === 1) {
         playerAName = zodiacsArray[i].zodiac
       } else {
@@ -348,54 +328,98 @@ function showPlayer(evt) {
 }
 
 function selectPlayer() {
-  selectBtn.removeAttribute("hidden")
+  choosePlayer.querySelector('#select-button').removeAttribute("hidden")
+  
   if (turn === 1) {
     let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
     let zodTag = `${zodiacsArray[zodIdx].tag}-p`
-    playerA.className = zodTag
-    playerA.textContent = ""
+    scoreBoard.querySelector('#player-a-name').className = zodTag
+    scoreBoard.querySelector('#player-a-name').textContent = ""
     //time delay -- slide animation
     turn = turn * -1
-    choosePlayer.textContent = "Player B, choose Your zodiac"
-    // selectBtn.className.add = "player-b-select-btn"
+    choosePlayer.querySelector('#title').textContent = "Player B, choose Your zodiac"
+    choosePlayer.querySelector('.select-button').className = 'btn select-button-b'
+    choosePlayer.querySelector('#select-button').setAttribute("hidden",true)
   } else {
     if(playerBName === playerAName) {
-    alert("You must pick a different player")
+      alert("You must pick a different player")
     } else {  
-    let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
-    let zodTag = `${zodiacsArray[zodIdx].tag}-p`
-    
-    playerB.className = zodTag
-    playerB.textContent = ""
-    
-    choosePlayer.setAttribute("hidden", true)
-    showPlayerArea.setAttribute("hidden", true)
-    selectBtn.setAttribute("hidden", true)
+      let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
+      let zodTag = `${zodiacsArray[zodIdx].tag}-p`
+      
+      choosePlayer.setAttribute("hidden", true)
+      slotMachine.removeAttribute("hidden")
+      slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
+      slotMachine.querySelector('#shuffle-button').removeAttribute("hidden")
+      
+      scoreBoard.querySelector('#player-b-name').className = zodTag
+      scoreBoard.querySelector('#player-b-name').textContent = ""
+      scoreBoard.removeAttribute("hidden")
 
-    slotMachine.removeAttribute("hidden")
-    shuffleBtn.removeAttribute("hidden")
-    scoreboardTitle.removeAttribute("hidden")
-    scoreBoard.removeAttribute("hidden")
-    tooltip.removeAttribute("hidden")
-    turnBoard.removeAttribute("hidden")
-    
-    turn = turn * -1
+      turn = turn * -1
     }
   }
+  
 }
 
 /*-------------------------------- Pseudocode --------------------------------*/
 
-/* To Do List
-// 1. Total scores to update automatically when Round 3 (round === 5) is over.
-// 2. refactor updateScore()
-// 3. When player A wins, "Player B wins!" is displayed
-4. refactor scoresArray 
-// 5. clean up how scores are displayed on HTML (score-board)
-// 6. scoreboard elements don't get cleared after reset.
-// 7. zodiac animals don't get reset
-// 8. time delay for total scores and winner display after 6th play.
-// 9. when score updates, spaces on score board changes --> need adjustment
+/* Deprecated
+
+// const showPlayerArea = document.querySelector('#show-player')
+// const selectBtn = document.querySelector('#select-button')
+// const shuffleBtn = document.querySelector('#shuffle-button')
+// const winnerDisplay = document.querySelector('#winner-display')
+// const turnBoard = document.querySelector('#turn-board')
+// const replayBtn = document.querySelector('#replay-button')
+
+// const scoreboardTitle = document.querySelector('#scoreboard-section-title')
+// const playerA = document.querySelector('#player-a-name')
+// const playerB = document.querySelector('#player-b-name')
+
+// const tooltip = document.querySelector('#tool-tip')
+
+// const oxImg = document.querySelector('#ox-img')
+
+// oxImg.addEventListener('click', (evt) => {
+  //   oxSays.volume = .20
+  //   oxSays.play()
+  // })
+  // choosePlayer('click', choosePlayer)
+  
+  // showPlayerArea.removeAttribute("hidden")
+  
+  // selectBtn.setAttribute("hidden", true)
+  // scoreboardTitle.setAttribute("hidden", true)
+  // tooltip.setAttribute("hidden", true)
+  // shuffleBtn.setAttribute("hidden", true)
+  // replayBtn.setAttribute("hidden", true)
+  // winnerDisplay.setAttribute("hidden", true)
+  // turnBoard.removeAttribute("hidden")
+  
+  
+  // playerImg.src = evt.target.src
+  // selectBtn.className.add = "player-b-select-btn"
+  // favicon.href =  "./assets/designs_dragon.png"
+  // showPlayerArea.setAttribute("hidden", true)
+  // selectBtn.setAttribute("hidden", true)
+  // shuffleBtn.removeAttribute("hidden")
+  // scoreboardTitle.removeAttribute("hidden")
+  // tooltip.removeAttribute("hidden")
+  // turnBoard.removeAttribute("hidden")
+  */
+ 
+ 
+ /* To Do List
+ // 1. Total scores to update automatically when Round 3 (round === 5) is over.
+ // 2. refactor updateScore()
+ // 3. When player A wins, "Player B wins!" is displayed
+ 4. refactor scoresArray 
+ // 5. clean up how scores are displayed on HTML (score-board)
+ // 6. scoreboard elements don't get cleared after reset.
+ // 7. zodiac animals don't get reset
+ // 8. time delay for total scores and winner display after 6th play.
+ // 9. when score updates, spaces on score board changes --> need adjustment
 // 10. add confetti
 // 11. change 'alt' in image tag to a corresponding animal name. 
 12. button to change color each turn/player
@@ -452,7 +476,11 @@ Feb 15 -
     b. Who you get along with
     // c. update score area with chosen zodiac's image. 
     d. spin sound
-    e. 
+    e. update scoreboard with append child
+    f. refactor doShuffle()
+    g. check if two pairs are working
+    h. two pairs
+    i. when everything is done, confetti and sound should play last. 
 Feb 16 - 
     a. Adjust chance of winning in accordance with zodiac selection 
     b. you put in your bday, and the animal is chosen
@@ -489,7 +517,7 @@ Feb 16 -
 19. img src vs. div background-image for slot machine
 20. give padding to main rather than giving margin/padding to  elements inside. 
 21. // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to "". apply time delay to see if the textContent element has been reset in HTML
-
+22. #score-board-B > .score-board-b-turn { why doesn't this work?
 */
 
 /* What was most difficult

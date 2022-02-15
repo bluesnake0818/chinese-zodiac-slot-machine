@@ -1,3 +1,4 @@
+/*------------------------ Universal  ------------------------*/
 html {
   box-sizing: border-box
 }
@@ -18,7 +19,6 @@ html {
   --cursive: 'Festive', cursive;
   --roboto_mono: 'Roboto Mono', monospace;
 }
-
 
 body {
   background-color: #424242;;
@@ -47,6 +47,168 @@ main {
   padding: 20px;
 }
 
+.btn {
+  margin: 20px;
+  border-radius: 5px;
+  border-color: #6661F1;
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  color: #6661F1;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.a1{
+  background-image: url("/assets/designs_rat.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a2{
+  background-image: url("/assets/designs_ox.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a3{
+  background-image: url("/assets/designs_tiger.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a4{
+  background-image: url("/assets/designs_rabbit.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a5{
+  background-image: url("/assets/designs_dragon.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a6{
+  background-image: url("/assets/designs_snake.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a7{
+  background-image: url("/assets/designs_horse.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a8{
+  background-image: url("/assets/designs_goat.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a9{
+  background-image: url("/assets/designs_monkey.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a10{
+  background-image: url("/assets/designs_rooster.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a11{
+  background-image: url("/assets/designs_dog.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+.a12{
+  background-image: url("/assets/designs_pig.png");
+  width: 90px; 
+  height: 90px;
+  background-size: 90px;
+}
+
+
+
+.a1-p{
+  background-image: url("/assets/designs_rat.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a2-p{
+  background-image: url("/assets/designs_ox.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a3-p{
+  background-image: url("/assets/designs_tiger.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a4-p{
+  background-image: url("/assets/designs_rabbit.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a5-p{
+  background-image: url("/assets/designs_dragon.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a6-p{
+  background-image: url("/assets/designs_snake.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a7-p{
+  background-image: url("/assets/designs_horse.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a8-p{
+  background-image: url("/assets/designs_goat.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a9-p{
+  background-image: url("/assets/designs_monkey.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a10-p{
+  background-image: url("/assets/designs_rooster.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a11-p{
+  background-image: url("/assets/designs_dog.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+.a12-p{
+  background-image: url("/assets/designs_pig.png");
+  width: 20px; 
+  height: 20px;
+  background-size: 20px;
+}
+
+/*------------------------ 0. Header ------------------------*/
+
 main > header {
   width: 100%;
   display: flex;
@@ -65,6 +227,9 @@ header > h1 {
   font-weight: bold;
 }
 
+/*------------------------ 1. Choose-Player Section ------------------------*/
+
+
 main > #choose-player {
   width: 100%;
   display: flex;
@@ -76,8 +241,14 @@ main > #choose-player {
   align-items: center;
 }
 
+main > #choose-player > #show-player {
+  display: flex;
+  /* flex-direction: ; */
+  width: 100%;
+  justify-content: space-between;
+}
 
-.scroll {
+main > #choose-player > #show-player  > #scroll {
   width: 4.0em;
   height: 3.5em;
   border: dotted;
@@ -85,49 +256,72 @@ main > #choose-player {
   overflow-x: hidden;
 }
 
-.scroll > .selection-img {
+main > #choose-player > #show-player > #player-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 280px;
+  height: 4em;
+  font-size: 12px;
+}
+
+main > #choose-player > #show-player > #scroll > .selection-img {
   width: 3.0em;
   height: 3.0em;
 }
 
-#show-player {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-#show-player > #player-img{
-  width: 2em;
-  height: 2em;  
-}
-
-#show-player > #player-stats {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 250px;
-  height: 4em;
-  font-size: 14px;
-}
-
-#show-player > #player-stats > p {
+main > #choose-player > #show-player > #player-stats > p {
   margin: 0;
 }
 
-.slot-machine {
+.select-button {
+  margin: 20px;
+  /* border-radius: 5px;
+  border-color: #6661F1;
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  color: #6661F1;
+  font-weight: bold;
+  font-size: 20px; */ 
+  /* background-color: #6661F1; */
+  /* color: whitesmoke; */
+}
+
+.select-button:hover {
+  background-color: #6661F1;
+  color: whitesmoke;
+}
+
+.select-button-b {
+  margin: 20px;
+  background-color: transparent;
+  color: #ff6969;
+  border-color: #ff6969
+}
+
+.select-button-b:hover {
+  background-color: #ff6969;
+  color: whitesmoke;
+  
+}
+
+/*------------------------ 2. slot-machine Section ------------------------*/
+
+main > #slot-machine {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
-  height: 140px;
+  height: 40%;
   align-items: center;
   justify-content: flex-start;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.slot-machine > #slot-machine-pillars {
+main > #slot-machine > #slot-machine-pillars {
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -137,7 +331,7 @@ main > #choose-player {
   font-weight: bold;
 }
 
-.slot-machine > #slot-machine-img {
+main > #slot-machine > #slot-machine-img {
   display: flex;
   justify-content: space-around;
   width: 100%;
@@ -147,31 +341,60 @@ main > #choose-player {
   align-items: center;
 }
 
-
-
-.button {
-  width: 360px;
-  height: 50px;
-  border-radius: 5px;
-  font-weight: bold;
-  margin: 20px;
-  font-size: 20px;
+main > #slot-machine > #button-area {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: 100px;
+  /* border-radius: 5px; */
+  align-items: center;
 }
 
-#replay-button {
-  background-color: crimson;
+main > #slot-machine > #button-area > .shuffle-button-player-a {
+  width: 100%;
+  margin: 0;
+  border-color: #6661F1;
+  color: #6661F1;
 }
 
-.player-b-select-btn {
-  color: crimson;
+main > #slot-machine > #button-area > .shuffle-button-player-a:hover {
+  background-color: #6661F1;
+  color: whitesmoke;
+}
+
+main > #slot-machine > #button-area > .shuffle-button-player-b {
+  width: 100%;
+  margin: 0;
+  border-color: #ff6969;
+  color: #ff6969;
+}
+
+main > #slot-machine > #button-area > .shuffle-button-player-b:hover {
+  background-color: #ff6969;
+  color: whitesmoke;
+}
+
+main > #slot-machine > #replay-button {
   border-color: crimson;
+  color: crimson;
 }
 
-#scoreboard-section-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 20px;
+main > #slot-machine > #replay-button:hover {
+  background-color: crimson;
+  color: whitesmoke;
 }
+
+#slot-machine > #turn-winner-area {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  
+}
+
+/*------------------------ 3. score-board Section ------------------------*/
 
 #score-board {
   display: flex;
@@ -181,6 +404,13 @@ main > #choose-player {
   flex-wrap: wrap;
   justify-content: space-between;
   font-size: 14px;
+}
+
+#score-board > #scoreboard-title {
+  width:100%;
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
 }
 
 #score-board > #score-player {
@@ -206,18 +436,17 @@ main > #choose-player {
   width: 30%;
 }
 
-#status-area {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 16px;
-  
+.score-board-a-turn {
+  background-color: #6661F1;
+  opacity: .5;
 }
 
+.score-board-b-turn {
+  background-color: #ff6969;
+  opacity: .5;
+}
 
-#tool-tip {
+#score-board > #tool-tip {
   margin-top: 60px;
   font-size: 10px;
   width: 400px;
@@ -225,157 +454,33 @@ main > #choose-player {
   font-family: var(--roboto_mono);
 }
 
-#ox-img {
+
+
+/*------------------------ Deprecated ------------------------*/
+
+
+/*#choose-player > #player-stats   {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#show-player > #player-img{
+  width: 2em;
+  height: 2em;  
+}
+
+/*.player-b-select-btn {
+  color: crimson;
+  border-color: crimson;
+}
+*/
+
+/*#ox-img {
   width: 30px; 
   height: 30px;
-}
+}*/
 
 
 
-.a1{
-	background-image: url("/assets/designs_rat.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a2{
-	background-image: url("/assets/designs_ox.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a3{
-	background-image: url("/assets/designs_tiger.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a4{
-	background-image: url("/assets/designs_rabbit.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a5{
-	background-image: url("/assets/designs_dragon.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a6{
-	background-image: url("/assets/designs_snake.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a7{
-	background-image: url("/assets/designs_horse.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a8{
-	background-image: url("/assets/designs_goat.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a9{
-	background-image: url("/assets/designs_monkey.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a10{
-	background-image: url("/assets/designs_rooster.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a11{
-	background-image: url("/assets/designs_dog.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-.a12{
-	background-image: url("/assets/designs_pig.png");
-  width: 90px; 
-  height: 90px;
-  background-size: 90px;
-}
-
-
-
-.a1-p{
-	background-image: url("/assets/designs_rat.png");
-  width: 20px; 
-  height: 20px;
-  background-size: 20px;
-}
-.a2-p{
-	background-image: url("/assets/designs_ox.png");
-  width: 20px; 
-  height: 20px;
-  background-size: 20px;
-}
-.a3-p{
-	background-image: url("/assets/designs_tiger.png");
-  width: 20px; 
-  height: 20px;
-  background-size: 20px;
-}
-.a4-p{
-	background-image: url("/assets/designs_rabbit.png");
-  width: 20px; 
-  height: 20px;
-  background-size: 20px;
-}
-.a5-p{
-	background-image: url("/assets/designs_dragon.png");
-  width: 10px; 
-  height: 10px;
-  background-size: 10px;
-}
-.a6-p{
-	background-image: url("/assets/designs_snake.png");
-  width: 20px; 
-  height: 20px;
-  background-size: 20px;
-}
-.a7-p{
-	background-image: url("/assets/designs_horse.png");
-  width: 10px; 
-  height: 10px;
-  background-size: 10px;
-}
-.a8-p{
-	background-image: url("/assets/designs_goat.png");
-  width: 20px; 
-  height: 20px;
-  background-size: 20px;
-}
-.a9-p{
-	background-image: url("/assets/designs_monkey.png");
-  width: 20px; 
-  height: 20px;
-  background-size: 20px;
-}
-.a10-p{
-	background-image: url("/assets/designs_rooster.png");
-  width: 10px; 
-  height: 10px;
-  background-size: 10px;
-}
-.a11-p{
-	background-image: url("/assets/designs_dog.png");
-  width: 20px; 
-  height: 20px;
-  background-size: 20px;
-}
-.a12-p{
-	background-image: url("/assets/designs_pig.png");
-  width: 20px; 
-  height: 20px;
-  background-size: 20px;
-}

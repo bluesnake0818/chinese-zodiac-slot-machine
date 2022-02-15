@@ -28,48 +28,50 @@
     
     <main>
       <header>
-        <h1 class="slideInDown">Chinese Zodiac Slot Machine</h1>
+        <h1>Chinese Zodiac Slot Machine</h1>
       </header>
-
-      <div id="choose-player">
-        <p>Choose Player:</p>
-      </div>
-
-      <div id="show-player">
-        <div class="scroll">
-          <img id ="Rat" src="./assets/designs_rat.png" class="selection-img" alt="zodiac image"/>
-          <img id ="Ox" src="./assets/designs_ox.png" class="selection-img" alt="zodiac image"/>        
-          <img id ="Tiger" src="./assets/designs_tiger.png" class="selection-img" alt="zodiac image"/>
-          <img id ="Rabbit" src="./assets/designs_rabbit.png" class="selection-img" alt="zodiac image"/> 
-          <img id ="Dragon" src="./assets/designs_dragon.png" class="selection-img" alt="zodiac image"/>
-          <img id ="Snake" src="./assets/designs_snake.png" class="selection-img" alt="zodiac image"/>        
-          <img id ="Horse" src="./assets/designs_horse.png" class="selection-img" alt="zodiac image"/>
-          <img id ="Goat" src="./assets/designs_goat.png" class="selection-img" alt="zodiac image"/> 
-          <img id ="Monkey" src="./assets/designs_monkey.png" class="selection-img" alt="zodiac image"/>
-          <img id ="Rooster" src="./assets/designs_rooster.png" class="selection-img" alt="zodiac image"/>        
-          <img id ="Dog" src="./assets/designs_dog.png" class="selection-img" alt="zodiac image"/>
-          <img id ="Pig" src="./assets/designs_pig.png" class="selection-img" alt="zodiac image"/>   
+      
+      <section id="choose-player">
+        <p id="title">Choose Player:</p>
+      
+        <div id="show-player">
+          <div id="scroll">
+            <img id ="Rat" src="./assets/designs_rat.png" class="selection-img" alt="zodiac image"/>
+            <img id ="Ox" src="./assets/designs_ox.png" class="selection-img" alt="zodiac image"/>        
+            <img id ="Tiger" src="./assets/designs_tiger.png" class="selection-img" alt="zodiac image"/>
+            <img id ="Rabbit" src="./assets/designs_rabbit.png" class="selection-img" alt="zodiac image"/> 
+            <img id ="Dragon" src="./assets/designs_dragon.png" class="selection-img" alt="zodiac image"/>
+            <img id ="Snake" src="./assets/designs_snake.png" class="selection-img" alt="zodiac image"/>        
+            <img id ="Horse" src="./assets/designs_horse.png" class="selection-img" alt="zodiac image"/>
+            <img id ="Goat" src="./assets/designs_goat.png" class="selection-img" alt="zodiac image"/> 
+            <img id ="Monkey" src="./assets/designs_monkey.png" class="selection-img" alt="zodiac image"/>
+            <img id ="Rooster" src="./assets/designs_rooster.png" class="selection-img" alt="zodiac image"/>        
+            <img id ="Dog" src="./assets/designs_dog.png" class="selection-img" alt="zodiac image"/>
+            <img id ="Pig" src="./assets/designs_pig.png" class="selection-img" alt="zodiac image"/>   
+          </div>
+        
+          <div id="player-stats">
+            <p id="player-desc"></p>
+            <p id="player-luck"></p>
+            <p id="player-enemy"></p>
+          </div>
         </div>
-        <div id="player-stats">
-          <p id="player-desc"></p>
-          <p id="player-luck"></p>
-          <p id="player-enemy"></p>
+      
+        <button class="btn select-button" id="select-button">Select</button>
+      
+        <div id="player-a">
+          <p id="player-a-title"></p>
+          <div id="player-a-img"></div>
         </div>
-      </div>
-
-      <button class="button btn btn-outline-primary" id="select-button">Select</button>
-
-      <div id="player-a">
-        <p id="player-a-title"></p>
-        <div id="player-a-img"></div>
-      </div>
-
-      <div id="player-b">
-        <p id="player-b-title"></p>
-        <div id="player-b-img"></div>
-      </div>
-
-      <div class="slot-machine">
+      
+        <div id="player-b">
+          <p id="player-b-title"></p>
+          <div id="player-b-img"></div>
+        </div>
+      
+      </section>
+      
+      <section id="slot-machine">
         <div id="slot-machine-pillars">
           <div id="year-pillar">Year</div>
           <div id="month-pillar">Month</div>
@@ -82,21 +84,20 @@
           <div id ="slot3"></div>
           <div id ="slot4"></div>
         </div>
-      </div>
-      
-      <section id="status-area">
+        <div id="button-area">
+          <button id="shuffle-button" class="btn shuffle-button-player-a">Shuffle</button>
+          <button id="replay-button" class="">Replay</button>
+        </div>
         <div id="turn-winner-area">
           <div id="turn-board"></div>
           <div id="winner-display"></div>
         </div>
-        <div id="button-area">
-          <button class="button btn btn-outline-primary" id="shuffle-button">Shuffle</button>
-          <button class="button btn btn-outline-primary" id="replay-button">Replay</button>
-        </div>
       </section>
-
-      <div id="scoreboard-section-title" title="hooray">Scoreboard</div>
-      <div id="score-board">
+      
+      
+      <section id="score-board">
+      <h3 id="scoreboard-title" >Scoreboard </h3>
+      
         <div id="score-player">Round\Player
           <div id="empty"></div>
           <div id ="round-1">Round 1</div>
@@ -104,31 +105,31 @@
           <div id ="round-3">Round 3</div>
           <div id ="total">Total</div>
         </div>
-
+      
         <div id="score-board-A">
           <div id="player-a-name">Player A</div>
-          <div id ="score0"></div>
-          <div id ="score2"></div>
-          <div id ="score4"></div>
-          <div id ="score6"></div>
+          <div id ="score0" class="score-board-a"></div>
+          <div id ="score2" class="score-board-a"></div>
+          <div id ="score4" class="score-board-a"></div>
+          <div id ="score6" class="score-board-a"></div>
         </div>
-
+      
         <div id="score-board-B">
           <div id="player-b-name">Player B</div>
-          <div id ="score1"></div>
-          <div id ="score3"></div>
-          <div id ="score5"></div>
-          <div id ="score7"></div>
+          <div id ="score1" class="score-board-b"></div>
+          <div id ="score3" class="score-board-b"></div>
+          <div id ="score5" class="score-board-b"></div>
+          <div id ="score7" class="score-board-b"></div>
         </div>
-      </div>
-
-      <div id="tool-tip" data-toggle="tooltip">
-        <p>*Tool Tip</p>
-        <p>2 of the same kind: 10</p>
-        <p>3 of the same kind: 100</p>
-        <p>4 of the same kind: 1000</p>
-      </div>
-      <!-- <img id ="ox-img" src="./assets/designs_ox.png" class="zodiac-img" alt="ox image"/> -->
+      
+        <div id="tool-tip" data-toggle="tooltip">
+          <p>*Tool Tip</p>
+          <p>2 of the same kind: 10</p>
+          <p>3 of the same kind: 100</p>
+          <p>4 of the same kind: 1000</p>
+        </div>
+      
+      </section>
 
     </main>      
   </body>
