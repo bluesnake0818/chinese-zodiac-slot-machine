@@ -1,7 +1,4 @@
 /*-------------------------------- Constants --------------------------------*/
-// 4) Define the required constants:
-// 4.2) Challenge: The name of celebrities with each jackpot case (for example: Beyonce for 4 rabbits)
-
 const zodiacsArray = 
 [
   {zodiac: 'Rat', enemy: "Horse", tag:"a1", url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2'},
@@ -22,59 +19,50 @@ const zodiacsArray =
 let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName, playerBName, count, numberSlot4
 const oxSays = new Audio('../audio/ox.mp3')
 const favicon = document.querySelector('#favicon')
-// var scrollSpy = new bootstrap.ScrollSpy(document.body, {
-//   target: '#navbar-example'
-// })
 
 /*------------------------ Cached Element References ------------------------*/
-// 2.1) slotMachine that ttore the 4 div elements that represent the slots in the slot machine.
-const slotMachine = document.querySelector('.slot-machine')
-const winnerDisplay = document.querySelector('#winner-display')
-const turnBoard = document.querySelector('#turn-board')
-const replayBtn = document.querySelector('#replay-button')
-const playBtn = document.querySelector('#play-button')
-const scoreBoard = document.querySelector('#score-board')
-// const oxImg = document.querySelector('#ox-img')
 const choosePlayer = document.querySelector('#choose-player')
 const showPlayerArea = document.querySelector('#show-player')
-// const playerImg = document.querySelector('#player-img')
+const selectBtn = document.querySelector('#select-button')
 const playerDesc = document.querySelector('#player-desc')
 const playerLuck = document.querySelector('#player-luck')
 const playerEnemy = document.querySelector('#player-enemy')
 
-const selectBtn = document.querySelector('#select-button')
+const slotMachine = document.querySelector('.slot-machine')
+const winnerDisplay = document.querySelector('#winner-display')
+const turnBoard = document.querySelector('#turn-board')
+const shuffleBtn = document.querySelector('#play-button')
+const replayBtn = document.querySelector('#replay-button')
+
+const scoreboardTitle = document.querySelector('#scoreboard-section-title')
+const scoreBoard = document.querySelector('#score-board')
 const playerA = document.querySelector('#player-a-name')
 const playerB = document.querySelector('#player-b-name')
-// const doSpin = document.querySelector('#spin')
-const scoreboardTitle = document.querySelector('#scoreboard-section-title')
+
 const tooltip = document.querySelector('#tool-tip')
 
+// const oxImg = document.querySelector('#ox-img')
+// const playerImg = document.querySelector('#player-img')
+// const doSpin = document.querySelector('#spin')
 
 
 
 /*----------------------------- Event Listeners -----------------------------*/
-playBtn.addEventListener("click", handlePlay)
+shuffleBtn.addEventListener("click", handleShuffle)
 replayBtn.addEventListener("click", init)
+showPlayerArea.addEventListener("click", showPlayer)
+selectBtn.addEventListener("click", selectPlayer)
+
 // oxImg.addEventListener('click', (evt) => {
 //   oxSays.volume = .20
 //   oxSays.play()
 // })
 // choosePlayer('click', choosePlayer)
-showPlayerArea.addEventListener("click", showPlayer)
-selectBtn.addEventListener("click", selectPlayer)
-// doSpin.addEventListener('click', doSlot)
-// $(document).ready(function(){
-//   $('[data-toggle="tooltip"]').tooltip();   
-// });
 
 /*-------------------------------- Functions --------------------------------*/
 
 init()
 
-
-
-
-// 3.1) That initialize function should initialize the state variables:
 function init() {
   slotMachineArray = [slot1, slot2, slot3, slot4]
   slotMachineArray.forEach(slot => {
@@ -103,36 +91,28 @@ function init() {
     score.textContent = ""
   })
   
+  choosePlayer.textContent = "Player A, choose your zodiac."
+  choosePlayer.removeAttribute("hidden")
+  showPlayerArea.removeAttribute("hidden")
+  selectBtn.setAttribute("hidden", true)
+
   slotMachine.setAttribute("hidden", true)
-  playBtn.setAttribute("hidden", true)
+  shuffleBtn.setAttribute("hidden", true)
+
   scoreBoard.setAttribute("hidden", true)
   scoreboardTitle.setAttribute("hidden", true)
   tooltip.setAttribute("hidden", true)
 
-  // playBtn.removeAttribute("hidden")
   replayBtn.setAttribute("hidden", true)
   winnerDisplay.setAttribute("hidden", true)
   turnBoard.textContent = ""
   turnBoard.removeAttribute("hidden")
-  // reset score board
-  
-  choosePlayer.textContent = "Player A, choose your zodiac."
-  choosePlayer.removeAttribute("hidden")
-  showPlayerArea.removeAttribute("hidden")
-  // selectBtn.removeAttribute("hidden")
-  selectBtn.setAttribute("hidden", true)
-  
-  // render()
 }
 
 
 
-
-
-function handlePlay() {
-  // let randZodIdx
-
-  doSlot()
+function handleShuffle() {
+  shuffle()
 
   setTimeout(function() {
     scoreboardTitle.removeAttribute("hidden")
@@ -140,13 +120,8 @@ function handlePlay() {
     for(let i=0; i<slotMachineArray.length; i++) {
       let zodTag = slotMachineArray[i].className
       let zodIdx = zodiacsArray.findIndex(element => element.tag === zodTag)
-      console.log(`idx: ${zodIdx}`)
-      slotMachineArray[i].target = zodiacsArray[zodIdx]
-      console.log(`slot machine array: ${slotMachineArray[i].target.zodiac}`)
-    //   console.log(`zodiac arrays: ${zodiacsArray[i].target}`)
-      
+      slotMachineArray[i].target = zodiacsArray[zodIdx]      
     }
-    
 
     updateScore()
     render()
@@ -154,9 +129,8 @@ function handlePlay() {
     round++
     
     if(round === 6) {
-      // add time delay
       setTimeout(function() {
-        playBtn.setAttribute("hidden", true)
+        shuffleBtn.setAttribute("hidden", true)
         replayBtn.removeAttribute("hidden")
         getWinner()
       }, 1000);
@@ -167,10 +141,6 @@ function handlePlay() {
 
 function updateScore() {
   let score = 0
-  // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to ""
-  // apply time delay to see if the textContent element has been reset in HTML
-  
-  // make it into an object
   const animalsArray = 
   [
     {name: 'Rat', count: 0}, 
@@ -196,7 +166,6 @@ function updateScore() {
     }
   }
   
-  // use find() to find score
   // iterate over animalsarray to check how many times each animal appeared and update score variable. 
   animalsArray.forEach(zodiac => {
     if(zodiac.count === 4) {
@@ -211,10 +180,7 @@ function updateScore() {
     }
   })
   
-  // 6.3.3) update scoresArray using "round" and "turn" variables.
-  // use yeezy/taylor method to add score list to score board, , use createElement
-  // use ternary, use appendChild
-  
+  // 6.3.3) update scoresArray using "round" and "turn" variables.  
   // 6.3.4) update scoreboard  
   for(let i=0; i< scoresArray.length; i++) {
     if(scoresArray[i].target.round === round) {
@@ -249,7 +215,6 @@ function getWinner() {
   render()
   
 }
-
 
 
 function render() {
@@ -287,14 +252,12 @@ function renderScore () {
 }
 
 
-function doSlot(){
+function shuffle(){
   let numChanges = randomInt(1,4)*7
 	let numberSlot1 = numChanges+randomInt(1,7)
 	let numberSlot2 = numChanges+2*7+randomInt(1,7)	
 	let numberSlot3 = numChanges+4*7+randomInt(1,7)
   numberSlot4 = numChanges+6*7+randomInt(1,7)
-  
-  console.log (numberSlot4)
   
 	let i1 = 0
 	let i2 = 0
@@ -317,7 +280,6 @@ function doSlot(){
 		if (slotTile.className==="a12"){
       slotTile.className = "a0";
 		}
-		
 		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
 	}
   
@@ -346,7 +308,6 @@ function doSlot(){
 		if (slotTile.className==="a12"){
       slotTile.className = "a0";
 		}
-    
 		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
 	}
   
@@ -356,7 +317,6 @@ function doSlot(){
       clearInterval(slot4);
 			return null;
 		}
-		
 		let slotTile = document.getElementById("slot4");
 		if (slotTile.className==="a12"){
       slotTile.className = "a0";
@@ -367,7 +327,6 @@ function doSlot(){
 }
 
 function randomInt(min, max){
-  // returns a random integer between min and max inclusive
 	return Math.floor((Math.random() * (max-min+1)) + min);
 }
 
@@ -386,10 +345,7 @@ function showPlayer(evt) {
       }
     }
   }
-    
 }
-
-
 
 function selectPlayer() {
   selectBtn.removeAttribute("hidden")
@@ -397,40 +353,36 @@ function selectPlayer() {
     let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
     let zodTag = `${zodiacsArray[zodIdx].tag}-p`
     playerA.className = zodTag
-  playerA.textContent = ""
-  //time delay -- slide animation
-  //assign turn 
+    playerA.textContent = ""
+    //time delay -- slide animation
     turn = turn * -1
-  choosePlayer.textContent = "Player B, choose Your zodiac"
-  // selectBtn.className.add = "player-b-select-btn"
+    choosePlayer.textContent = "Player B, choose Your zodiac"
+    // selectBtn.className.add = "player-b-select-btn"
   } else {
     if(playerBName === playerAName) {
     alert("You must pick a different player")
     } else {  
     let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
     let zodTag = `${zodiacsArray[zodIdx].tag}-p`
+    
     playerB.className = zodTag
     playerB.textContent = ""
+    
     choosePlayer.setAttribute("hidden", true)
     showPlayerArea.setAttribute("hidden", true)
     selectBtn.setAttribute("hidden", true)
 
     slotMachine.removeAttribute("hidden")
-    playBtn.removeAttribute("hidden")
+    shuffleBtn.removeAttribute("hidden")
     scoreboardTitle.removeAttribute("hidden")
     scoreBoard.removeAttribute("hidden")
     tooltip.removeAttribute("hidden")
     turnBoard.removeAttribute("hidden")
+    
     turn = turn * -1
     }
-
   }
-
-
 }
-
-
-
 
 /*-------------------------------- Pseudocode --------------------------------*/
 
@@ -483,6 +435,7 @@ function selectPlayer() {
 45. replay - updates selectPlayer.
 46. Turn --> change button with alternating color
 47. show who each player chosen
+48.   // use yeezy/taylor method to add score list to score board, , use createElement. // use ternary, use appendChild
 */
 
 /*
@@ -535,6 +488,8 @@ Feb 16 -
 18. what's em and rem
 19. img src vs. div background-image for slot machine
 20. give padding to main rather than giving margin/padding to  elements inside. 
+21. // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to "". apply time delay to see if the textContent element has been reset in HTML
+
 */
 
 /* What was most difficult
