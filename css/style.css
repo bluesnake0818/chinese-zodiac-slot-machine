@@ -57,6 +57,12 @@ main {
   color: #6661F1;
   font-weight: bold;
   font-size: 20px;
+  transition: none;
+  box-shadow: none;
+}
+
+.btn:focus {
+  box-shadow: none;
 }
 
 .a1{
@@ -437,13 +443,13 @@ main > #slot-machine > #replay-button:hover {
 }
 
 .score-board-a-turn {
-  background-color: #6661F1;
-  opacity: .5;
+  border-color: #6661F1;
+  border-style: dotted;
 }
 
 .score-board-b-turn {
-  background-color: #ff6969;
-  opacity: .5;
+  border-color: #ff6969;
+  border-style: dotted;
 }
 
 #score-board > #tool-tip {

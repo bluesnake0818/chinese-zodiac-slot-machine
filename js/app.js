@@ -69,12 +69,18 @@ function init() {
   choosePlayer.querySelector('#select-button').className = 'btn select-button'
 
   slotMachine.setAttribute("hidden", true)
-  scoreBoard.setAttribute("hidden", true)
+  slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
   slotMachine.querySelector('#turn-board').textContent = ""
   slotMachine.querySelector('#winner-display').textContent = ""
- 
+  slotMachine.querySelector('#turn-board').textContent = "Turn: Player A"
+  slotMachine.querySelector('#turn-board').style.color = '#6661F1'
+  
+
+  
+  scoreBoard.setAttribute("hidden", true)
   scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
   scoreBoard.querySelector('#score-board-B').className = ''
+
 }
 
 
@@ -349,9 +355,10 @@ function selectPlayer() {
       let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
       let zodTag = `${zodiacsArray[zodIdx].tag}-p`
       
+
       choosePlayer.setAttribute("hidden", true)
       slotMachine.removeAttribute("hidden")
-      slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
+      slotMachine.querySelector('#turn-board').removeAttribute("hidden")
       slotMachine.querySelector('#shuffle-button').removeAttribute("hidden")
       
       scoreBoard.querySelector('#player-b-name').className = zodTag
