@@ -4,18 +4,18 @@
 
 const zodiacsArray = 
 [
-  {zodiac: 'Rat', tag:"a1", url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2'},
-  {zodiac: 'Ox', tag:"a2", url: "./assets/designs_ox.png", desc: 'Ox is a diligent animal.', luck: 'Luck: +3'},
-  {zodiac: 'Tiger', tag:"a3", url: "./assets/designs_tiger.png", desc: 'Tiger is a courageous animal.', luck: 'Luck: +10'},
-  {zodiac: 'Rabbit', tag:"a4", url: "./assets/designs_rabbit.png", desc: 'Rabbit is an opportunistic animal', luck: 'Luck: +12'},
-  {zodiac: 'Dragon', tag:"a5", url: "./assets/designs_dragon.png", desc: 'Dragon is a legendary animal.', luck: 'Luck: +25'},
-  {zodiac: 'Snake', tag:"a6", url: "./assets/designs_snake.png", desc: 'Snake is a wise animal.', luck: 'Luck: +1'},
-  {zodiac: 'Horse', tag:"a7", url: "./assets/designs_horse.png", desc: 'Horse is a free-spirited animal.', luck: 'Luck: -2'},
-  {zodiac: 'Goat', tag:"a8", url: "./assets/designs_goat.png", desc: 'Goat is a peaceful animal.', luck: 'Luck: -10'},
-  {zodiac: 'Monkey', tag:"a9", url: "./assets/designs_monkey.png", desc: 'Monkey is a playful animal.', luck: 'Luck: -100'},
-  {zodiac: 'Rooster', tag:"a10", url: "./assets/designs_rooster.png", desc: 'Rooster is a worried animal.', luck: 'Luck: +20'},
-  {zodiac: 'Dog', tag:"a11", url: "./assets/designs_dog.png", desc: 'Dog is a friendly animal.', luck: 'Luck: +35'},
-  {zodiac: 'Pig', tag:"a12", url: "./assets/designs_pig.png", desc: 'Pig is a hungry animal.', luck: 'Luck: +40'}
+  {zodiac: 'Rat', enemy: "Horse", tag:"a1", url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2'},
+  {zodiac: 'Ox', enemy: "Goat", tag:"a2", url: "./assets/designs_ox.png", desc: 'Ox is a diligent animal.', luck: 'Luck: +3'},
+  {zodiac: 'Tiger', enemy: "Monkey", tag:"a3", url: "./assets/designs_tiger.png", desc: 'Tiger is a courageous animal.', luck: 'Luck: +10'},
+  {zodiac: 'Rabbit', enemy: "Rooster", tag:"a4", url: "./assets/designs_rabbit.png", desc: 'Rabbit is an opportunistic animal.', luck: 'Luck: +12'},
+  {zodiac: 'Dragon', enemy: "Dog", tag:"a5", url: "./assets/designs_dragon.png", desc: 'Dragon is a legendary animal.', luck: 'Luck: +25'},
+  {zodiac: 'Snake', enemy: "Pig", tag:"a6", url: "./assets/designs_snake.png", desc: 'Snake is a wise animal.', luck: 'Luck: +1'},
+  {zodiac: 'Horse', enemy: "Rat", tag:"a7", url: "./assets/designs_horse.png", desc: 'Horse is a free-spirited animal.', luck: 'Luck: -2'},
+  {zodiac: 'Goat', enemy: "Ox", tag:"a8", url: "./assets/designs_goat.png", desc: 'Goat is a peaceful animal.', luck: 'Luck: -10'},
+  {zodiac: 'Monkey', enemy: "Tiger", tag:"a9", url: "./assets/designs_monkey.png", desc: 'Monkey is a playful animal.', luck: 'Luck: -100'},
+  {zodiac: 'Rooster', enemy: "Rabbit", tag:"a10", url: "./assets/designs_rooster.png", desc: 'Rooster is a worried animal.', luck: 'Luck: +20'},
+  {zodiac: 'Dog', enemy: "Dragon", tag:"a11", url: "./assets/designs_dog.png", desc: 'Dog is a friendly animal.', luck: 'Luck: +35'},
+  {zodiac: 'Pig', enemy: "Pig", tag:"a12", url: "./assets/designs_pig.png", desc: 'Pig is a hungry animal.', luck: 'Luck: +40'}
 ]
 
 /*---------------------------- Variables (state & etc) ----------------------------*/
@@ -40,12 +40,15 @@ const showPlayerArea = document.querySelector('#show-player')
 // const playerImg = document.querySelector('#player-img')
 const playerDesc = document.querySelector('#player-desc')
 const playerLuck = document.querySelector('#player-luck')
+const playerEnemy = document.querySelector('#player-enemy')
+
 const selectBtn = document.querySelector('#select-button')
 const playerA = document.querySelector('#player-a-name')
 const playerB = document.querySelector('#player-b-name')
 // const doSpin = document.querySelector('#spin')
 const scoreboardTitle = document.querySelector('#scoreboard-section-title')
 const tooltip = document.querySelector('#tool-tip')
+
 
 
 
@@ -132,6 +135,8 @@ function handlePlay() {
   doSlot()
 
   setTimeout(function() {
+    scoreboardTitle.removeAttribute("hidden")
+    scoreBoard.removeAttribute("hidden")
     for(let i=0; i<slotMachineArray.length; i++) {
       let zodTag = slotMachineArray[i].className
       let zodIdx = zodiacsArray.findIndex(element => element.tag === zodTag)
@@ -281,32 +286,16 @@ function renderScore () {
   
 }
 
-function showPlayer(evt) {
-  // playerImg.src = evt.target.src
-  selectBtn.removeAttribute("hidden")
-  for(let i=0; i<zodiacsArray.length; i++) {
-    if(zodiacsArray[i].zodiac === evt.target.id) {
-      playerDesc.textContent = zodiacsArray[i].desc
-      playerLuck.textContent = zodiacsArray[i].luck
-      if(turn === 1) {
-        playerAName = zodiacsArray[i].zodiac
-      } else {
-        playerBName = zodiacsArray[i].zodiac
-      }
-    }
-  }
-    
-}
 
 function doSlot(){
-	let numChanges = randomInt(1,4)*7
+  let numChanges = randomInt(1,4)*7
 	let numberSlot1 = numChanges+randomInt(1,7)
 	let numberSlot2 = numChanges+2*7+randomInt(1,7)	
 	let numberSlot3 = numChanges+4*7+randomInt(1,7)
   numberSlot4 = numChanges+6*7+randomInt(1,7)
-
+  
   console.log (numberSlot4)
-
+  
 	let i1 = 0
 	let i2 = 0
 	let i3 = 0
@@ -318,89 +307,96 @@ function doSlot(){
 	let slot4 = setInterval(spin4, 50);
   
 	function spin1(){
-		i1++;
+    i1++;
 		if (i1>=numberSlot1){
-			clearInterval(slot1);
+      clearInterval(slot1);
 			return null;
 		}
 		let slotTile = document.getElementById("slot1");
 		
 		if (slotTile.className==="a12"){
-			slotTile.className = "a0";
+      slotTile.className = "a0";
 		}
 		
 		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
 	}
-
+  
 	function spin2(){
-		i2++;
+    i2++;
 		if (i2>=numberSlot2){
-			clearInterval(slot2);
+      clearInterval(slot2);
 			return null;
 		}
-
+    
 		let slotTile = document.getElementById("slot2");
 		if (slotTile.className==="a12"){
-			slotTile.className = "a0";
+      slotTile.className = "a0";
 		}
 		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
 	}
-
+  
 	function spin3(){
-		i3++;
+    i3++;
 		if (i3>=numberSlot3){
-			clearInterval(slot3);
+      clearInterval(slot3);
 			return null;
 		}
 		
 		let slotTile = document.getElementById("slot3");
 		if (slotTile.className==="a12"){
-			slotTile.className = "a0";
+      slotTile.className = "a0";
 		}
-
+    
 		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
 	}
-
+  
   function spin4(){
-		i4++;
+    i4++;
 		if (i4>=numberSlot4){
-			clearInterval(slot4);
+      clearInterval(slot4);
 			return null;
 		}
 		
 		let slotTile = document.getElementById("slot4");
 		if (slotTile.className==="a12"){
-			slotTile.className = "a0";
+      slotTile.className = "a0";
 		}
-
+    
 		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
 	}
 }
 
 function randomInt(min, max){
-	// returns a random integer between min and max inclusive
+  // returns a random integer between min and max inclusive
 	return Math.floor((Math.random() * (max-min+1)) + min);
 }
 
+function showPlayer(evt) {
+  // playerImg.src = evt.target.src
+  selectBtn.removeAttribute("hidden")
+  for(let i=0; i<zodiacsArray.length; i++) {
+    if(zodiacsArray[i].zodiac === evt.target.id) {
+      playerDesc.textContent = zodiacsArray[i].desc
+      playerLuck.textContent = zodiacsArray[i].luck
+      playerEnemy.textContent = `Worst Opponent: ${zodiacsArray[i].enemy}`
+      if(turn === 1) {
+        playerAName = zodiacsArray[i].zodiac
+      } else {
+        playerBName = zodiacsArray[i].zodiac
+      }
+    }
+  }
+    
+}
 
-
-
-
-// function selectPlayer(evt) {
-//   if(evt.target.textContent === 'A') {
-//     turn = 1
-//   } else if (evt.target.textContent === 'B') {
-//     turn = -1
-//   }
-// }
 
 
 function selectPlayer() {
   selectBtn.removeAttribute("hidden")
   if (turn === 1) {
-  let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
-  let zodTag = `${zodiacsArray[zodIdx].tag}-p`
-  playerA.className = zodTag
+    let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
+    let zodTag = `${zodiacsArray[zodIdx].tag}-p`
+    playerA.className = zodTag
   playerA.textContent = ""
   //time delay -- slide animation
   //assign turn 
@@ -421,7 +417,7 @@ function selectPlayer() {
 
     slotMachine.removeAttribute("hidden")
     playBtn.removeAttribute("hidden")
-    scoreBoardTitle.removeAttribute("hidden")
+    scoreboardTitle.removeAttribute("hidden")
     scoreBoard.removeAttribute("hidden")
     tooltip.removeAttribute("hidden")
     turnBoard.removeAttribute("hidden")
@@ -475,7 +471,7 @@ function selectPlayer() {
 33. replace select player area with scrollspy.
 34. turn is opposite
 35. integrate 4 spin functions into one.
-36.choose player with nav scrollspy
+36. choose player with nav scrollspy
 37. favicon gets updated. 
 38. select button only shows when a zodiac is clcicked. 
 39. click zodiac tool tip.
@@ -483,6 +479,10 @@ function selectPlayer() {
 41. remove button after the 6th play so user can't click it. 
 42. share toggle
 43. insert player's name at the end. 
+44. gameboy skin
+45. replay - updates selectPlayer.
+46. Turn --> change button with alternating color
+47. show who each player chosen
 */
 
 /*
@@ -497,8 +497,9 @@ Feb 14 -
 Feb 15 - 
     a. CTA - download
     b. Who you get along with
-    c. update score area with chosen zodiac's image. 
+    // c. update score area with chosen zodiac's image. 
     d. spin sound
+    e. 
 Feb 16 - 
     a. Adjust chance of winning in accordance with zodiac selection 
     b. you put in your bday, and the animal is chosen

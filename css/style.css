@@ -117,7 +117,8 @@ main > #choose-player {
   display: flex;
   /* flex-direction: column; */
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
+  /* align-items: flex-start; */
 }
 
 #show-player > #player-img{
@@ -194,7 +195,7 @@ main > #choose-player {
 }
 
 #replay-button {
-  /* background-color: crimson; */
+  background-color: crimson;
 }
 
 .player-b-select-btn {
