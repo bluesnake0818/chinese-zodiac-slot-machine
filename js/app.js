@@ -27,10 +27,11 @@ const slotMachine = document.querySelector('#slot-machine')
 const scoreBoard = document.querySelector('#score-board')
 
 /*----------------------------- Event Listeners -----------------------------*/
-slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShuffle)
 slotMachine.querySelector('#replay-button').addEventListener("click", init)
 choosePlayer.querySelector('#scroll').addEventListener("click", showPlayer)
 choosePlayer.querySelector('#select-button').addEventListener("click", selectPlayer)
+choosePlayer.querySelector('#play-button').addEventListener("click", handlePlay)
+slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShuffle)
 tooltips.forEach(tooltip => tooltip.tooltip())
 
 /*-------------------------------- Functions --------------------------------*/
@@ -68,9 +69,10 @@ function init() {
   choosePlayer.querySelector('#title').textContent = "Player A, choose your zodiac."
   choosePlayer.removeAttribute("hidden")
   choosePlayer.querySelector('#select-button').setAttribute("hidden", true)
+  choosePlayer.querySelector('#play-button').setAttribute("hidden", true)
   choosePlayer.querySelector('#select-button').className = 'btn select-button'
   choosePlayer.querySelector('#demo-img').className = ''
-
+  
   slotMachine.setAttribute("hidden", true)
   slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
   slotMachine.querySelector('#turn-board').textContent = ""
@@ -85,11 +87,69 @@ function init() {
   scoreBoard.querySelector('#scoreboard-title').title= "2 of a kind: 10 / 3 of a kind: 100 / 4 of a kind: 1000"
 }
 
+function handlePlay() {
+  //hide and show elements that are in selectPlayer() all go here
+  
+  
+  choosePlayer.setAttribute("hidden", true)
+  slotMachine.removeAttribute("hidden")
+  slotMachine.querySelector('#turn-board').removeAttribute("hidden")
+  slotMachine.querySelector('#shuffle-button').removeAttribute("hidden")
+  scoreBoard.removeAttribute("hidden")
+}
 
+function showPlayer(evt) {
+  choosePlayer.querySelector('#select-button').removeAttribute("hidden")
+  for(let i=0; i<zodiacsArray.length; i++) {
+    if(zodiacsArray[i].zodiac === evt.target.id) {
+      choosePlayer.querySelector('#demo-img').className = zodiacsArray[i].tag
+      choosePlayer.querySelector('#player-desc').textContent = zodiacsArray[i].desc
+      choosePlayer.querySelector('#player-luck').textContent = zodiacsArray[i].luck
+      choosePlayer.querySelector('#player-enemy').textContent = `Worst Opponent: ${zodiacsArray[i].enemy}`
+      if(turn === 1) {
+        playerAName = zodiacsArray[i].zodiac
+      } else {
+        playerBName = zodiacsArray[i].zodiac
+      }
+    }
+  }
+}
+
+function selectPlayer() {
+  choosePlayer.querySelector('#select-button').removeAttribute("hidden")
+  
+  if (turn === 1) {
+    let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
+    let zodTag = `${zodiacsArray[zodIdx].tag}-p`
+    scoreBoard.querySelector('#player-a-name').className = zodTag
+    scoreBoard.querySelector('#player-a-name').textContent = ""
+    //time delay -- slide animation
+    turn = turn * -1
+    choosePlayer.querySelector('#title').textContent = "Player B, choose Your zodiac"
+    choosePlayer.querySelector('.select-button').className = 'btn select-button-b'
+    choosePlayer.querySelector('#select-button').setAttribute("hidden",true)
+    choosePlayer.querySelector("#player-a-img").className = choosePlayer.querySelector('#demo-img').className
+  } else {
+    if(playerBName === playerAName) {
+      alert("You must pick a different player")
+    } else {  
+      let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
+      let zodTag = `${zodiacsArray[zodIdx].tag}-p`
+      choosePlayer.querySelector("#player-b-img").className = choosePlayer.querySelector('#demo-img').className
+
+      scoreBoard.querySelector('#player-b-name').className = zodTag
+      scoreBoard.querySelector('#player-b-name').textContent = ""
+
+      turn = turn * -1
+      choosePlayer.querySelector("#play-button").removeAttribute('hidden')
+    }
+  }
+  
+}
 
 function handleShuffle() {
   shuffle()
-
+  
   setTimeout(function() {
     scoreBoard.querySelector('#scoreboard-title').removeAttribute("hidden")
     scoreBoard.removeAttribute("hidden")
@@ -325,61 +385,6 @@ function randomInt(min, max){
 	return Math.floor((Math.random() * (max-min+1)) + min);
 }
 
-function showPlayer(evt) {
-  choosePlayer.querySelector('#select-button').removeAttribute("hidden")
-  for(let i=0; i<zodiacsArray.length; i++) {
-    if(zodiacsArray[i].zodiac === evt.target.id) {
-      choosePlayer.querySelector('#demo-img').className = zodiacsArray[i].tag
-      choosePlayer.querySelector('#player-desc').textContent = zodiacsArray[i].desc
-      choosePlayer.querySelector('#player-luck').textContent = zodiacsArray[i].luck
-      choosePlayer.querySelector('#player-enemy').textContent = `Worst Opponent: ${zodiacsArray[i].enemy}`
-      if(turn === 1) {
-        playerAName = zodiacsArray[i].zodiac
-      } else {
-        playerBName = zodiacsArray[i].zodiac
-      }
-    }
-  }
-}
-
-function selectPlayer() {
-  choosePlayer.querySelector('#select-button').removeAttribute("hidden")
-  
-  if (turn === 1) {
-    let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
-    let zodTag = `${zodiacsArray[zodIdx].tag}-p`
-    scoreBoard.querySelector('#player-a-name').className = zodTag
-    scoreBoard.querySelector('#player-a-name').textContent = ""
-    //time delay -- slide animation
-    turn = turn * -1
-    choosePlayer.querySelector('#title').textContent = "Player B, choose Your zodiac"
-    choosePlayer.querySelector('.select-button').className = 'btn select-button-b'
-    choosePlayer.querySelector('#select-button').setAttribute("hidden",true)
-    choosePlayer.querySelector("#player-a-img").className = choosePlayer.querySelector('#demo-img').className
-  } else {
-    if(playerBName === playerAName) {
-      alert("You must pick a different player")
-    } else {  
-      let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
-      let zodTag = `${zodiacsArray[zodIdx].tag}-p`
-      
-      choosePlayer.querySelector("#player-a-img").className = choosePlayer.querySelector('#demo-img').className
-      choosePlayer.setAttribute("hidden", true)
-      
-      
-      slotMachine.removeAttribute("hidden")
-      slotMachine.querySelector('#turn-board').removeAttribute("hidden")
-      slotMachine.querySelector('#shuffle-button').removeAttribute("hidden")
-      
-      scoreBoard.querySelector('#player-b-name').className = zodTag
-      scoreBoard.querySelector('#player-b-name').textContent = ""
-      scoreBoard.removeAttribute("hidden")
-
-      turn = turn * -1
-    }
-  }
-  
-}
 
 /*-------------------------------- Pseudocode --------------------------------*/
 
