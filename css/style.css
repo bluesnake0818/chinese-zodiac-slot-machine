@@ -301,7 +301,7 @@ main > #choose-player > #show-player > #player-stats > p {
 }
 
 .select-button {
-  margin: 20px;
+  margin: 10px;
   /* border-radius: 5px;
   border-color: #6661F1;
   width: 100%;
@@ -331,7 +331,7 @@ main > #choose-player > #show-player > #player-stats > p {
 }
 
 .select-button-b {
-  margin: 20px;
+  margin: 10px;
   background-color: transparent;
   color: #ff6969;
   border-color: #ff6969;
@@ -370,6 +370,11 @@ main > #choose-player > #show-player > #player-stats > p {
   background-color: crimson;
   color: whitesmoke;
   margin: 0;
+}
+
+#instructions {
+  margin-top: 20px;
+  font-size: 12px;
 }
 
 

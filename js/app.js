@@ -73,11 +73,17 @@ function init() {
   choosePlayer.querySelector('#select-button').className = 'btn select-button'
   choosePlayer.querySelector('#title').className = ''
   choosePlayer.querySelector('#show-player').className = ''
-  choosePlayer.querySelector('#demo-img').className = ''
+  choosePlayer.querySelector('#demo-img').className = 'a1'
+  choosePlayer.querySelector('#player-desc').textContent = zodiacsArray[0].desc
+  choosePlayer.querySelector('#player-luck').textContent = zodiacsArray[0].luck
+  choosePlayer.querySelector('#player-enemy').textContent = zodiacsArray[0].enemy
+  choosePlayer.querySelector('#player-a-img').className = ''
+  choosePlayer.querySelector('#player-b-img').className = ''
   choosePlayer.querySelector('#title').removeAttribute('hidden')
   choosePlayer.querySelector('#show-player').removeAttribute('hidden')
   choosePlayer.querySelector('#player-preview').classList.remove('animate-out')
   choosePlayer.querySelector('#play-button').className = ''
+  choosePlayer.querySelector('#instructions').setAttribute('hidden',true)
 
   slotMachine.setAttribute("hidden", true)
   slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
@@ -102,7 +108,7 @@ function handlePlay() {
   
   choosePlayer.querySelector('#player-preview').classList.add('animate-out')
   choosePlayer.querySelector('#play-button').classList.add('animate-out')
-
+  choosePlayer.querySelector('#instructions').classList.add('animate-out')
 
   setTimeout(function() {
   choosePlayer.setAttribute("hidden", true)  
@@ -110,6 +116,7 @@ function handlePlay() {
   slotMachine.querySelector('#turn-board').removeAttribute("hidden")
   slotMachine.querySelector('#shuffle-button').removeAttribute("hidden")
   scoreBoard.removeAttribute("hidden")
+
   }, (1000))
   
 
@@ -118,7 +125,12 @@ function handlePlay() {
 
 function showPlayer(evt) {
   choosePlayer.querySelector('#select-button').removeAttribute("hidden")
-  choosePlayer.querySelector('#select-button').className = 'btn select-button animate-in'
+  if(turn===1) {
+    choosePlayer.querySelector('#select-button').classList = 'btn select-button animate-in'
+  } else {
+    choosePlayer.querySelector('#select-button').classList = 'btn select-button-b animate-in'
+  }
+  
   for(let i=0; i<zodiacsArray.length; i++) {
     if(zodiacsArray[i].zodiac === evt.target.id) {
       choosePlayer.querySelector('#demo-img').className = zodiacsArray[i].tag
@@ -146,7 +158,7 @@ function selectPlayer() {
     //time delay -- slide animation
     turn = turn * -1
     choosePlayer.querySelector('#title').textContent = "Player B, choose Your zodiac"
-    choosePlayer.querySelector('.select-button').className = 'btn select-button-b'
+    choosePlayer.querySelector('#select-button').className = 'btn select-button-b'
     choosePlayer.querySelector('#select-button').setAttribute("hidden",true)
     choosePlayer.querySelector('#player-a-img').className = choosePlayer.querySelector('#demo-img').className
     choosePlayer.querySelector(`#${zodName}`).className = 'selection-img selected-a'
@@ -164,17 +176,16 @@ function selectPlayer() {
 
       turn = turn * -1
       
-      
       choosePlayer.querySelector('#title').className = 'animate-out'
       choosePlayer.querySelector('#show-player').className = 'animate-out'
-      choosePlayer.querySelector('#select-button').className = 'btn animate-out'
+      choosePlayer.querySelector('#select-button').className = 'btn select-button-b animate-out'
       
       
       setTimeout(function() {
       choosePlayer.querySelector('#title').setAttribute('hidden', true)
       choosePlayer.querySelector('#show-player').setAttribute('hidden', true)
       choosePlayer.querySelector('#select-button').setAttribute('hidden', true)
-      
+      choosePlayer.querySelector('#instructions').removeAttribute('hidden')
       
       choosePlayer.querySelector("#play-button").removeAttribute('hidden')
       choosePlayer.querySelector('#play-button').className = 'btn animate-in'
@@ -533,10 +544,11 @@ function randomInt(min, max){
 58. take away scroll and show all 12. description sits outside. 
 59. accept name from the player
 60. once chosen, the bg image of the zodiac becomes red.
-61. animal sound when choosing.
+61. animal sound when choosing. (with icon, before play button is clicked)
 62. selection area to fade in and out. 
-63. classList add
+// 63. classList add
 64. ways to show you've referenced a code (give the credit)
+65. when an animal is chosen (before selected), the chosen area background becomes colored with 0.5 opacity. 
 */
 
 /*
@@ -596,6 +608,7 @@ Feb 18 -
 21. // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to "". apply time delay to see if the textContent element has been reset in HTML
 22. #score-board-B > .score-board-b-turn { why doesn't this work?
 23. unit 1 assessment : why does font size from body change
+24. queryselectorall didn't work
 */
 
 /* What was most difficult
