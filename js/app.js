@@ -69,6 +69,7 @@ function init() {
   choosePlayer.removeAttribute("hidden")
   choosePlayer.querySelector('#select-button').setAttribute("hidden", true)
   choosePlayer.querySelector('#select-button').className = 'btn select-button'
+  choosePlayer.querySelector('#demo-img').className = ''
 
   slotMachine.setAttribute("hidden", true)
   slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
@@ -328,6 +329,7 @@ function showPlayer(evt) {
   choosePlayer.querySelector('#select-button').removeAttribute("hidden")
   for(let i=0; i<zodiacsArray.length; i++) {
     if(zodiacsArray[i].zodiac === evt.target.id) {
+      choosePlayer.querySelector('#demo-img').className = zodiacsArray[i].tag
       choosePlayer.querySelector('#player-desc').textContent = zodiacsArray[i].desc
       choosePlayer.querySelector('#player-luck').textContent = zodiacsArray[i].luck
       choosePlayer.querySelector('#player-enemy').textContent = `Worst Opponent: ${zodiacsArray[i].enemy}`
