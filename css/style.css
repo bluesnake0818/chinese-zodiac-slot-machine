@@ -283,6 +283,7 @@ main > #choose-player > #show-player > #player-demo > #player-stats {
 main > #choose-player > #show-player > #scroll > .selection-img {
   width: 3.2em;
   height: 3.2em;
+  border-radius: 5px;
 }
 
 
@@ -303,6 +304,12 @@ main > #choose-player > #show-player > #player-stats > p {
   /* background-color: #6661F1; */
   /* color: whitesmoke; */
 }
+
+.animate-in {
+  animation-duration: 1s;
+  animation-name: bounceIn;
+}
+
 
 .select-button:hover {
   background-color: #6661F1;
@@ -329,19 +336,22 @@ main > #choose-player > #show-player > #player-stats > p {
   justify-content: space-around;
 }
 
-#player-a {
+#player-a, #player-b {
   display: flex;
   flex-direction: column;
 }
 
-/* #player-a-title {
-  height: 20px;
-} */
-
-#player-b {
-  display: flex;
-  flex-direction: column;
+#player-a-title, #player-b-title {
+  text-align: center;
 }
+
+
+h1 {
+  animation-duration: 3s;
+  animation-name: bounceIn;
+}
+
+
 /*------------------------ 2. slot-machine Section ------------------------*/
 
 main > #slot-machine {

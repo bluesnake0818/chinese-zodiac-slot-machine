@@ -99,6 +99,7 @@ function handlePlay() {
 
 function showPlayer(evt) {
   choosePlayer.querySelector('#select-button').removeAttribute("hidden")
+  choosePlayer.querySelector('#select-button').className = 'btn select-button animate-in'
   for(let i=0; i<zodiacsArray.length; i++) {
     if(zodiacsArray[i].zodiac === evt.target.id) {
       choosePlayer.querySelector('#demo-img').className = zodiacsArray[i].tag
@@ -144,6 +145,7 @@ function selectPlayer() {
 
       turn = turn * -1
       choosePlayer.querySelector("#play-button").removeAttribute('hidden')
+      choosePlayer.querySelector('#play-button').className = 'btn animate-in'
     }
   }
   
