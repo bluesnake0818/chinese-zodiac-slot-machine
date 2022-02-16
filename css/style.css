@@ -343,6 +343,7 @@ main > #choose-player > #show-player > #player-stats > p {
   height: 120px;
   display: flex;
   justify-content: space-around;
+  margin: 30px;
 }
 
 #player-a, #player-b {
@@ -354,6 +355,17 @@ main > #choose-player > #show-player > #player-stats > p {
   text-align: center;
 }
 
+#play-button {
+  border-color: crimson;
+  color: crimson;
+  margin: 0;
+}
+
+#play-button:hover {
+  background-color: crimson;
+  color: whitesmoke;
+  margin: 0;
+}
 
 
 /*------------------------ 2. slot-machine Section ------------------------*/

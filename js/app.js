@@ -149,6 +149,11 @@ function selectPlayer() {
       turn = turn * -1
       choosePlayer.querySelector("#play-button").removeAttribute('hidden')
       choosePlayer.querySelector('#play-button').className = 'btn animate-in'
+
+      choosePlayer.querySelector('#title').setAttribute('hidden', true)
+      choosePlayer.querySelector('#show-player').setAttribute('hidden', true)
+      choosePlayer.querySelector('#select-button').setAttribute('hidden', true)
+
     }
   }
   
