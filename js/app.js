@@ -78,7 +78,7 @@ function init() {
   choosePlayer.querySelector('#show-player').removeAttribute('hidden')
   choosePlayer.querySelector('#player-preview').classList.remove('animate-out')
   choosePlayer.querySelector('#play-button').className = ''
-    
+
   slotMachine.setAttribute("hidden", true)
   slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
   slotMachine.querySelector('#turn-board').textContent = ""
@@ -91,6 +91,8 @@ function init() {
   scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
   scoreBoard.querySelector('#score-board-B').className = ''
   scoreBoard.querySelector('#scoreboard-title').title= "2 of a kind: 10 / 3 of a kind: 100 / 4 of a kind: 1000"
+  // scoreBoard.querySelectorAll('#score-board-A > .score-board-a').textContent = "0"
+  // scoreBoard.querySelectorAll('#score-board-B > .score-board-b').textContent = "0"
 }
 
 function handlePlay() {
