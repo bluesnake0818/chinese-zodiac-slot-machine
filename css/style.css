@@ -380,14 +380,16 @@ main > #slot-machine > #button-area > .shuffle-button-player-b:hover {
   color: whitesmoke;
 }
 
-main > #slot-machine > #replay-button {
+.replay-button {
   border-color: crimson;
   color: crimson;
+  margin: 0;
 }
 
-main > #slot-machine > #replay-button:hover {
+.replay-button:hover {
   background-color: crimson;
   color: whitesmoke;
+  margin: 0;
 }
 
 #slot-machine > #turn-winner-area {
@@ -397,8 +399,9 @@ main > #slot-machine > #replay-button:hover {
   align-items: center;
   justify-content: space-between;
   font-size: 16px;
-  
 }
+
+
 
 /*------------------------ 3. score-board Section ------------------------*/
 
@@ -415,8 +418,19 @@ main > #slot-machine > #replay-button:hover {
 #score-board > #scoreboard-title {
   width:100%;
   font-size: 20px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   font-weight: bold;
+}
+
+#score-board > #scoreboard-title > h3{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#score-board > #scoreboard-title > #tooltip-icon {
+  width: 15px;
+  height: 15px;
 }
 
 #score-board > #score-player {
@@ -452,14 +466,13 @@ main > #slot-machine > #replay-button:hover {
   border-style: dotted;
 }
 
-#score-board > #tool-tip {
+/* #score-board > #tool-tip {
   margin-top: 60px;
   font-size: 10px;
   width: 400px;
   padding-left: 20px;
   font-family: var(--roboto_mono);
-}
-
+} */
 
 
 /*------------------------ Deprecated ------------------------*/

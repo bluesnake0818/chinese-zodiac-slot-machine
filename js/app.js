@@ -17,6 +17,7 @@ const zodiacsArray =
 
 /*---------------------------- Variables (state & etc) ----------------------------*/
 let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName, playerBName, count, numberSlot4
+let tooltips = document.querySelectorAll('[data-toggle="tooltip"]')
 const oxSays = new Audio('../audio/ox.mp3')
 const favicon = document.querySelector('#favicon')
 
@@ -30,6 +31,7 @@ slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShu
 slotMachine.querySelector('#replay-button').addEventListener("click", init)
 choosePlayer.querySelector('#scroll').addEventListener("click", showPlayer)
 choosePlayer.querySelector('#select-button').addEventListener("click", selectPlayer)
+tooltips.forEach(tooltip => tooltip.tooltip())
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -74,13 +76,12 @@ function init() {
   slotMachine.querySelector('#winner-display').textContent = ""
   slotMachine.querySelector('#turn-board').textContent = "Turn: Player A"
   slotMachine.querySelector('#turn-board').style.color = '#6661F1'
-  
-
+  slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-a'
   
   scoreBoard.setAttribute("hidden", true)
   scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
   scoreBoard.querySelector('#score-board-B').className = ''
-
+  scoreBoard.querySelector('#scoreboard-title').title= "2 of a kind: 10 / 3 of a kind: 100 / 4 of a kind: 1000"
 }
 
 
@@ -199,6 +200,7 @@ function render() {
       slotMachine.querySelector('#turn-board').style.color = '#6661F1'
     }
   } else {
+    slotMachine.querySelector('#turn-board').setAttribute("hidden", true)
     if (isWinner === 'T') {
       slotMachine.querySelector('#winner-display').textContent = "The game is tied."
     } else {
@@ -207,10 +209,13 @@ function render() {
       oxSays.volume = .20
       oxSays.play()
     }
-    slotMachine.querySelector('#turn-board').setAttribute("hidden", true)
     slotMachine.querySelector('#winner-display').removeAttribute("hidden")
   }
   
+  // if(round => 5) {
+  //   scoreBoard.querySelector('#score-board-A').className = ''
+  // //   scoreBoard.querySelector('#score-board-B').className = ''
+  // } else {
   if(turn === 1) {
     slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-b'
     scoreBoard.querySelector('#score-board-B').className = 'score-board-b-turn'
@@ -220,7 +225,7 @@ function render() {
     scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
     scoreBoard.querySelector('#score-board-B').className = ''
   }
-
+  // }
 
   renderScore()
 }
@@ -533,4 +538,5 @@ Feb 16 -
 1. scoreboard - whether to store and display the scores separately for each player each round.
 2. slot machine effect - fidning the resource/documentation
 3. image size
+4. tool tip
 */

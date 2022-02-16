@@ -86,7 +86,7 @@
         </div>
         <div id="button-area">
           <button id="shuffle-button" class="btn shuffle-button-player-a">Shuffle</button>
-          <button id="replay-button" class="">Replay</button>
+          <button id="replay-button" class="btn replay-button">Replay</button>
         </div>
         <div id="turn-winner-area">
           <div id="turn-board"></div>
@@ -96,8 +96,12 @@
       
       
       <section id="score-board">
-      <h3 id="scoreboard-title" >Scoreboard </h3>
-      
+      <div id="scoreboard-title" data-bs-toggle="tooltip" title="">
+        <h3>Scoreboard</h3>
+        <img src="./assets/info-icon.png" id="tooltip-icon">
+      </div>
+
+
         <div id="score-player">Round\Player
           <div id="empty"></div>
           <div id ="round-1">Round 1</div>
@@ -121,14 +125,6 @@
           <div id ="score5" class="score-board-b"></div>
           <div id ="score7" class="score-board-b"></div>
         </div>
-      
-        <div id="tool-tip" data-toggle="tooltip">
-          <p>*Tool Tip</p>
-          <p>2 of the same kind: 10</p>
-          <p>3 of the same kind: 100</p>
-          <p>4 of the same kind: 1000</p>
-        </div>
-      
       </section>
 
     </main>      
