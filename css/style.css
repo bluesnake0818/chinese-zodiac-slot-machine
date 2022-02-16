@@ -313,7 +313,7 @@ main > #choose-player > #show-player > #player-stats > p {
   margin: 20px;
   background-color: transparent;
   color: #ff6969;
-  border-color: #ff6969
+  border-color: #ff6969;
 }
 
 .select-button-b:hover {

@@ -72,6 +72,7 @@ function init() {
   choosePlayer.querySelector('#play-button').setAttribute("hidden", true)
   choosePlayer.querySelector('#select-button').className = 'btn select-button'
   choosePlayer.querySelector('#demo-img').className = ''
+  choosePlayer.querySelector(`.selection-img`).style.background = 'none'
   
   slotMachine.setAttribute("hidden", true)
   slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
@@ -89,8 +90,6 @@ function init() {
 
 function handlePlay() {
   //hide and show elements that are in selectPlayer() all go here
-  
-  
   choosePlayer.setAttribute("hidden", true)
   slotMachine.removeAttribute("hidden")
   slotMachine.querySelector('#turn-board').removeAttribute("hidden")
@@ -120,6 +119,7 @@ function selectPlayer() {
   
   if (turn === 1) {
     let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
+    let zodName = `${zodiacsArray[zodIdx].zodiac}`
     let zodTag = `${zodiacsArray[zodIdx].tag}-p`
     scoreBoard.querySelector('#player-a-name').className = zodTag
     scoreBoard.querySelector('#player-a-name').textContent = ""
@@ -128,15 +128,17 @@ function selectPlayer() {
     choosePlayer.querySelector('#title').textContent = "Player B, choose Your zodiac"
     choosePlayer.querySelector('.select-button').className = 'btn select-button-b'
     choosePlayer.querySelector('#select-button').setAttribute("hidden",true)
-    choosePlayer.querySelector("#player-a-img").className = choosePlayer.querySelector('#demo-img').className
+    choosePlayer.querySelector('#player-a-img').className = choosePlayer.querySelector('#demo-img').className
+    choosePlayer.querySelector(`#${zodName}`).style.background = '#6661F1'
   } else {
     if(playerBName === playerAName) {
       alert("You must pick a different player")
     } else {  
       let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
+      let zodName = `${zodiacsArray[zodIdx].zodiac}`
       let zodTag = `${zodiacsArray[zodIdx].tag}-p`
       choosePlayer.querySelector("#player-b-img").className = choosePlayer.querySelector('#demo-img').className
-
+      choosePlayer.querySelector(`#${zodName}`).style.background = '#ff6969'
       scoreBoard.querySelector('#player-b-name').className = zodTag
       scoreBoard.querySelector('#player-b-name').textContent = ""
 
