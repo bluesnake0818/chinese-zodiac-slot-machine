@@ -249,17 +249,22 @@ main > #choose-player {
 
 main > #choose-player > #show-player {
   display: flex;
-  /* flex-direction: ; */
+  flex-direction: column;
   width: 100%;
   justify-content: space-between;
 }
 
 main > #choose-player > #show-player  > #scroll {
-  width: 4.0em;
-  height: 3.5em;
+  width: 100%;
+  height: 140px;
+  padding: 10px 0 10px 0;
   border: dotted;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  /* overflow-y: scroll;
+  overflow-x: hidden; */
 }
 
 main > #choose-player > #show-player > #player-stats {
@@ -269,11 +274,12 @@ main > #choose-player > #show-player > #player-stats {
   width: 280px;
   height: 4em;
   font-size: 12px;
+  margin: 10px 0 10px 0;
 }
 
 main > #choose-player > #show-player > #scroll > .selection-img {
-  width: 3.0em;
-  height: 3.0em;
+  width: 3.2em;
+  height: 3.2em;
 }
 
 

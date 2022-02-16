@@ -474,13 +474,26 @@ function selectPlayer() {
 46. Turn --> change button with alternating color
 47. show who each player chosen
 48.   // use yeezy/taylor method to add score list to score board, , use createElement. // use ternary, use appendChild
+49. tool tip : line break
+50. borderline of scoreboard area
+51. bug that scoreboard doesn't disappaear when game is over
+52. when selecting zodiac, it shows on the bottom before going to slot machine
+53. animation between select player and slot machine
+54. choose player - animal doesn't reset to original position 
+55. choose player - title color changes based on who is picking
+56. make it so that shuffle button cannot be clicked twice. 
+57. turn/winner display should move down to bottom. 
+58. take away scroll and show all 12. description sits outside. 
+59. accept name from the player
+60. once chosen, the bg image of the zodiac becomes red.
+61. animal sound when choosing.
 */
 
 /*
 Feb 14 - 
     // a. slot machine effect
     b. select player area - hide (animation - slide up & down), sound
-    c. Tool Tip
+    // c. Tool Tip
     d. css
     e. buttom --> "spin", span the width. 
     f. get rid of x's turn and instead highlight border of scoreboard or the background of the rectangle. 
@@ -492,8 +505,8 @@ Feb 15 -
     d. spin sound
     e. update scoreboard with append child
     f. refactor doShuffle()
-    g. check if two pairs are working
-    h. two pairs
+    // g. check if two pairs are working
+    // h. two pairs
     i. when everything is done, confetti and sound should play last. 
 Feb 16 - 
     a. Adjust chance of winning in accordance with zodiac selection 
@@ -505,7 +518,7 @@ Feb 17 -
     c. user test
     d. write readme 
 
-Feb 16 - 
+Feb 18 - 
     a. GA events
 */
 
