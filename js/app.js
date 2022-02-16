@@ -76,7 +76,9 @@ function init() {
   choosePlayer.querySelector('#demo-img').className = ''
   choosePlayer.querySelector('#title').removeAttribute('hidden')
   choosePlayer.querySelector('#show-player').removeAttribute('hidden')
-  
+  choosePlayer.querySelector('#player-preview').classList.remove('animate-out')
+  choosePlayer.querySelector('#play-button').className = ''
+    
   slotMachine.setAttribute("hidden", true)
   slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
   slotMachine.querySelector('#turn-board').textContent = ""
@@ -93,14 +95,23 @@ function init() {
 
 function handlePlay() {
   //hide and show elements that are in selectPlayer() all go here
-  choosePlayer.setAttribute("hidden", true)
+  choosePlayer.querySelector(`#${playerAName}`).className = 'selection-img'
+  choosePlayer.querySelector(`#${playerBName}`).className = 'selection-img'
+  
+  choosePlayer.querySelector('#player-preview').classList.add('animate-out')
+  choosePlayer.querySelector('#play-button').classList.add('animate-out')
+
+
+  setTimeout(function() {
+  choosePlayer.setAttribute("hidden", true)  
   slotMachine.removeAttribute("hidden")
   slotMachine.querySelector('#turn-board').removeAttribute("hidden")
   slotMachine.querySelector('#shuffle-button').removeAttribute("hidden")
   scoreBoard.removeAttribute("hidden")
+  }, (1000))
+  
 
-  choosePlayer.querySelector(`#${playerAName}`).className = 'selection-img'
-  choosePlayer.querySelector(`#${playerBName}`).className = 'selection-img'
+  
 }
 
 function showPlayer(evt) {
