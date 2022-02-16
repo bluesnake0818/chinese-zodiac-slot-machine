@@ -286,6 +286,15 @@ main > #choose-player > #show-player > #scroll > .selection-img {
   border-radius: 5px;
 }
 
+.selected-a {
+  background-color: #6661F1;
+}
+
+.selected-b {
+  background-color: #ff6969;
+
+}
+
 
 main > #choose-player > #show-player > #player-stats > p {
   margin: 0;
@@ -345,11 +354,6 @@ main > #choose-player > #show-player > #player-stats > p {
   text-align: center;
 }
 
-
-h1 {
-  animation-duration: 3s;
-  animation-name: bounceIn;
-}
 
 
 /*------------------------ 2. slot-machine Section ------------------------*/

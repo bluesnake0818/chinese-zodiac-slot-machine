@@ -72,7 +72,7 @@ function init() {
   choosePlayer.querySelector('#play-button').setAttribute("hidden", true)
   choosePlayer.querySelector('#select-button').className = 'btn select-button'
   choosePlayer.querySelector('#demo-img').className = ''
-  choosePlayer.querySelector(`.selection-img`).style.background = 'none'
+  
   
   slotMachine.setAttribute("hidden", true)
   slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
@@ -95,6 +95,9 @@ function handlePlay() {
   slotMachine.querySelector('#turn-board').removeAttribute("hidden")
   slotMachine.querySelector('#shuffle-button').removeAttribute("hidden")
   scoreBoard.removeAttribute("hidden")
+
+  choosePlayer.querySelector(`#${playerAName}`).className = 'selection-img'
+  choosePlayer.querySelector(`#${playerBName}`).className = 'selection-img'
 }
 
 function showPlayer(evt) {
@@ -130,7 +133,7 @@ function selectPlayer() {
     choosePlayer.querySelector('.select-button').className = 'btn select-button-b'
     choosePlayer.querySelector('#select-button').setAttribute("hidden",true)
     choosePlayer.querySelector('#player-a-img').className = choosePlayer.querySelector('#demo-img').className
-    choosePlayer.querySelector(`#${zodName}`).style.background = '#6661F1'
+    choosePlayer.querySelector(`#${zodName}`).className = 'selection-img selected-a'
   } else {
     if(playerBName === playerAName) {
       alert("You must pick a different player")
@@ -139,7 +142,7 @@ function selectPlayer() {
       let zodName = `${zodiacsArray[zodIdx].zodiac}`
       let zodTag = `${zodiacsArray[zodIdx].tag}-p`
       choosePlayer.querySelector("#player-b-img").className = choosePlayer.querySelector('#demo-img').className
-      choosePlayer.querySelector(`#${zodName}`).style.background = '#ff6969'
+      choosePlayer.querySelector(`#${zodName}`).className = 'selection-img selected-b'
       scoreBoard.querySelector('#player-b-name').className = zodTag
       scoreBoard.querySelector('#player-b-name').textContent = ""
 
@@ -471,7 +474,7 @@ function randomInt(min, max){
 29. chooose somewhere in between the animals, it returns error in choose player
 30. refactor show player() with event bubbling
 31. build animation to slide up select area
-32. "Zodiac Image" Alt Too big.
+// 32. "Zodiac Image" Alt Too big.
 33. replace select player area with scrollspy.
 34. turn is opposite
 35. integrate 4 spin functions into one.
@@ -489,7 +492,7 @@ function randomInt(min, max){
 47. show who each player chosen
 48.   // use yeezy/taylor method to add score list to score board, , use createElement. // use ternary, use appendChild
 49. tool tip : line break
-50. borderline of scoreboard area
+// 50. borderline of scoreboard area
 51. bug that scoreboard doesn't disappaear when game is over
 52. when selecting zodiac, it shows on the bottom before going to slot machine
 53. animation between select player and slot machine
@@ -501,6 +504,9 @@ function randomInt(min, max){
 59. accept name from the player
 60. once chosen, the bg image of the zodiac becomes red.
 61. animal sound when choosing.
+62. selection area to fade in and out. 
+63. classList add
+64. ways to show you've referenced a code (give the credit)
 */
 
 /*
@@ -559,6 +565,7 @@ Feb 18 -
 20. give padding to main rather than giving margin/padding to  elements inside. 
 21. // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to "". apply time delay to see if the textContent element has been reset in HTML
 22. #score-board-B > .score-board-b-turn { why doesn't this work?
+23. unit 1 assessment : why does font size from body change
 */
 
 /* What was most difficult
