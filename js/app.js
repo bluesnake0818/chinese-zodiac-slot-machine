@@ -71,8 +71,11 @@ function init() {
   choosePlayer.querySelector('#select-button').setAttribute("hidden", true)
   choosePlayer.querySelector('#play-button').setAttribute("hidden", true)
   choosePlayer.querySelector('#select-button').className = 'btn select-button'
+  choosePlayer.querySelector('#title').className = ''
+  choosePlayer.querySelector('#show-player').className = ''
   choosePlayer.querySelector('#demo-img').className = ''
-  
+  choosePlayer.querySelector('#title').removeAttribute('hidden')
+  choosePlayer.querySelector('#show-player').removeAttribute('hidden')
   
   slotMachine.setAttribute("hidden", true)
   slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
@@ -147,13 +150,22 @@ function selectPlayer() {
       scoreBoard.querySelector('#player-b-name').textContent = ""
 
       turn = turn * -1
-      choosePlayer.querySelector("#play-button").removeAttribute('hidden')
-      choosePlayer.querySelector('#play-button').className = 'btn animate-in'
-
+      
+      
+      choosePlayer.querySelector('#title').className = 'animate-out'
+      choosePlayer.querySelector('#show-player').className = 'animate-out'
+      choosePlayer.querySelector('#select-button').className = 'btn animate-out'
+      
+      
+      setTimeout(function() {
       choosePlayer.querySelector('#title').setAttribute('hidden', true)
       choosePlayer.querySelector('#show-player').setAttribute('hidden', true)
       choosePlayer.querySelector('#select-button').setAttribute('hidden', true)
-
+      
+      
+      choosePlayer.querySelector("#play-button").removeAttribute('hidden')
+      choosePlayer.querySelector('#play-button').className = 'btn animate-in'
+      }, (1000))
     }
   }
   

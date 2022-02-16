@@ -319,6 +319,11 @@ main > #choose-player > #show-player > #player-stats > p {
   animation-name: bounceIn;
 }
 
+.animate-out {
+  animation-duration: 1s;
+  animation-name: bounceOut;
+}
+
 
 .select-button:hover {
   background-color: #6661F1;
