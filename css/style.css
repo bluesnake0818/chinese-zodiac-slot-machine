@@ -507,6 +507,7 @@ main > #slot-machine > #button-area > .shuffle-button-player-b:hover {
   /* height: 100px; */
 }
 
+
 #score-board > #score-board-A {
   display: flex;
   flex-direction: column;

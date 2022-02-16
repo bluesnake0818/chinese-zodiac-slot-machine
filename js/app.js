@@ -1,4 +1,34 @@
 /*-------------------------------- Constants --------------------------------*/
+// const ratSays = new Audio('../audio/rat.mp3')
+// const catSays = new Audio('../audio/cat.mp3')
+const oxSays = new Audio('../audio/ox.mp3')
+// const tigerSays = new Audio('../audio/tiger.mp3')
+// const rabbitSays = new Audio('../audio/rabbit.wav')
+// const dragonSays = new Audio('../audio/dragon.mp3')
+// const snakeSays = new Audio('../audio/snake.mp3')
+// const horseSays = new Audio('../audio/horse.mp3')
+// const goatSays = new Audio('../audio/goat.mp3')
+// const monkeySays = new Audio('../audio/monkey.mp3')
+// const roosterSays = new Audio('../audio/rooster.mp3')
+// const dogSays = new Audio('../audio/dog.mp3')
+// const pigSays = new Audio('../audio/pig.mp3')
+
+// const zodiacsArray = 
+// [
+//   {zodiac: 'Rat', enemy: "Horse", tag:"a1", url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2', sound: ratSays},
+//   {zodiac: 'Ox', enemy: "Goat", tag:"a2", url: "./assets/designs_ox.png", desc: 'Ox is a diligent animal.', luck: 'Luck: +3', sound: oxSays},
+//   {zodiac: 'Tiger', enemy: "Monkey", tag:"a3", url: "./assets/designs_tiger.png", desc: 'Tiger is a courageous animal.', luck: 'Luck: +10', sound: tigerSays},
+//   {zodiac: 'Rabbit', enemy: "Rooster", tag:"a4", url: "./assets/designs_rabbit.png", desc: 'Rabbit is an opportunistic animal.', luck: 'Luck: +12', sound: rabbitSays},
+//   {zodiac: 'Dragon', enemy: "Dog", tag:"a5", url: "./assets/designs_dragon.png", desc: 'Dragon is a legendary animal.', luck: 'Luck: +25', sound: dragonSays},
+//   {zodiac: 'Snake', enemy: "Pig", tag:"a6", url: "./assets/designs_snake.png", desc: 'Snake is a wise animal.', luck: 'Luck: +1', sound: snakeSays},
+//   {zodiac: 'Horse', enemy: "Rat", tag:"a7", url: "./assets/designs_horse.png", desc: 'Horse is a free-spirited animal.', luck: 'Luck: -2', sound: horseSays},
+//   {zodiac: 'Goat', enemy: "Ox", tag:"a8", url: "./assets/designs_goat.png", desc: 'Goat is a peaceful animal.', luck: 'Luck: -10', sound: goatSays},
+//   {zodiac: 'Monkey', enemy: "Tiger", tag:"a9", url: "./assets/designs_monkey.png", desc: 'Monkey is a playful animal.', luck: 'Luck: -100', sound: monkeySays},
+//   {zodiac: 'Rooster', enemy: "Rabbit", tag:"a10", url: "./assets/designs_rooster.png", desc: 'Rooster is a worried animal.', luck: 'Luck: +20', sound: roosterSays},
+//   {zodiac: 'Dog', enemy: "Dragon", tag:"a11", url: "./assets/designs_dog.png", desc: 'Dog is a friendly animal.', luck: 'Luck: +35', sound: dogSays},
+//   {zodiac: 'Pig', enemy: "Pig", tag:"a12", url: "./assets/designs_pig.png", desc: 'Pig is a hungry animal.', luck: 'Luck: +40', sound: pigSays}
+// ]
+
 const zodiacsArray = 
 [
   {zodiac: 'Rat', enemy: "Horse", tag:"a1", url: "./assets/designs_rat.png", desc: 'Rat is a cunning animal.', luck: 'Luck: +2'},
@@ -18,7 +48,7 @@ const zodiacsArray =
 /*---------------------------- Variables (state & etc) ----------------------------*/
 let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerAName, playerBName, count, numberSlot4
 let tooltips = document.querySelectorAll('[data-toggle="tooltip"]')
-const oxSays = new Audio('../audio/ox.mp3')
+
 const favicon = document.querySelector('#favicon')
 
 /*------------------------ Cached Element References ------------------------*/
@@ -312,10 +342,22 @@ function render() {
     slotMachine.querySelector('#turn-board').setAttribute("hidden", true)
     if (isWinner === 'T') {
       slotMachine.querySelector('#winner-display').textContent = "The game is tied."
+      // catSays.volume = .10
+      // catSays.play()
     } else {
+      // let zodIdx
+      // let zodSound
       slotMachine.querySelector('#winner-display').textContent = isWinner === 1 ? "Player A Wins!" : "Player B Wins!"
       confetti.start(500)
-      oxSays.volume = .20
+      // if(scoresArray[6] > scoresArray[7]) {
+      //   zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
+      // } else {
+      //   zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerBName)
+      // }
+      // zodSound = `${zodiacsArray[zodIdx].sound}`
+      // zodSound.volume = .10
+      // zodSound.play()
+      oxSays.volume = .10
       oxSays.play()
     }
     slotMachine.querySelector('#winner-display').removeAttribute("hidden")
@@ -616,4 +658,5 @@ Feb 18 -
 2. slot machine effect - fidning the resource/documentation
 3. image size
 4. tool tip
+5. finding sound files
 */
