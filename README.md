@@ -81,6 +81,7 @@
 - queryselectorall didn't work - socreboard
 
 ## Next Steps (backlog)
+- Include visitor count
 - Play animal sound when player is chosen (before play button is clicked)
 - Present winning zodiac's traits after the game is over. 
 - Clean up code/refactor
