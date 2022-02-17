@@ -24,7 +24,7 @@ First, each of you get to choose your zodiac avatar, and play slot machine as an
 <img src="https://i.imgur.com/eHsHh62.png" alt="screenshot-5">
 <img src="https://i.imgur.com/ZyHwXel.png" alt="screenshot-6">
 <img src="https://i.imgur.com/EJJaz9G.png" alt="screenshot-7">
-<img src="https://i.imgur.com/20xoS4G.png" alt="screenshot-8">
+<img src="https://i.imgur.com/20xoS4G.png" width="140px" height="80px" alt="screenshot-8">
 
 
 - **Technologies Used**: JavaScript, HTML, CSS.
