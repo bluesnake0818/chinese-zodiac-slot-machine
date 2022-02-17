@@ -41,20 +41,25 @@
 <img src="https://i.imgur.com/odACAaA_d.webp?maxwidth=760&fidelity=grand" alt="UI-Sketch">
 
 ## Challenges
-- The more I develop it, I keep finding more stuff to want to add or fix, but it becomes incrementally harder to add or fix stuff because the design elements are all relative. When I change one stuff, I need to track where I hide and show the elements. At some point I feel like is it worth it to spend couple hours to fix a minor bug. I have to find a better architecture to do it more efficiently later when it scales. 
-- Scoreboard - whether to store and display the scores separately for each player each round.
-- Slot machine effect - fidning good reference with easy-to-follow documentation for self-implementation.
-- Hiding/Showing elements - more difficult as there were more features and css were added.
-- Image size. Original size was 3000px X 3000px so when set as a bg image, it didn't show. I thought there was something wrong with the way I coded.
-- Implementing tool tip
-- Finding free animal sound files. Also, it was difficult to find good rat, rabbit, and monkey sound files
-- Fixing items were incrementally more difficult as more features were added - non-scalable code.
+- As the app gets more developed, I keep finding more stuff to want to add or fix, but I realized that it becomes incrementally harder to do so. 
+  - The design elements are all relative. 
+  - Hiding/Showing elements - more difficult as more features and css were added.
+  - When I change one stuff, I need to track where I hide and show the elements. 
+  - At some point I felt that the return wasn't big enough to spend couple hours to fix a minor bug. 
+  - I have to find a better architecture to code more efficiently for scalability. 
+- Creating the scoreboard was more challenging than initially expected 
+  - Should I store and display the scores separately for each player each round?
+  - If i do space-around, the scoreboard alignment looks distorted until when all of the scores are uopdated. 
+- Slot machine effect - it was difficult to find good reference with easy-to-follow documentation for self-implementation.
+- Image size. Original size was 3000px X 3000px so when set as a backgground image, it didn't show. I thought there was something wrong with the way I coded. But I realized that it was too large that only the clear background of the image was showing on the screen, making it look like nothing was showing.
+- Implementing tool tip (boostrap) was more challenging than I expected. Maybe it was because I wasn't familiar with how to use Bootstrap as a resource.
+- Finding free animal sound files. The sites kept asking me to sign up right before letting me download the files. Also, it was difficult to find good rat, rabbit, and monkey sound files.
 
 ## Findings/Questions
 - .target is the same level is .textContent
 - innerHTML not equal to .textContent?
-- is whatever is in the textContent get automatically printed to HTML?
-- what is target? just an object? can i replace it by any object?
+- Does whatever is in the textContent get automatically printed to HTML?
+- What is target? just an object? can i replace it by any object?
 - Are InnerHTML, innerText, textContent all on the same level?
 - InnerHTML, innerText, textContent - if i assigned different strings to each. Which takes precedence?
 - selecting each square to update is much easier than having one button to do all the work. 
@@ -64,17 +69,16 @@
 - what does view port do?
 - the screen doesn't move to center when body width is defined in body css. 
 - vh, vp, vw, min, max
-- when you do pass through (evt) as a parameter for addeventlisteners
-- what does session contents restored from 2/12/2022 at 4:20:50 PM mean?
-- things like audio variable shoudl go under variables (state)?
-- set at flex-start and then adjusting the margins is easier - than space around - contrary to what i thought at the beginning.
-- what's em and rem
-- img src vs. div background-image for slot machine
-- give padding to main rather than giving margin/padding to  elements inside. 
+- when do you have to pass through "evt" as a parameter for addeventlisteners?
+- what does "session contents restored from 2/12/2022 at 4:20:50 PM" mean? Shown in terminal
+- things like audio variable should go under variables (state) section?
+- set at flex-start and then adjusting the margins is easier - than doing space-around - contrary to what i thought in the beginning.
+- what's em and rem? em = 1 font size
+- img src vs. div background-image for slot machine - functionally different? which is more sophisticated way?
+- give padding to main rather than giving margin/padding to the elements inside. 
 - // console.log(`scoreBoard: ${scoreBoard}`) // why does this print with score as textContent even though it should be cleared to "". apply time delay to see if the textContent element has been reset in HTML
-- #score-board-B > .score-board-b-turn { why doesn't this work?
-- unit 1 assessment : why does font size from body change
-- queryselectorall didn't work
+- #score-board-B > .score-board-b-turn ==> why doesn't this work?
+- queryselectorall didn't work - socreboard
 
 ## Next Steps (backlog)
 - Play animal sound when player is chosen (before play button is clicked)
