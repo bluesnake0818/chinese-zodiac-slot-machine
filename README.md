@@ -19,12 +19,12 @@
   - Two of a kind - 10 points (two pairs - 20 points)
 
 ## Screenshots
-<img src="https://i.imgur.com/TGwyUzE.png" width="160px" height="280x" alt="screenshot-1">
-<img src="https://i.imgur.com/u6XYpsE.png" width="160px" height="280x" alt="screenshot-2">
-<img src="https://i.imgur.com/1i1WnUs.png" width="160px" height="280x" alt="screenshot-3">
-<img src="https://i.imgur.com/nxs5Zql.png" width="160px" height="280x" alt="screenshot-4">
-<img src="https://i.imgur.com/cDT2YrO.png" width="160px" height="280x" alt="screenshot-7">
-<img src="https://i.imgur.com/d2UmKmv.png" width="160px" height="280x" alt="screenshot-8">
+<img src="https://i.imgur.com/TGwyUzE.png" display="inline" width="160px" height="280x" alt="screenshot-1">
+<img src="https://i.imgur.com/u6XYpsE.png" display="inline" width="160px" height="280x" alt="screenshot-2">
+<img src="https://i.imgur.com/1i1WnUs.png" display="inline" width="160px" height="280x" alt="screenshot-3">
+<img src="https://i.imgur.com/nxs5Zql.png" display="inline" width="160px" height="280x" alt="screenshot-4">
+<img src="https://i.imgur.com/cDT2YrO.png" display="inline" width="160px" height="280x" alt="screenshot-7">
+<img src="https://i.imgur.com/d2UmKmv.png" display="inline" width="160px" height="280x" alt="screenshot-8">
 
 ## Technologies Used 
 - JavaScript, HTML, CSS, etc.
