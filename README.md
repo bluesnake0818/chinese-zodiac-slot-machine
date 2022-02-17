@@ -16,7 +16,8 @@ First, each of you get to choose your zodiac avatar, and play slot machine as an
 
 - **Getting Started**: Include a link to your deployed game and any instructions you deem important.
 - **Screenshot(s):** Images of your actual game.
-<img src="https://i.imgur.com/aEK7QcE.png" alt="screenshot-1">
+<img src="https://i.imgur.com/TGwyUzE.png" width="160px" height="280x" alt="screenshot-1">
+
 <img src="https://i.imgur.com/IWsakfm.png" alt="screenshot-2">
 <img src="https://i.imgur.com/rgjtSsi.png" alt="screenshot-3">
 <img src="https://i.imgur.com/LgjIvXB.png" alt="screenshot-4">
@@ -24,7 +25,7 @@ First, each of you get to choose your zodiac avatar, and play slot machine as an
 <img src="https://i.imgur.com/eHsHh62.png" alt="screenshot-5">
 <img src="https://i.imgur.com/ZyHwXel.png" alt="screenshot-6">
 <img src="https://i.imgur.com/EJJaz9G.png" alt="screenshot-7">
-<img src="https://i.imgur.com/20xoS4G.png" width="140px" height="80px" alt="screenshot-8">
+<img src="https://i.imgur.com/20xoS4G.png" width="80px" height="140px" alt="screenshot-8">
 
 
 - **Technologies Used**: JavaScript, HTML, CSS.
