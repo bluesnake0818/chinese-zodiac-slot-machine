@@ -3,17 +3,20 @@
 ## A Javascript-based slot machine game
 
 ## Why I Started This
-- I took the GA SEI course with an objective of obtaining a skillset to build a brand new website for my company toward the end of the course, and start working on in whenever I can.
-- There are some UI designs that are built my a GA UX team that worked on our project. 
-- There are interactive components on the website to increase engagement of visitors. One is a zodiac racing game and the other is a slot machine. 
-- Since a slot machine was easier to build and it was in the list of recommended game, I chose to build a slot machine.
-- I wanted to build something that would be used in the website eventually.
-- I started this project to create a marketing material for our company's product. 
+- I decided to take the GA SEI course with the immediate goal of building my company's brand new website, which is a zodiac-based friend discovery app, on my own toward the end of the course.
+- A form of slot machine was already in the feature plan, and since it was also on the list of recommended game to build, I chose to build a slot machine game.
+- A variation of this product will be integrated into the website in the future. 
 
 ## Getting Started
 - <a href="https://chinese-zodiac-slot-machine.surge.sh/">Game Link</a>
 - You need 2 players to play the game.
-- Each player will choose a zodiac avatar, and play the slot machine as an avatar.
+- Each player will choose a zodiac avatar, and play the slot machine as the selected avatar.
+- Each player gets to spin the slot machine for 3 rounds.
+- After three rounds of slot machine, the player with higher sum of score gets to win. 
+- Scoring system: 
+  - Four of a kind - 1000 points
+  - Three of a kind - 100 points 
+  - Two of a kind - 10 points (two pairs - 20 points)
 
 ## Screenshots
 <img src="https://i.imgur.com/TGwyUzE.png" width="160px" height="280x" alt="screenshot-1">
