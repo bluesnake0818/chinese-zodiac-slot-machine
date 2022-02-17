@@ -2,6 +2,14 @@
 
 ## A Javascript-based slot machine game
 
+## Why I Started This
+- I took the GA SEI course with an objective of obtaining a skillset to build a brand new website for my company toward the end of the course, and start working on in whenever I can.
+- There are some UI designs that are built my a GA UX team that worked on our project. 
+- There are interactive components on the website to increase engagement of visitors. One is a zodiac racing game and the other is a slot machine. 
+- Since a slot machine was easier to build and it was in the list of recommended game, I chose to build a slot machine.
+- I wanted to build something that would be used in the website eventually.
+- I started this project to create a marketing material for our company's product. 
+
 ## Getting Started
 - <a href="https://chinese-zodiac-slot-machine.surge.sh/">Game Link</a>
 - You need 2 players to play the game.
@@ -20,9 +28,14 @@
 
 ## Credits
 - Slot machine effect: https://github.com/tognee/JavascriptSlotMachine/blob/master/index.html
+- Emojis: Hang5 (https://www.hangfive.co), Stipop (https://stipop.io)
+- Inspirations: General Assembly UX project team (Jason Kim, Sabrina Saffer, Ala Fard, Kim Pham)
 
-## Why I Started This
-- I started this project to create a marketing material for our company's product. 
+## Original Wireframes
+<img src="https://i.imgur.com/ceKYjms_d.webp?maxwidth=1520&fidelity=grand"  alt="wireframes">
+
+## Original Website Sketch
+<img src="https://i.imgur.com/odACAaA_d.webp?maxwidth=760&fidelity=grand" alt="UI-Sketch">
 
 ## Challenges
 - The more I develop it, I keep finding more stuff to want to add or fix, but it becomes incrementally harder to add or fix stuff because the design elements are all relative. When I change one stuff, I need to track where I hide and show the elements. At some point I feel like is it worth it to spend couple hours to fix a minor bug. I have to find a better architecture to do it more efficiently later when it scales. 
@@ -33,7 +46,6 @@
 - Implementing tool tip
 - Finding free animal sound files. Also, it was difficult to find good rat, rabbit, and monkey sound files
 - Fixing items were incrementally more difficult as more features were added - non-scalable code.
-
 
 ## Findings/Questions
 - .target is the same level is .textContent
@@ -62,65 +74,45 @@
 - queryselectorall didn't work
 
 ## Next Steps (backlog)
-- Play animal sound when choosing player
+- Play animal sound when player is chosen (before play button is clicked)
+- Present winning zodiac's traits after the game is over. 
 - Clean up code/refactor
-- Present winning zodiac's traits when game is over. 
 - Adjust scoreboard box size
 - Favicon gets dynamically updated. 
-- Nintendo Switch skin
+- Nintendo Switch/phone skin as background
 - Sound effect for spin.
-- Choose one of 12 zodiacs and they play the sound. and change to their favicon
+- animal sound when choosing player: Choose one of 12 zodiacs and they play the sound. 
 - refactor scoresArray 
-- see who's winner - then total score and winner is revealed. 
 - winner's total scores are highlighted and colored.
 - better way to initialize scoresArray.
-- adjust to real-size desktop and mobile later
-- desktop responsive (media query)
+- desktop responsive (media query): adjust to real-size desktop and mobile later
 - show which zodiac the zodiacs in each pillar gets along with.
-- clearn up css (code-level) area with structure
-- Create phone frame around the screen
+- Clean up css (code-level) area with structure
 - choose player among 12 zodiacs and their sound is played when won. when there's a tie, a cat's sound is played. 
-- there's a bug when you hit play again during the time delay before total sdcores are revealed, it shows the total sdcore right away.
-- chooose somewhere in between the animals, it returns error in choose player
-- refactor show player() with event bubbling
+- bug: when you hit play again while spin is ongoing before total scores are revealed, it shows the total sdcore right away.
+- bug: If you chooose somewhere in between the animals, it returns error in choose player
 - build animation to slide up select area
-- replace select player area with scrollspy.
-- turn is opposite
-- integrate 4 spin functions into one.
-- choose player with nav scrollspy
+- replace select player area using nav scrollspy.
+- refactor doShuffle(): integrate 4 spin functions into one.
 - favicon gets dynamically updated. 
-- click zodiac tool tip.
-- winner's music plays afteer winning
+- winner zodiac's sound plays afteer winning
 - remove button after the 6th play so user can't click it. 
 - share toggle
-- insert player's name at the end. 
-- gameboy skin
-- Turn --> change button with alternating color
-- show who each player chosen
-- use yeezy/taylor method to add score list to score board, Use createElement. Use ternary, use appendChild
+- show player's name at the end. 
 - tool tip : line break
-- bug that scoreboard doesn't disappaear when game is over
 - choose player - title color changes based on who is picking
 - make it so that shuffle button cannot be clicked twice. 
 - turn/winner display should move down to bottom. 
 - accept name from the player
-- animal sound when choosing. (with icon, before play button is clicked)
+- animal sound when choosing a zodiac. (with icon, before play button is clicked)
 - when an animal is chosen (before selected), the chosen area background becomes colored with 0.5 opacity. 
 - select player area - hide (animation - slide up & down), sound
-- css clean up
-- buttom --> "spin", span the width. 
-- get rid of x's turn and instead highlight border of scoreboard or the background of the rectangle. 
-- select --> show who's turn to play. can't select the same player. 
-- CTA - download
-- Who you get along with
-- spin sound
-- update scoreboard with append child
-- refactor doShuffle()
-- when everything is done, confetti and sound should play last. 
+- clean up code/refactor: css clean up
+- CTA button - download
+- Show which zodiac you get along with
+- implement spin sound
+- update scoreboard using append child: - use yeezy/taylor method to add score list to score board, Use createElement. Use ternary, use appendChild
 - Adjust chance of winning in accordance with zodiac selection 
-- you put in your bday, and the animal is chosen
-- show official results board
-- animal sound when choosing player
-- clean up code/refactor
-- show winner's traits at the end. 
-- scoreboard box adjust
+- you put in your bday, and a zodiac is chosen
+- show official results board (historical rankings)
+- scoreboard box size adjust
