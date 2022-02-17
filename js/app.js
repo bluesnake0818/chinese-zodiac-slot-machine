@@ -612,15 +612,22 @@ Feb 15 -
     // g. check if two pairs are working
     // h. two pairs
     i. when everything is done, confetti and sound should play last. 
-Feb 16 - 
     a. Adjust chance of winning in accordance with zodiac selection 
     b. you put in your bday, and the animal is chosen
     c. show official results board
+Feb 16 - 
+    a. write readme 
+    b. fix bug after game is complete
+    c. sound when choosing player
+    d. clean up code/refactor
+    e. show winner's traits at the end. 
+    f. scoreboard box adjust
+    g. evaluation table
 Feb 17 - 
+    e. 
     a. Clean up code
     b. refactor
     c. user test
-    d. write readme 
 
 Feb 18 - 
     a. GA events
