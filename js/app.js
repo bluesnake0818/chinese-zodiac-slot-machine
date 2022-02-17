@@ -363,20 +363,22 @@ function render() {
     slotMachine.querySelector('#winner-display').removeAttribute("hidden")
   }
   
-  // if(round => 5) {
-  //   scoreBoard.querySelector('#score-board-A').className = ''
-  // //   scoreBoard.querySelector('#score-board-B').className = ''
-  // } else {
-  if(turn === 1) {
-    slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-b'
-    scoreBoard.querySelector('#score-board-B').className = 'score-board-b-turn'
-    scoreBoard.querySelector('#score-board-A').className = ''
+  if(round < 6) {
+    if(turn === 1) {
+      slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-b'
+      scoreBoard.querySelector('#score-board-B').className = 'score-board-b-turn'
+      scoreBoard.querySelector('#score-board-A').className = ''
+    } else {
+      slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-a'
+      if (round < 5) {
+      scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
+      }
+      scoreBoard.querySelector('#score-board-B').className = ''
+    }
   } else {
-    slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-a'
-    scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
+    scoreBoard.querySelector('#score-board-A').className = ''
     scoreBoard.querySelector('#score-board-B').className = ''
   }
-  // }
 
   renderScore()
 }
@@ -617,7 +619,7 @@ Feb 15 -
     c. show official results board
 Feb 16 - 
     a. write readme 
-    b. fix bug after game is complete
+    // b. fix bug after game is complete
     c. sound when choosing player
     d. clean up code/refactor
     e. show winner's traits at the end. 
