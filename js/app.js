@@ -23,6 +23,7 @@ let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerANam
 const choosePlayer = document.querySelector('#choose-player')
 const slotMachine = document.querySelector('#slot-machine')
 const scoreBoard = document.querySelector('#score-board')
+
 const favicon = document.querySelector('#favicon')
 const tooltips = document.querySelectorAll('[data-toggle="tooltip"]')
 tooltips.forEach(tooltip => tooltip.tooltip())
@@ -140,6 +141,7 @@ function selectPlayer() {
     choosePlayer.querySelector('#select-button').setAttribute("hidden",true)
     choosePlayer.querySelector('#player-a-img').className = choosePlayer.querySelector('#demo-img').className
     choosePlayer.querySelector(`#${zodName}`).className = 'selection-img selected-a'
+
   } else {
     if(playerBName === playerAName) {
       alert("You must pick a different player")
@@ -191,7 +193,6 @@ function handlePlay() {
 
 function handleShuffle() {
   shuffle()
-  
   setTimeout(function() {
     scoreBoard.querySelector('#scoreboard-title').removeAttribute("hidden")
     scoreBoard.removeAttribute("hidden")
@@ -215,6 +216,86 @@ function handleShuffle() {
     }
   }, (numberSlot4*50+1000))
 }
+
+
+function shuffle(){
+  let numChanges = randomInt(1,4)*7
+  let numberSlot1 = numChanges+randomInt(1,7)
+  let numberSlot2 = numChanges+2*7+randomInt(1,7)	
+  let numberSlot3 = numChanges+4*7+randomInt(1,7)
+  numberSlot4 = numChanges+6*7+randomInt(1,7)
+  
+  let i1 = 0
+  let i2 = 0
+  let i3 = 0
+  let i4 = 0
+  
+  let slot1 = setInterval(spin1, 50);
+  let slot2 = setInterval(spin2, 50);
+  let slot3 = setInterval(spin3, 50);
+  let slot4 = setInterval(spin4, 50);
+  
+  function spin1(){
+    i1++;
+    if (i1>=numberSlot1){
+      clearInterval(slot1);
+      return null;
+    }
+    let slotTile = document.getElementById("slot1");
+    
+    if (slotTile.className==="a12"){
+      slotTile.className = "a0";
+    }
+    slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+  }
+  
+  function spin2(){
+    i2++;
+    if (i2>=numberSlot2){
+      clearInterval(slot2);
+      return null;
+    }
+    
+    let slotTile = document.getElementById("slot2");
+    if (slotTile.className==="a12"){
+      slotTile.className = "a0";
+    }
+    slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+  }
+  
+  function spin3(){
+    i3++;
+    if (i3>=numberSlot3){
+      clearInterval(slot3);
+      return null;
+    }
+    
+    let slotTile = document.getElementById("slot3");
+    if (slotTile.className==="a12"){
+      slotTile.className = "a0";
+    }
+    slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+  }
+  
+  function spin4(){
+    i4++;
+    if (i4>=numberSlot4){
+      clearInterval(slot4);
+      return null;
+    }
+    let slotTile = document.getElementById("slot4");
+    if (slotTile.className==="a12"){
+      slotTile.className = "a0";
+    }
+    
+    slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
+  }
+}
+
+function randomInt(min, max){
+  return Math.floor((Math.random() * (max-min+1)) + min);
+}
+
 
 function updateScore() {
   let score = 0
@@ -339,83 +420,3 @@ function renderScore () {
 }
 
 
-function shuffle(){
-  let numChanges = randomInt(1,4)*7
-	let numberSlot1 = numChanges+randomInt(1,7)
-	let numberSlot2 = numChanges+2*7+randomInt(1,7)	
-	let numberSlot3 = numChanges+4*7+randomInt(1,7)
-  numberSlot4 = numChanges+6*7+randomInt(1,7)
-  
-	let i1 = 0
-	let i2 = 0
-	let i3 = 0
-  let i4 = 0
-	
-	let slot1 = setInterval(spin1, 50);
-	let slot2 = setInterval(spin2, 50);
-	let slot3 = setInterval(spin3, 50);
-	let slot4 = setInterval(spin4, 50);
-  
-	function spin1(){
-    i1++;
-		if (i1>=numberSlot1){
-      clearInterval(slot1);
-			return null;
-		}
-		let slotTile = document.getElementById("slot1");
-		
-		if (slotTile.className==="a12"){
-      slotTile.className = "a0";
-		}
-		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
-	}
-  
-	function spin2(){
-    i2++;
-		if (i2>=numberSlot2){
-      clearInterval(slot2);
-			return null;
-		}
-    
-		let slotTile = document.getElementById("slot2");
-		if (slotTile.className==="a12"){
-      slotTile.className = "a0";
-		}
-		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
-	}
-  
-	function spin3(){
-    i3++;
-		if (i3>=numberSlot3){
-      clearInterval(slot3);
-			return null;
-		}
-		
-		let slotTile = document.getElementById("slot3");
-		if (slotTile.className==="a12"){
-      slotTile.className = "a0";
-		}
-		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
-	}
-  
-  function spin4(){
-    i4++;
-		if (i4>=numberSlot4){
-      clearInterval(slot4);
-			return null;
-		}
-		let slotTile = document.getElementById("slot4");
-		if (slotTile.className==="a12"){
-      slotTile.className = "a0";
-		}
-    
-		slotTile.className = "a"+(parseInt(slotTile.className.substring(1))+1)
-	}
-}
-
-function randomInt(min, max){
-	return Math.floor((Math.random() * (max-min+1)) + min);
-}
-
-
-// add comment
