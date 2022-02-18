@@ -126,3 +126,4 @@
 - scoreboard box size adjust
 - when the game is over there's a bug that "Player A's turn" briefly shows before the message "game is tied." 
 - player shouldn't be able to click the button when the slots are still spinning. 
+- on smaller screens, win/turn area shifts to the right (outside main area)
