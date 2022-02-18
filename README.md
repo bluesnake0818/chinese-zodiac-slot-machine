@@ -124,4 +124,5 @@
 - you put in your bday, and a zodiac is chosen
 - show official results board (historical rankings)
 - scoreboard box size adjust
-- when there's a tie, there's a bug that "Player A's turn" briefly shows before the message "game is tied." 
+- when the game is over there's a bug that "Player A's turn" briefly shows before the message "game is tied." 
+- player shouldn't be able to click the button when the slots are still spinning. 
