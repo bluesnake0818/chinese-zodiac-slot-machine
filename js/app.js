@@ -90,68 +90,50 @@ function init() {
   })
   
   showElement(choosePlayer)
+  hideElement(slotMachine)
   showElement(choosePlayer, '#title')
-  choosePlayer.querySelector('#title').className = ''
+  showElement(choosePlayer, '#show-player')
   
   hideElement(choosePlayer, '#select-button')
-  choosePlayer.querySelector('#select-button').className = 'btn select-button'
-  showElement(choosePlayer, '#show-player')
-  choosePlayer.querySelector('#show-player').className = ''
-  choosePlayer.querySelector('#demo-img').className = 'a1'
+  hideElement(choosePlayer, '#play-button')
+  hideElement(choosePlayer, '#instructions')
+  hideElement(slotMachine, '#replay-button')
+
+  setClassName(choosePlayer, '#title', '')
+  setClassName(choosePlayer, '#show-player', '')  
+  setClassName(choosePlayer, '#player-a-img', '')
+  setClassName(choosePlayer, '#player-b-img', '')
+  setClassName(choosePlayer, '#play-button', '')
+  setClassName(scoreBoard, '#score-board-B', '')
+
+  setClassName(choosePlayer, '#select-button', 'btn select-button')
+  setClassName(choosePlayer, '#demo-img', 'a1')
   choosePlayer.querySelector('#player-desc').textContent = zodiacsArray[0].desc
   choosePlayer.querySelector('#player-luck').textContent = zodiacsArray[0].luck
   choosePlayer.querySelector('#player-enemy').textContent = zodiacsArray[0].enemy
-  choosePlayer.querySelector('#player-a-img').className = ''
-  choosePlayer.querySelector('#player-b-img').className = ''
   choosePlayer.querySelector('#player-preview').classList.remove('animate-out')
-  hideElement(choosePlayer, '#play-button')
-  choosePlayer.querySelector('#play-button').className = ''
-  hideElement(choosePlayer, '#instructions')
   
-  hideElement(slotMachine)
-  slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-a'
+  setClassName(slotMachine, '#shuffle-button', 'btn shuffle-button-player-a')
   slotMachine.querySelector('#turn-board').textContent = ""
   slotMachine.querySelector('#turn-board').textContent = "Turn: Player A"
   slotMachine.querySelector('#turn-board').style.color = '#6661F1'
   slotMachine.querySelector('#winner-display').textContent = ""
-  hideElement(slotMachine, '#replay-button')
   
-  scoreBoard.setAttribute("hidden", true)
-  scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
-  scoreBoard.querySelector('#score-board-B').className = ''
+  hideElement(scoreBoard)
+  setClassName(scoreBoard, '#score-board-A', 'score-board-a-turn')
   scoreBoard.querySelector('#scoreboard-title').title= "2 of a kind: 10 / 3 of a kind: 100 / 4 of a kind: 1000"
   
 }
 
-// parameter - can have optional?
-function showElement(dom_ref, element) {
-  console.log(element)
-  console.log(typeof(element))
-  if(element === undefined)
-  {
-    dom_ref.removeAttribute("hidden")
-  } else {
-    dom_ref.querySelector(element).removeAttribute("hidden")
-  }
 
-}
-
-function hideElement(dom_ref, element) {
-  if(element === undefined)
-  {
-    dom_ref.setAttribute("hidden", true)
-  } else {
-    dom_ref.querySelector(element).setAttribute("hidden", true)
-  }
-}
 
 
 function showPlayer(evt) {
-  choosePlayer.querySelector('#select-button').removeAttribute("hidden")
+  showElement(choosePlayer, '#select-button')
   if(turn===1) {
-    choosePlayer.querySelector('#select-button').classList = 'btn select-button animate-in'
+    setClassName(choosePlayer, '#select-button', 'btn select-button animate-in')
   } else {
-    choosePlayer.querySelector('#select-button').classList = 'btn select-button-b animate-in'
+    setClassName(choosePlayer, '#select-button', 'btn select-button-b animate-in')
   }
   
   for(let i=0; i<zodiacsArray.length; i++) {
@@ -181,7 +163,7 @@ function selectPlayer() {
     
     turn = turn * -1
     choosePlayer.querySelector('#title').textContent = "Player B, choose Your zodiac"
-    choosePlayer.querySelector('#select-button').className = 'btn select-button-b'
+    setClassName(choosePlayer, '#select-button', 'btn select-button-b')
     hideElement(choosePlayer, '#select-button')
     choosePlayer.querySelector('#player-a-img').className = choosePlayer.querySelector('#demo-img').className
     choosePlayer.querySelector(`#${zodName}`).className = 'selection-img selected-a'
@@ -200,19 +182,17 @@ function selectPlayer() {
 
       turn = turn * -1
       
-      choosePlayer.querySelector('#title').className = 'animate-out'
-      choosePlayer.querySelector('#show-player').className = 'animate-out'
-      choosePlayer.querySelector('#select-button').className = 'btn select-button-b animate-out'
-      
+      setClassName(choosePlayer, '#title', 'animate-out')
+      setClassName(choosePlayer, '#show-player', 'animate-out')
+      setClassName(choosePlayer, '#select-button', 'btn select-button-b animate-out') 
       
       setTimeout(function() {
-      hideElement(choosePlayer, '#title')
-      hideElement(choosePlayer, '#show-player')
-      hideElement(choosePlayer, '#select-button')
-      showElement(choosePlayer, '#instructions')
-      showElement(choosePlayer, '#play-button')
-      
-      choosePlayer.querySelector('#play-button').className = 'btn animate-in'
+        hideElement(choosePlayer, '#title')
+        hideElement(choosePlayer, '#show-player')
+        hideElement(choosePlayer, '#select-button')
+        showElement(choosePlayer, '#instructions')
+        showElement(choosePlayer, '#play-button')
+        setClassName(choosePlayer, '#play-button', 'btn animate-in')
       }, (1000))
     }
   }
@@ -226,12 +206,12 @@ function handlePlay() {
   choosePlayer.querySelector('#instructions').classList.add('animate-out')
 
   setTimeout(function() {
-  hideElement(choosePlayer)
-  showElement(scoreBoard)
-  showElement(slotMachine)
-  showElement(slotMachine, '#turn-board')
-  showElement(slotMachine, '#shuffle-button')
-  
+    hideElement(choosePlayer)
+    showElement(scoreBoard)
+    showElement(slotMachine)
+    showElement(slotMachine, '#turn-board')
+    showElement(slotMachine, '#shuffle-button')
+    
   }, (1000))
 }
 
@@ -417,7 +397,7 @@ function render() {
       slotMachine.querySelector('#turn-board').style.color = '#6661F1'
     }
   } else {
-    slotMachine.querySelector('#turn-board').setAttribute("hidden", true)
+    hideElement(slotMachine, '#turn-board')
     if (isWinner === 'T') {
       slotMachine.querySelector('#winner-display').textContent = "The game is tied."
     } else {
@@ -426,24 +406,24 @@ function render() {
       oxSays.volume = .10
       oxSays.play()
     }
-    slotMachine.querySelector('#winner-display').removeAttribute("hidden")
+    showElement(slotMachine, '#winner-display')
   }
   
   if(round < 6) {
     if(turn === 1) {
       slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-b'
       scoreBoard.querySelector('#score-board-B').className = 'score-board-b-turn'
-      scoreBoard.querySelector('#score-board-A').className = ''
+      setClassName(scoreBoard, '#score-board-A', '')
     } else {
       slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-a'
       if (round < 5) {
       scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
       }
-      scoreBoard.querySelector('#score-board-B').className = ''
+      setClassName(scoreBoard, '#score-board-B', '')
     }
   } else {
-    scoreBoard.querySelector('#score-board-A').className = ''
-    scoreBoard.querySelector('#score-board-B').className = ''
+    setClassName(scoreBoard, '#score-board-A', '')
+    setClassName(scoreBoard, '#score-board-B', '')
   }
 
   renderScore()
@@ -464,3 +444,30 @@ function renderScore () {
   
 }
 
+
+
+
+function showElement(dom_ref, element) {
+  console.log(element)
+  console.log(typeof(element))
+  if(element === undefined)
+  {
+    dom_ref.removeAttribute("hidden")
+  } else {
+    dom_ref.querySelector(element).removeAttribute("hidden")
+  }
+
+}
+
+function hideElement(dom_ref, element) {
+  if(element === undefined)
+  {
+    dom_ref.setAttribute("hidden", true)
+  } else {
+    dom_ref.querySelector(element).setAttribute("hidden", true)
+  }
+}
+
+function setClassName(dom_ref, element, name) {
+  dom_ref.querySelector(element).className = name
+}
