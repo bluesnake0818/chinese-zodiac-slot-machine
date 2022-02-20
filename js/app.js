@@ -87,14 +87,12 @@ function init() {
   
   showElement(choosePlayer)
   showElement(choosePlayer, '#title')
-  // choosePlayer.querySelector('#title').removeAttribute('hidden')
-  // choosePlayer.querySelector('#title').textContent = "Player A, choose your zodiac."
   choosePlayer.querySelector('#title').className = ''
   
-  choosePlayer.querySelector('#select-button').setAttribute("hidden", true)
+  hideElement(choosePlayer, '#select-button')
+  // choosePlayer.querySelector('#select-button').setAttribute("hidden", true)
   choosePlayer.querySelector('#select-button').className = 'btn select-button'
   showElement(choosePlayer, '#show-player')
-  // choosePlayer.querySelector('#show-player').removeAttribute('hidden')
   choosePlayer.querySelector('#show-player').className = ''
   choosePlayer.querySelector('#demo-img').className = 'a1'
   choosePlayer.querySelector('#player-desc').textContent = zodiacsArray[0].desc
@@ -103,17 +101,21 @@ function init() {
   choosePlayer.querySelector('#player-a-img').className = ''
   choosePlayer.querySelector('#player-b-img').className = ''
   choosePlayer.querySelector('#player-preview').classList.remove('animate-out')
-  choosePlayer.querySelector('#play-button').setAttribute("hidden", true)
+  hideElement(choosePlayer, '#play-button')
+  // choosePlayer.querySelector('#play-button').setAttribute("hidden", true)
   choosePlayer.querySelector('#play-button').className = ''
-  choosePlayer.querySelector('#instructions').setAttribute('hidden',true)
+  hideElement(choosePlayer, '#instructions')
+  // choosePlayer.querySelector('#instructions').setAttribute('hidden',true)
   
-  slotMachine.setAttribute("hidden", true)
+  // slotMachine.setAttribute("hidden", true)
+  hideElement(slotMachine)
   slotMachine.querySelector('#shuffle-button').className = 'btn shuffle-button-player-a'
   slotMachine.querySelector('#turn-board').textContent = ""
   slotMachine.querySelector('#turn-board').textContent = "Turn: Player A"
   slotMachine.querySelector('#turn-board').style.color = '#6661F1'
   slotMachine.querySelector('#winner-display').textContent = ""
-  slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
+  hideElement(slotMachine, '#replay-button')
+  // slotMachine.querySelector('#replay-button').setAttribute("hidden", true)
   
   scoreBoard.setAttribute("hidden", true)
   scoreBoard.querySelector('#score-board-A').className = 'score-board-a-turn'
@@ -135,9 +137,14 @@ function showElement(dom_ref, element) {
 
 }
 
-// function hideElement() {
-
-// }
+function hideElement(dom_ref, element) {
+  if(element === undefined)
+  {
+    dom_ref.setAttribute("hidden", true)
+  } else {
+    dom_ref.querySelector(element).setAttribute("hidden", true)
+  }
+}
 
 
 function showPlayer(evt) {
