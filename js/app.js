@@ -429,8 +429,6 @@ function renderScore() {
 
 
 function showElement(dom_ref, element) {
-  console.log(element)
-  console.log(typeof(element))
   if(element === undefined)
   {
     dom_ref.removeAttribute("hidden")
