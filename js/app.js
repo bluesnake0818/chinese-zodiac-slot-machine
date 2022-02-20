@@ -91,6 +91,7 @@ function init() {
   
   showElement(choosePlayer)
   hideElement(slotMachine)
+  hideElement(scoreBoard)
   showElement(choosePlayer, '#title')
   showElement(choosePlayer, '#show-player')
   
@@ -108,19 +109,19 @@ function init() {
 
   setClassName(choosePlayer, '#select-button', 'btn select-button')
   setClassName(choosePlayer, '#demo-img', 'a1')
+  setClassName(slotMachine, '#shuffle-button', 'btn shuffle-button-player-a')
+  setClassName(scoreBoard, '#score-board-A', 'score-board-a-turn')
+  setClassName(slotMachine, '#turn-board', 'Turn: Player A')
+  choosePlayer.querySelector('#player-preview').classList.remove('animate-out')
+
   choosePlayer.querySelector('#player-desc').textContent = zodiacsArray[0].desc
   choosePlayer.querySelector('#player-luck').textContent = zodiacsArray[0].luck
   choosePlayer.querySelector('#player-enemy').textContent = zodiacsArray[0].enemy
-  choosePlayer.querySelector('#player-preview').classList.remove('animate-out')
   
-  setClassName(slotMachine, '#shuffle-button', 'btn shuffle-button-player-a')
-  slotMachine.querySelector('#turn-board').textContent = ""
-  slotMachine.querySelector('#turn-board').textContent = "Turn: Player A"
+  setTextContent(slotMachine, '#turn-board', '')
+  setTextContent(slotMachine, '#winner-display', '')
+  
   slotMachine.querySelector('#turn-board').style.color = '#6661F1'
-  slotMachine.querySelector('#winner-display').textContent = ""
-  
-  hideElement(scoreBoard)
-  setClassName(scoreBoard, '#score-board-A', 'score-board-a-turn')
   scoreBoard.querySelector('#scoreboard-title').title= "2 of a kind: 10 / 3 of a kind: 100 / 4 of a kind: 1000"
   
 }
@@ -159,10 +160,10 @@ function selectPlayer() {
     let zodName = `${zodiacsArray[zodIdx].zodiac}`
     let zodTag = `${zodiacsArray[zodIdx].tag}-p`
     scoreBoard.querySelector('#player-a-name').className = zodTag
-    scoreBoard.querySelector('#player-a-name').textContent = ""
+    setTextContent(scoreBoard, '#player-a-name', '')
     
     turn = turn * -1
-    choosePlayer.querySelector('#title').textContent = "Player B, choose Your zodiac"
+    setTextContent(choosePlayer, '#title', 'Player B, choose Your zodiac')
     setClassName(choosePlayer, '#select-button', 'btn select-button-b')
     hideElement(choosePlayer, '#select-button')
     choosePlayer.querySelector('#player-a-img').className = choosePlayer.querySelector('#demo-img').className
@@ -178,7 +179,7 @@ function selectPlayer() {
       choosePlayer.querySelector("#player-b-img").className = choosePlayer.querySelector('#demo-img').className
       choosePlayer.querySelector(`#${zodName}`).className = 'selection-img selected-b'
       scoreBoard.querySelector('#player-b-name').className = zodTag
-      scoreBoard.querySelector('#player-b-name').textContent = ""
+      setTextContent(scoreBoard, '#player-b-name', '')
 
       turn = turn * -1
       
@@ -430,7 +431,7 @@ function render() {
 }
 
 
-function renderScore () {
+function renderScore() {
   if(round < 6) {
     for(let i=0; i<scoresArray.length; i++) {
       if(scoresArray[i].target.player === turn && scoresArray[i].target.round === round) {
@@ -470,4 +471,8 @@ function hideElement(dom_ref, element) {
 
 function setClassName(dom_ref, element, name) {
   dom_ref.querySelector(element).className = name
+}
+
+function setTextContent(dom_ref, element, name) {
+  dom_ref.querySelector(element).textContent = name
 }
