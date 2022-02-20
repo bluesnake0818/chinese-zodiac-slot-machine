@@ -38,6 +38,23 @@ slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShu
 
 /*-------------------------------- Functions --------------------------------*/
 
+// make a class/object for shuffle().
+// sumA, sumB, playerAName, playerBName as object of objects
+// zodiacs of arrays to object properties?
+// Make render() be the only one that updates DOM elements (view) as much as possible, or smaller function of renders. put everything into render then have that call smaller render functions or just call smaller renders from event handler functions?
+// DOM  show / hide into functions with reasonable names.
+// 
+// const players = {
+//  	'1': {
+//     name: '',
+//     score: 0
+//   },
+//   '-1': {
+//     name: '',
+//     score: 0
+//   }
+// };
+
 init()
 
 function init() {
@@ -68,13 +85,16 @@ function init() {
     score.textContent = ""
   })
   
-  choosePlayer.removeAttribute("hidden")
-  choosePlayer.querySelector('#title').removeAttribute('hidden')
-  choosePlayer.querySelector('#title').textContent = "Player A, choose your zodiac."
+  showElement(choosePlayer)
+  showElement(choosePlayer, '#title')
+  // choosePlayer.querySelector('#title').removeAttribute('hidden')
+  // choosePlayer.querySelector('#title').textContent = "Player A, choose your zodiac."
   choosePlayer.querySelector('#title').className = ''
+  
   choosePlayer.querySelector('#select-button').setAttribute("hidden", true)
   choosePlayer.querySelector('#select-button').className = 'btn select-button'
-  choosePlayer.querySelector('#show-player').removeAttribute('hidden')
+  showElement(choosePlayer, '#show-player')
+  // choosePlayer.querySelector('#show-player').removeAttribute('hidden')
   choosePlayer.querySelector('#show-player').className = ''
   choosePlayer.querySelector('#demo-img').className = 'a1'
   choosePlayer.querySelector('#player-desc').textContent = zodiacsArray[0].desc
@@ -101,6 +121,24 @@ function init() {
   scoreBoard.querySelector('#scoreboard-title').title= "2 of a kind: 10 / 3 of a kind: 100 / 4 of a kind: 1000"
   
 }
+
+// parameter - can have optional?
+function showElement(dom_ref, element) {
+  console.log(element)
+  console.log(typeof(element))
+  if(element === undefined)
+  {
+    dom_ref.removeAttribute("hidden")
+  } else {
+    dom_ref.querySelector(element).removeAttribute("hidden")
+  }
+
+}
+
+// function hideElement() {
+
+// }
+
 
 function showPlayer(evt) {
   choosePlayer.querySelector('#select-button').removeAttribute("hidden")
