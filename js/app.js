@@ -38,27 +38,6 @@ slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShu
 
 /*-------------------------------- Functions --------------------------------*/
 
-
-// button - can't press multiple times
-// results + share  page
-// sound for animals
-// make a class/object for shuffle().
-// sumA, sumB, playerAName, playerBName as object of objects
-// zodiacs of arrays to object properties?
-// Make render() be the only one that updates DOM elements (view) as much as possible, or smaller function of renders. put everything into render then have that call smaller render functions or just call smaller renders from event handler functions?
-// DOM  show / hide into functions with reasonable names.
-// 
-// const players = {
-//  	'1': {
-//     name: '',
-//     score: 0
-//   },
-//   '-1': {
-//     name: '',
-//     score: 0
-//   }
-// };
-
 init()
 
 function init() {
@@ -86,7 +65,7 @@ function init() {
   score7.target = {player: -1, round: 7, score: 0, note: 'sum'}
   
   scoresArray.forEach(score => {
-    score.textContent = ""
+    score.textContent = ''
   })
   
   showElement(choosePlayer)
@@ -153,7 +132,7 @@ function showPlayer(evt) {
 }
 
 function selectPlayer() {
-  choosePlayer.querySelector('#select-button').removeAttribute("hidden")
+  showElement(choosePlayer, '#select-button')
   
   if (turn === 1) {
     let zodIdx = zodiacsArray.findIndex(element => element.zodiac === playerAName)
@@ -242,6 +221,7 @@ function handleShuffle() {
     }
   }, (numberSlot4*50+1000))
 }
+
 
 
 function shuffle(){

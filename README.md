@@ -127,3 +127,15 @@
 - when the game is over there's a bug that "Player A's turn" briefly shows before the message "game is tied." 
 - player shouldn't be able to click the button when the slots are still spinning. 
 - on smaller screens, win/turn area shifts to the right (outside main area)
+- button - can't press multiple times
+- results + share  page
+- sound for animals (right before pressing play())
+- make a class/object for shuffle().
+- sumA, sumB, playerAName, playerBName as object of objects
+  - const players = { '1': { name: '', score: 0}, '-1': { name: '', score: 0 }};
+  - class spin { constructor() {}}
+- zodiacs of arrays to an object of objects, not array of objects?
+- Make render() be the only one that updates DOM elements (view) as much as possible, or smaller function of renders. put everything into render then have that call smaller render functions or just call smaller renders from event handler functions?
+- ~DOM  show / hide into functions with reasonable names.~
+
+

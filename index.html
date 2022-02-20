@@ -156,6 +156,29 @@
         </div>
       </section>
 
+      <script>
+        document.addEventListener("click", function(event) {
+          console.log(`event: ${event}`)
+          console.log(`event.target: ${event.target}`)
+          if (event.target.textContent === 'Select') {
+            gtag('event', 'select_button_click')
+          }
+
+          if (event.target.textContent === 'Play') {
+            gtag('event', 'play_button_click')
+          }
+
+
+          if (event.target.textContent === 'Shuffle') {
+            gtag('event', 'shuffle_button_click')
+          }
+
+
+          if (event.target.textContent === 'Replay') {
+            gtag('event', 'replay_button_click')
+          }
+        })
+      </script>
     </main>      
   </body>
 </html>
