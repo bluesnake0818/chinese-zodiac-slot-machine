@@ -36,6 +36,7 @@ choosePlayer.querySelector('#play-button').addEventListener("click", handlePlay)
 slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShuffle)
 
 
+
 /*-------------------------------- Functions --------------------------------*/
 
 init()
