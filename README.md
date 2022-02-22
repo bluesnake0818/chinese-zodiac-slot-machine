@@ -4,15 +4,15 @@
 
 ## Why I Started This
 - I decided to take the GA SEI course with the immediate goal of building my company's brand new website, which is a zodiac-based friend discovery app, on my own toward the end of the course.
-- A form of slot machine was already in the feature plan, and since it was also on the list of recommended game to build, I chose to build a slot machine game.
-- A variation of this product will be integrated into the website in the future. 
+- A form of slot machine was already in the feature plan, and since it was also on the list of recommended games to build, I chose go with it.
+- A variation of this product will be integrated into the company website in the future. 
 
 ## Getting Started
 - <a href="https://chinese-zodiac-slot-machine.surge.sh/">Game Link</a>
 - You need 2 players to play the game.
 - Each player will choose a zodiac avatar, and play the slot machine as the selected avatar.
 - Each player gets to spin the slot machine for 3 rounds.
-- After three rounds of slot machine, the player with higher sum of score gets to win. 
+- After three rounds of play, the player with a higher sum of scores wins. 
 - Scoring system: 
   - Four of a kind - 1000 points
   - Three of a kind - 100 points 
