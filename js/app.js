@@ -55,17 +55,16 @@ function init() {
   playerAName = ''
   playerBName = ''
   
-  const score0 = {player: 1, round: 0, score: 0}
-  const score1 = {player: -1, round: 1, score: 0}
-  const score2 = {player: 1, round: 2, score: 0}
-  const score3 = {player: -1, round: 3, score: 0}
-  const score4 = {player: 1, round: 4, score: 0}
-  const score5 = {player: -1, round: 5, score: 0}
-  const score6 = {player: 1, round: 6, score: 0}
-  const score7 = {player: -1, round: 7, score: 0}
-
   scoresArray = [score0, score1, score2, score3, score4, score5, score6, score7]
- 
+  
+  score0.target = {player: 1, round: 0, score: 0, note: ''}
+  score1.target = {player: -1, round: 1, score: 0, note: ''}
+  score2.target = {player: 1, round: 2, score: 0, note: ''}
+  score3.target = {player: -1, round: 3, score: 0, note: 'sum'}
+  score4.target = {player: 1, round: 4, score: 0, note: ''}
+  score5.target = {player: -1, round: 5, score: 0, note: ''}
+  score6.target = {player: 1, round: 6, score: 0, note: ''}
+  score7.target = {player: -1, round: 7, score: 0, note: 'sum'}
   
   scoresArray.forEach(score => {
     score.textContent = ''
