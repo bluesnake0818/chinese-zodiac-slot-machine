@@ -526,6 +526,21 @@ main > #slot-machine > #button-area > .shuffle-button-player-b:hover {
 
 
 
+/*------------------------ 3. install-button-area Section ------------------------*/
 
+#install-button-area {
+  width: 100%;
+  margin-top: 30px;
+}
 
+.install-button {
+  border-color: #6661F1;
+  color: #6661F1;
+  margin: 0;
+}
 
+.install-button:hover {
+  background-color: #6661F1;
+  color: whitesmoke;
+  margin: 0;
+}

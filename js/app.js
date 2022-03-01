@@ -23,6 +23,7 @@ let slotMachineArray, scoresArray, turn, round, isWinner, sumA, sumB, playerANam
 const choosePlayer = document.querySelector('#choose-player')
 const slotMachine = document.querySelector('#slot-machine')
 const scoreBoard = document.querySelector('#score-board')
+const installBtn = document.querySelector('#install-button-area')
 
 const favicon = document.querySelector('#favicon')
 const tooltips = document.querySelectorAll('[data-toggle="tooltip"]')
@@ -34,8 +35,8 @@ choosePlayer.querySelector('#scroll').addEventListener("click", showPlayer)
 choosePlayer.querySelector('#select-button').addEventListener("click", selectPlayer)
 choosePlayer.querySelector('#play-button').addEventListener("click", handlePlay)
 slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShuffle)
-scoreBoard.querySelector('#install-button').addEventListener("click", ()=>{ 
-  window.location.replace("https://apps.apple.com/us/app/hang5-astrology-horoscope/id1531290410")})
+installBtn.addEventListener("click", ()=>{ 
+  window.open("https://apps.apple.com/us/app/hang5-astrology-horoscope/id1531290410")})
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -73,6 +74,7 @@ function init() {
   showElement(choosePlayer)
   hideElement(slotMachine)
   hideElement(scoreBoard)
+  hideElement(installBtn)
   showElement(choosePlayer, '#title')
   showElement(choosePlayer, '#show-player')
   
@@ -80,7 +82,6 @@ function init() {
   hideElement(choosePlayer, '#play-button')
   hideElement(choosePlayer, '#instructions')
   hideElement(slotMachine, '#replay-button')
-  hideElement(slotMachine, '#install-button')
 
   setClassName(choosePlayer, '#title', '')
   setClassName(choosePlayer, '#show-player', '')  
@@ -218,9 +219,9 @@ function handleShuffle() {
     if(round === 6) {
       hideElement(slotMachine, '#shuffle-button')
       setTimeout(function() {
-        getWinner()
         showElement(slotMachine, '#replay-button')
-        showElement(slotMachine, '#install-button')
+        showElement(installBtn)
+        getWinner()
       }, 1000);
     }
   }, (numberSlot4*50+1000))
