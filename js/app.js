@@ -34,8 +34,8 @@ choosePlayer.querySelector('#scroll').addEventListener("click", showPlayer)
 choosePlayer.querySelector('#select-button').addEventListener("click", selectPlayer)
 choosePlayer.querySelector('#play-button').addEventListener("click", handlePlay)
 slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShuffle)
-
-
+scoreBoard.querySelector('#install-button').addEventListener("click", ()=>{ 
+  window.location.replace("https://apps.apple.com/us/app/hang5-astrology-horoscope/id1531290410")})
 
 /*-------------------------------- Functions --------------------------------*/
 
@@ -80,6 +80,7 @@ function init() {
   hideElement(choosePlayer, '#play-button')
   hideElement(choosePlayer, '#instructions')
   hideElement(slotMachine, '#replay-button')
+  hideElement(slotMachine, '#install-button')
 
   setClassName(choosePlayer, '#title', '')
   setClassName(choosePlayer, '#show-player', '')  
@@ -217,8 +218,9 @@ function handleShuffle() {
     if(round === 6) {
       hideElement(slotMachine, '#shuffle-button')
       setTimeout(function() {
-        showElement(slotMachine, '#replay-button')
         getWinner()
+        showElement(slotMachine, '#replay-button')
+        showElement(slotMachine, '#install-button')
       }, 1000);
     }
   }, (numberSlot4*50+1000))
