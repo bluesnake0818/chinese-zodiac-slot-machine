@@ -235,6 +235,14 @@ function shuffle(){
   let numberSlot2 = numChanges+2*7+randomInt(1,7)	
   let numberSlot3 = numChanges+4*7+randomInt(1,7)
   numberSlot4 = numChanges+6*7+randomInt(1,7)
+
+  // test code
+  // let numChanges = 1
+  // let numberSlot1 = 2
+  // let numberSlot2 = 3
+  // let numberSlot3 = 4
+  // numberSlot4 = 5
+
   
   let i1 = 0
   let i2 = 0
