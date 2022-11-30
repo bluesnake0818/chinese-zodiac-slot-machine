@@ -31,7 +31,6 @@ body {
   align-items: center;
   height: 100vh;
   font-size: 24px;
-  
 }
 
 main {
@@ -234,7 +233,6 @@ header > h1 {
 }
 
 /*------------------------ 1. Choose-Player Section ------------------------*/
-
 
 main > #choose-player {
   width: 100%;

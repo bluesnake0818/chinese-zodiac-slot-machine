@@ -36,7 +36,7 @@ choosePlayer.querySelector('#select-button').addEventListener("click", selectPla
 choosePlayer.querySelector('#play-button').addEventListener("click", handlePlay)
 slotMachine.querySelector('#shuffle-button').addEventListener("click", handleShuffle)
 installBtn.addEventListener("click", ()=>{ 
-  window.open("https://apps.apple.com/us/app/hang5-astrology-horoscope/id1531290410")})
+  window.open("https://hangfive.page.link/SnPr")})
 
 /*-------------------------------- Functions --------------------------------*/
 
